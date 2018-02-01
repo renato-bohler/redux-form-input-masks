@@ -1,0 +1,30 @@
+{
+  "name": "redux-form-input-masks",
+  "version": "0.0.1",
+  "description": "Input masking with redux-form made easy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renato-bohler/redux-form-input-masks.git"
+  },
+  "keywords": [
+    "redux",
+    "form",
+    "redux-form",
+    "input",
+    "masking",
+    "format",
+    "formatting",
+    "field",
+    "react"
+  ],
+  "author": "Renato Böhler <renato.bohler@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renato-bohler/redux-form-input-masks/issues"
+  },
+  "homepage": "https://github.com/renato-bohler/redux-form-input-masks#readme"
+}
