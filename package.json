@@ -21,10 +21,17 @@
     "field",
     "react"
   ],
-  "author": "Renato Böhler <renato.bohler@gmail.com>",
+  "author": "Renato Böhler <renato.bohler@gmail.com> (https://github.com/renato-bohler)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/renato-bohler/redux-form-input-masks/issues"
   },
-  "homepage": "https://github.com/renato-bohler/redux-form-input-masks#readme"
+  "homepage": "https://github.com/renato-bohler/redux-form-input-masks#readme",
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "prettier": "^1.10.2"
+  }
 }

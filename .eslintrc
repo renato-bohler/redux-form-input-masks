@@ -1,0 +1,15 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "tabWidth": 2
+      }
+    ],
+    "arrow-parens": ["error", "as-needed"],
+    "consistent-return": "off",
+    "no-useless-escape": "off"
+  }
+}
