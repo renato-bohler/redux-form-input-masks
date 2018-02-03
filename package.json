@@ -4,7 +4,7 @@
   "description": "Input masking with redux-form made easy",
   "main": "./src/index.js",
   "scripts": {
-    "prepublishOnly": "npm run build:docs",
+    "prepublishOnly": "npm run build:docs && git add .",
     "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
