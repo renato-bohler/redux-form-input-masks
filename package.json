@@ -4,6 +4,7 @@
   "description": "Input masking with redux-form made easy",
   "main": "./src/index.js",
   "scripts": {
+    "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,8 @@
   },
   "homepage": "https://github.com/renato-bohler/redux-form-input-masks#readme",
   "devDependencies": {
+    "cpy-cli": "^1.0.1",
+    "cross-env": "^5.1.3",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
