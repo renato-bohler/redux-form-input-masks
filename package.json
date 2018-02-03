@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/renato-bohler/redux-form-input-masks/issues"
   },
-  "homepage": "https://github.com/renato-bohler/redux-form-input-masks#readme",
+  "homepage": "https://renato-bohler.github.io/redux-form-input-masks",
   "devDependencies": {
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
