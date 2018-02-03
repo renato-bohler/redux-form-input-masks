@@ -3,3 +3,5 @@
 .prettierrc
 package-lock.json
 yarn.lock
+examples
+docs
