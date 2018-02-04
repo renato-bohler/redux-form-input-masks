@@ -15,6 +15,17 @@ const frLocale = createNumberMask('€ ', '', 2, true, 'fr');
 const CreateNumberMask = props => {
   return (
     <App>
+      <div className="path">
+        <a href="https://github.com/renato-bohler/redux-form-input-masks">
+          redux-form-input-masks
+        </a>
+        <a href="https://github.com/renato-bohler/redux-form-input-masks/tree/master/src">
+          src
+        </a>
+        <a href="https://github.com/renato-bohler/redux-form-input-masks/blob/master/src/createNumberMask.js">
+          createNumberMask
+        </a>
+      </div>
       <Markdown content={documentation} />
       <h2>Demo</h2>
       <form>

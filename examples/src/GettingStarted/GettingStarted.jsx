@@ -22,6 +22,11 @@ let GettingStarted = props => {
 
   return (
     <App>
+      <div className="path">
+        <a href="https://github.com/renato-bohler/redux-form-input-masks">
+          redux-form-input-masks
+        </a>
+      </div>
       <Markdown content={documentation} />
       <form>
         <div>
