@@ -20,7 +20,6 @@ renderer.heading = (text, level) => {
 };
 
 const Markdown = ({ content }) => {
-  Prism.highlightAll();
   return (
     <div
       dangerouslySetInnerHTML={{
