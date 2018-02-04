@@ -5,7 +5,8 @@ export default (
   suffix = '',
   decimalPlaces = 2,
   stringValue = false,
-  locale,
+  locale = 'browser',
+  onChange,
 ) => {
   const numberToLocaleString = number =>
     number.toLocaleString(locale, {
@@ -51,6 +52,11 @@ export default (
     if (stringValue) {
       number = number.toString();
     }
+
+    if (onChange) {
+      onChange(number);
+    }
+
     return number;
   };
 

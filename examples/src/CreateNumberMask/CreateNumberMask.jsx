@@ -8,9 +8,9 @@ import documentation from './CreateNumberMask.md';
 
 const selector = formValueSelector('numberMask');
 
-const basic = createNumberMask('US$ ', ' per item', 2, false);
-const converted = createNumberMask('US$ ', ' per item', 2, true);
-const frLocale = createNumberMask('', '', 2, true, 'fr');
+const basic = createNumberMask('US$ ', ' per item', 2, false, 'en-US');
+const converted = createNumberMask('', '%', 4, true);
+const frLocale = createNumberMask('€ ', '', 2, true, 'fr');
 
 const CreateNumberMask = props => {
   return (
@@ -77,7 +77,7 @@ const CreateNumberMask = props => {
         <div>
           <div />
           <Field name="locale" component="select">
-            <option value="">Browser's locale</option>
+            <option>browser</option>
             <option>en-US</option>
             <option>fr</option>
             <option>de</option>
@@ -88,12 +88,15 @@ const CreateNumberMask = props => {
           <div />
           <label>
             Convert to string
-            <Field name="convertToString" component="input" type="checkbox" />{' '}
+            <Field
+              name="convertToString"
+              component="input"
+              type="checkbox"
+            />{' '}
           </label>
         </div>
-
-        <Values form="numberMask" />
       </form>
+      <Values form="numberMask" />
     </App>
   );
 };
