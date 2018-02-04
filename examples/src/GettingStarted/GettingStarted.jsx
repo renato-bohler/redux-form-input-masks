@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, change } from 'redux-form';
 import { createNumberMask } from '../../../src/index';
 import { Markdown } from 'redux-form-website-template';
-import App from '../App/App';
+import { App } from '../App';
 import documentation from './GettingStarted.md';
 
 const conversionRate = 6800;

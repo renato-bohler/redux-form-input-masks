@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { createNumberMask } from '../../../src/index';
 import { Markdown, Values } from 'redux-form-website-template';
-import App from '../App/App';
+import { App, Demo } from '../App';
 import documentation from './CreateNumberMask.md';
 
 const selector = formValueSelector('numberMask');
@@ -12,7 +12,7 @@ const basic = createNumberMask('US$ ', ' per item', 2, false, 'en-US');
 const converted = createNumberMask('', '%', 4, true);
 const frLocale = createNumberMask('€ ', '', 2, true, 'fr');
 
-const CreateNumberMask = props => {
+let CreateNumberMask = props => {
   return (
     <App>
       <div className="path">
@@ -27,7 +27,8 @@ const CreateNumberMask = props => {
         </a>
       </div>
       <Markdown content={documentation} />
-      <h2>Demo</h2>
+      <Demo codesandbox="k0op1kwywr" />
+
       <form>
         <div>
           <h3>Basic</h3>
@@ -112,8 +113,8 @@ const CreateNumberMask = props => {
   );
 };
 
-export default connect(state => {
-  return selector(
+const mapStateToProps = state =>
+  selector(
     state,
     'prefix',
     'suffix',
@@ -121,11 +122,12 @@ export default connect(state => {
     'convertToString',
     'locale',
   );
-})(
-  reduxForm({
-    form: 'numberMask',
-    initialValues: {
-      decimalPlaces: 2,
-    },
-  })(CreateNumberMask),
-);
+
+CreateNumberMask = connect(mapStateToProps)(CreateNumberMask);
+
+export default reduxForm({
+  form: 'numberMask',
+  initialValues: {
+    decimalPlaces: 2,
+  },
+})(CreateNumberMask);

@@ -24,10 +24,14 @@ yarn add redux-form-input-masks
 
 ## Usage
 
-Simple case using [`createNumberMask`](#/number-mask) to convert bitcoins to euros and vice versa. Please note that this convertion does not reflect real conversion rates.
+It's super simple to apply a mask using this library. You just need to import your mask creator from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes). Yep, it's that easy.
+
+The following is a use case for [`createNumberMask`](#/number-mask). It consists of two inputs that convert bitcoins to euros and vice versa. Check the demo below the code. You can also check it on [codesandbox.io](https://codesandbox.io/s/v0rj4p6y0). Please note that this convertion does not reflect real conversion rates.
 
 ```jsx
-import { Field } from 'redux-form';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm, change } from 'redux-form';
 import { createNumberMask } from 'redux-form-input-masks';
 
 const conversionRate = 6800;
@@ -45,17 +49,24 @@ let GettingStarted = props => {
   const eurMask = createNumberMask('', ' €', 2, false, 'de', eurChange);
 
   return (
-    <App>
-      <Markdown content={documentation} />
-      <form>
-        <div>
-          <Field name="BTC" component="input" type="tel" {...btcMask} />
-          <Field name="EUR" component="input" type="tel" {...eurMask} />
-        </div>
-      </form>
-    </App>
+    <form>
+      <div>
+        <Field name="BTC" component="input" type="tel" {...btcMask} />
+        <Field name="EUR" component="input" type="tel" {...eurMask} />
+      </div>
+    </form>
   );
 };
 
-(...)
+const mapStateToProps = undefined;
+
+const mapDispatchToProps = dispatch => ({
+  change: (form, field, value) => dispatch(change(form, field, value)),
+});
+
+GettingStarted = connect(mapStateToProps, mapDispatchToProps)(GettingStarted);
+
+export default reduxForm({
+  form: 'gettingStarted',
+})(GettingStarted);
 ```
