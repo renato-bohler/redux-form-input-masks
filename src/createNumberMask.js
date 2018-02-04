@@ -79,5 +79,6 @@ export default (
     onMouseDown: event => manageCaretPosition(event),
     onFocus: event => manageCaretPosition(event),
     onClick: event => manageCaretPosition(event),
+    autoComplete: 'off',
   };
 };
