@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { createNumberMask } from 'redux-form-input-masks';
+import { createNumberMask } from '../../../src/index';
 import { Markdown, Values } from 'redux-form-website-template';
 import App from '../App/App';
 import documentation from './CreateNumberMask.md';

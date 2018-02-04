@@ -19,7 +19,6 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.6.0",
     "redux-form": "^7.2.3",
-    "redux-form-input-masks": "^0.1.1",
     "redux-form-website-template": "0.0.103"
   },
   "devDependencies": {
