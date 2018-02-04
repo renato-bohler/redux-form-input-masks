@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { version } from '../../../package.json';
-import Prism from '../vendor/prism';
+import Prism from './prism';
 
 export default class App extends React.Component {
   componentDidMount() {

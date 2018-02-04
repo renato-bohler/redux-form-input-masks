@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { createNumberMask } from 'redux-form-input-masks';
-import { App, Markdown, Values } from '../App';
+import { Markdown, Values } from 'redux-form-website-template';
+import App from '../App/App';
 import documentation from './CreateNumberMask.md';
 
 const selector = formValueSelector('numberMask');

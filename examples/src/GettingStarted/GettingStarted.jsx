@@ -1,5 +1,6 @@
 import React from 'react';
-import { App, Markdown } from '../App';
+import { Markdown } from 'redux-form-website-template';
+import App from '../App/App';
 import documentation from './GettingStarted.md';
 
 export default () => (
