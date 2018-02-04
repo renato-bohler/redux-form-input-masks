@@ -14,6 +14,7 @@ const store = (window.devToolsExtension
   : createStore)(reducer);
 
 let render = () => {
+  const PageNotFound = require('./App/PageNotFound.jsx').default;
   const GettingStarted = require('./GettingStarted/GettingStarted.jsx').default;
   const CreateNumberMask = require('./CreateNumberMask/CreateNumberMask.jsx')
     .default;
@@ -24,6 +25,7 @@ let render = () => {
         <Switch>
           <Route exact path="/" component={GettingStarted} />
           <Route exact path="/number-mask" component={CreateNumberMask} />
+          <Route path="*" component={PageNotFound} />
         </Switch>
       </HashRouter>
     </Provider>,
@@ -40,6 +42,7 @@ if (module.hot) {
     setTimeout(render);
   };
   module.hot.accept('./App/App.jsx', rerender);
+  module.hot.accept('./App/PageNotFound.jsx', rerender);
   module.hot.accept('./GettingStarted/GettingStarted.jsx', rerender);
   module.hot.accept('./GettingStarted/GettingStarted.md', rerender);
   module.hot.accept('./CreateNumberMask/CreateNumberMask.jsx', rerender);
