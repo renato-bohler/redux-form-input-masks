@@ -17,8 +17,19 @@ let GettingStarted = props => {
     props.change('gettingStarted', 'BTC', eur / conversionRate);
   };
 
-  const btcMask = createNumberMask('BTC ', '', 5, false, 'en-US', btcChange);
-  const eurMask = createNumberMask('', ' €', 2, false, 'de', eurChange);
+  const btcMask = createNumberMask({
+    prefix: 'BTC ',
+    decimalPlaces: 5,
+    locale: 'en-US',
+    onChange: btcChange,
+  });
+
+  const eurMask = createNumberMask({
+    suffix: ' €',
+    decimalPlaces: 2,
+    locale: 'de',
+    onChange: eurChange,
+  });
 
   return (
     <App>

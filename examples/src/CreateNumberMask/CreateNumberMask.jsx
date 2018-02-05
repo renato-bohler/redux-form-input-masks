@@ -8,9 +8,25 @@ import documentation from './CreateNumberMask.md';
 
 const selector = formValueSelector('numberMask');
 
-const basic = createNumberMask('US$ ', ' per item', 2, false, 'en-US');
-const converted = createNumberMask('', '%', 4, true);
-const frLocale = createNumberMask('€ ', '', 2, true, 'fr');
+const basic = createNumberMask({
+  prefix: 'US$ ',
+  suffix: ' per item',
+  decimalPlaces: 2,
+  locale: 'en-US',
+});
+
+const converted = createNumberMask({
+  suffix: '%',
+  decimalPlaces: 4,
+  stringValue: true,
+});
+
+const frLocale = createNumberMask({
+  prefix: '€ ',
+  decimalPlaces: 2,
+  stringValue: true,
+  locale: 'fr',
+});
 
 let CreateNumberMask = props => {
   return (
@@ -48,13 +64,13 @@ let CreateNumberMask = props => {
             name="dynamic"
             component="input"
             type="tel"
-            {...createNumberMask(
-              props.prefix,
-              props.suffix,
-              props.decimalPlaces,
-              props.convertToString,
-              props.locale,
-            )}
+            {...createNumberMask({
+              prefix: props.prefix,
+              suffix: props.suffix,
+              decimalPlaces: props.decimalPlaces,
+              stringValue: props.stringValue,
+              locale: props.locale,
+            })}
           />
         </div>
         <div>
@@ -100,11 +116,7 @@ let CreateNumberMask = props => {
           <div />
           <label>
             Convert to string
-            <Field
-              name="convertToString"
-              component="input"
-              type="checkbox"
-            />{' '}
+            <Field name="stringValue" component="input" type="checkbox" />{' '}
           </label>
         </div>
       </form>
@@ -114,14 +126,7 @@ let CreateNumberMask = props => {
 };
 
 const mapStateToProps = state =>
-  selector(
-    state,
-    'prefix',
-    'suffix',
-    'decimalPlaces',
-    'convertToString',
-    'locale',
-  );
+  selector(state, 'prefix', 'suffix', 'decimalPlaces', 'stringValue', 'locale');
 
 CreateNumberMask = connect(mapStateToProps)(CreateNumberMask);
 

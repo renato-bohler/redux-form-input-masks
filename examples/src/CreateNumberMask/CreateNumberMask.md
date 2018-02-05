@@ -4,13 +4,22 @@ This mask is ideal for currency, percentage or any other number format you may c
 
 **Note:** we recommend using `type="tel"` on the formatted field so that on mobile the keypad shows up instead of the regular keyboard.
 
-## Config properties
+## Config options
+
+`createNumberMask` accepts an `options` object with the keys described in this section.
 
 ```jsx
-createNumberMask(prefix, suffix, decimalPlaces, stringValue, locale);
+createNumberMask({
+  prefix: '',
+  suffix: '',
+  decimalPlaces: 0,
+  stringValue: false,
+  locale: 'browser',
+  onChange: () => {},
+});
 ```
 
-| Name          | Type       | Required | Default     | Description                                                                                                                           |
+| Key           | Type       | Required | Default     | Description                                                                                                                           |
 | ------------- | ---------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | prefix        | `string`   | no       | `''`        | The input's prefix.                                                                                                                   |
 | suffix        | `string`   | no       | `''`        | The input's suffix.                                                                                                                   |
@@ -27,7 +36,12 @@ You just need to import `createNumberMask` from `react-form-input-masks`, specif
 import { Field } from 'redux-form';
 import { createNumberMask } from 'redux-form-input-masks';
 
-const currencyMask = createNumberMask('US$ ', ' per item', 2, false, 'en-US');
+const currencyMask = createNumberMask({
+  prefix: 'US$ ',
+  suffix: ' per item',
+  decimalPlaces: 2,
+  locale: 'en-US',
+});
 
 const inputUSDPerItem = () => (
   <Field name="amount" component="input" type="tel" {...currencyMask} />
@@ -41,6 +55,13 @@ You could also call the function direcly inside the `Field`, if you need dynamic
   name="dynamic"
   component="input"
   type="tel"
-  {...createNumberMask(prefix, suffix, decimalPlaces, convertToString, locale)}
+  {...createNumberMask({
+    prefix: props.prefix,
+    suffix: props.suffix,
+    decimalPlaces: props.decimalPlaces,
+    stringValue: props.stringValue,
+    locale: props.locale,
+    onChange: props.onChange,
+  })}
 />
 ```

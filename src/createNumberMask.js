@@ -1,13 +1,15 @@
 import { escapeRegExp } from './utils';
 
-export default (
-  prefix = '',
-  suffix = '',
-  decimalPlaces = 2,
-  stringValue = false,
-  locale = 'browser',
-  onChange,
-) => {
+export default options => {
+  const {
+    prefix = '',
+    suffix = '',
+    decimalPlaces = 0,
+    stringValue = false,
+    locale = 'browser',
+    onChange,
+  } = options;
+
   const numberToLocaleString = number =>
     number.toLocaleString(locale, {
       minimumFractionDigits: decimalPlaces,
