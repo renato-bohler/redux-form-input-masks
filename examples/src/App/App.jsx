@@ -20,6 +20,28 @@ export default class App extends React.Component {
           <div className="subtitle">
             Input masking with redux-form made easy
           </div>
+          <div className="buttons">
+            <a
+              class="github-button"
+              href="https://github.com/renato-bohler/redux-form-input-masks"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star renato-bohler/redux-form-input-masks on GitHub"
+            >
+              Star
+            </a>
+            <a
+              class="github-button"
+              href="https://github.com/renato-bohler/redux-form-input-masks/subscription"
+              data-icon="octicon-eye"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Watch renato-bohler/redux-form-input-masks on GitHub"
+            >
+              Watch
+            </a>
+          </div>
           <div className="menu">
             <Link to="/">Getting started</Link>
             {' | '}

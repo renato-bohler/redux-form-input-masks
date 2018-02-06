@@ -22,11 +22,21 @@ or
 yarn add redux-form-input-masks
 ```
 
+## Features
+
+* **simple to setup:** works with `redux-form` out of the box, you just need to install `redux-form-input-masks` and you're good to go;
+* **simple to use:** import a mask creator and apply it... and that's it;
+* **flexible:** it lets you choose how you want the input mask to behave;
+* **lightweight:** not a single dependency is added to `redux-form-input-masks`;
+* compatible with component libraries like `material-ui` and `redux-form-material-ui`'s wrappers, for both v0-stable and v1-beta versions.
+
+## 
+
 ## Usage
 
 It's super simple to apply a mask using this library. You just need to import your mask creator from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes). Yep, it's that easy.
 
-The following is a use case for [`createNumberMask`](#/number-mask). It consists of two inputs that convert bitcoins to euros and vice versa. Check the demo below the code. You can also check it on [codesandbox.io](https://codesandbox.io/s/v0rj4p6y0). Please note that this convertion does not reflect real conversion rates.
+The following is a use case for [`createNumberMask`](#/number-mask). It consists of two inputs that convert bitcoins to euros and vice versa. Check the demo below the code. You can also check it on [codesandbox.io](https://codesandbox.io/s/v0rj4p6y0). Please note that this conversion does not reflect real conversion rates.
 
 ```jsx
 import React from 'react';

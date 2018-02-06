@@ -1,5 +1,7 @@
 # redux-form-input-masks
 
+## [Documentation and examples](https://renato-bohler.github.io/redux-form-input-masks)
+
 ## Getting started
 
 `redux-form-input-masks` is a library that works with [`redux-form`](https://github.com/erikras/redux-form) to easily add masking to `Field`s.
@@ -23,6 +25,20 @@ or
 ```
 yarn add redux-form-input-masks
 ```
+
+## Features
+
+* **simple to setup:** works with `redux-form` out of the box, you just need to install `redux-form-input-masks` and you're good to go;
+* **simple to use:** import a mask creator and apply it... and that's it;
+* **flexible:** it lets you choose how you want the input mask to behave;
+* **lightweight:** not a single dependency is added to `redux-form-input-masks`;
+* compatible with component libraries like `material-ui` and `redux-form-material-ui`'s wrappers, for both v0-stable and v1-beta versions.
+
+## Available masks
+
+| Name        | Description                                                                                                                                                                                                 | API Reference                                                                            | Demo                                                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Number Mask | Ideal for currency, percentage or any other numeric input. Supports prefix, suffix, locale number formatting and even more options. You can also choose wether the value is stored as `number` or `string`. | [createNumberMask](https://renato-bohler.github.io/redux-form-input-masks/#/number-mask) | [codesandbox.io](https://codesandbox.io/s/k0op1kwywr) |
 
 ## Usage
 
