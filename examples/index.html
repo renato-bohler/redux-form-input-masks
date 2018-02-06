@@ -52,6 +52,11 @@
       margin-top: 50px;
     }
 
+    h3 {
+      margin: 0;
+      align-self: center;
+    }
+
     a {
       color: #61b5e8;
     }
@@ -63,7 +68,7 @@
     }
 
     input[type='text'],
-    input[type='tel'],
+    input[type='tel']:not([name*="material-ui"]),
     input[type='number'],
     select {
       padding: 5px;

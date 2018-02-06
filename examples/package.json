@@ -6,19 +6,21 @@
     "build": "npm run clean && npm run build:webpack",
     "lint": "eslint src",
     "start": "node devServer.js",
-    "prepublish": "npm run lint && npm run build"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "html-loader": "^0.5.1",
     "json-loader": "^0.5.7",
     "markdown-loader": "^2.0.0",
+    "material-ui": "^1.0.0-beta.32",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.2.2",
     "redux": "^3.6.0",
     "redux-form": "^7.2.3",
+    "redux-form-material-ui": "^5.0.0-beta.2",
     "redux-form-website-template": "0.0.103"
   },
   "devDependencies": {

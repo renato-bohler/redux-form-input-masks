@@ -14,8 +14,8 @@ export default class App extends React.Component {
       <div>
         <div className="header">
           <div className="title">
-            redux-form-<span class="ourselves">input-masks</span>
-            <span class="version">@{version}</span>
+            redux-form-<span className="ourselves">input-masks</span>
+            <span className="version">@{version}</span>
           </div>
           <div className="subtitle">
             Input masking with redux-form made easy
@@ -24,6 +24,8 @@ export default class App extends React.Component {
             <Link to="/">Getting started</Link>
             {' | '}
             <Link to="/number-mask">Number mask</Link>
+            {' | '}
+            <Link to="/more">More examples</Link>
           </div>
         </div>
         <div className="contentContainer">

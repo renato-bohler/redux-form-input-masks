@@ -18,6 +18,7 @@ let render = () => {
   const GettingStarted = require('./GettingStarted/GettingStarted.jsx').default;
   const CreateNumberMask = require('./CreateNumberMask/CreateNumberMask.jsx')
     .default;
+  const MoreExamples = require('./MoreExamples/MoreExamples.jsx').default;
 
   ReactDOM.render(
     <Provider store={store}>
@@ -25,6 +26,7 @@ let render = () => {
         <Switch>
           <Route exact path="/" component={GettingStarted} />
           <Route exact path="/number-mask" component={CreateNumberMask} />
+          <Route exact path="/more" component={MoreExamples} />
           <Route path="*" component={PageNotFound} />
         </Switch>
       </HashRouter>
@@ -35,18 +37,23 @@ let render = () => {
 
 if (module.hot) {
   const renderApp = render;
+
   render = () => {
     renderApp();
   };
+
   const rerender = () => {
     setTimeout(render);
   };
+
   module.hot.accept('./App/App.jsx', rerender);
   module.hot.accept('./App/PageNotFound.jsx', rerender);
   module.hot.accept('./GettingStarted/GettingStarted.jsx', rerender);
   module.hot.accept('./GettingStarted/GettingStarted.md', rerender);
   module.hot.accept('./CreateNumberMask/CreateNumberMask.jsx', rerender);
   module.hot.accept('./CreateNumberMask/CreateNumberMask.md', rerender);
+  module.hot.accept('./MoreExamples/MoreExamples.jsx', rerender);
+  module.hot.accept('./MoreExamples/MoreExamples.md', rerender);
 }
 
 render();
