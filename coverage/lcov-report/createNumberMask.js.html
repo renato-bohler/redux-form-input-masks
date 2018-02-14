@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for createNumberMask.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> createNumberMask.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.43% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>7/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.95% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { escapeRegExp } from './utils';
+&nbsp;
+export default options =&gt; {
+  const {
+    prefix = '',
+    suffix = '',
+    decimalPlaces = 0,
+    stringValue = false,
+    locale = 'browser',
+    onChange,
+  } = options;
+&nbsp;
+  const numberToLocaleString = number =&gt;
+    number.toLocaleString(locale, {
+      minimumFractionDigits: decimalPlaces,
+      maximumFractionDigits: decimalPlaces,
+    });
+&nbsp;
+  const format = storeValue =&gt; {
+    let number = storeValue;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!number) {
+<span class="cstat-no" title="statement not covered" >      number = 0;</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof number !== 'number') {
+<span class="cstat-no" title="statement not covered" >      number = parseInt(number.replace(/\D/g, ''), 10) / 10 ** decimalPlaces;</span>
+    }
+&nbsp;
+    // reformat the number
+    number = numberToLocaleString(number);
+&nbsp;
+    return `${prefix}${number}${suffix}`;
+  };
+&nbsp;
+  const normalize = <span class="fstat-no" title="function not covered" >up</span>datedValue =&gt; {
+    const escapedPrefix = <span class="cstat-no" title="statement not covered" >escapeRegExp(prefix);</span>
+    const escapedSuffix = <span class="cstat-no" title="statement not covered" >escapeRegExp(suffix);</span>
+&nbsp;
+    const prefixRegex = <span class="cstat-no" title="statement not covered" >new RegExp(`^${escapedPrefix}`);</span>
+    const suffixRegex = <span class="cstat-no" title="statement not covered" >new RegExp(`${escapedSuffix}$`);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue)) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    // extract the digits out of updatedValue
+    let digits = <span class="cstat-no" title="statement not covered" >updatedValue.replace(prefixRegex, '');</span>
+<span class="cstat-no" title="statement not covered" >    if (suffix) {</span>
+<span class="cstat-no" title="statement not covered" >      digits = digits.replace(suffixRegex, '');</span>
+    }
+    // removes non-digits and leading zeros
+<span class="cstat-no" title="statement not covered" >    digits = digits.replace(/\D/g, '').replace(/\b0+/g, '');</span>
+&nbsp;
+    // get the number out of digits
+    let number = <span class="cstat-no" title="statement not covered" >Number(digits) / 10 ** decimalPlaces;</span>
+<span class="cstat-no" title="statement not covered" >    if (stringValue) {</span>
+<span class="cstat-no" title="statement not covered" >      number = number.toString();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (onChange) {</span>
+<span class="cstat-no" title="statement not covered" >      onChange(number);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return number;</span>
+  };
+&nbsp;
+  const manageCaretPosition = <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (event.target) {</span>
+<span class="cstat-no" title="statement not covered" >      if (event.persist) {</span>
+<span class="cstat-no" title="statement not covered" >        event.persist();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+        const caretPos = <span class="cstat-no" title="statement not covered" >event.target.value.length - suffix.length;</span>
+<span class="cstat-no" title="statement not covered" >        event.target.setSelectionRange(caretPos, caretPos);</span>
+      });
+    }
+  };
+&nbsp;
+  return {
+    format: v =&gt; format(v),
+    normalize: <span class="fstat-no" title="function not covered" >v </span>=&gt; <span class="cstat-no" title="statement not covered" >normalize(v),</span>
+    onKeyDown: <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >manageCaretPosition(event),</span>
+    onMouseDown: <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >manageCaretPosition(event),</span>
+    onFocus: <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >manageCaretPosition(event),</span>
+    onClick: <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >manageCaretPosition(event),</span>
+    autoComplete: 'off',
+  };
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 14 2018 11:59:33 GMT-0200 (Horário brasileiro de verão)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
