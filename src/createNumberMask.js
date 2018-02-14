@@ -37,6 +37,7 @@ export default options => {
     const prefixRegex = new RegExp(`^${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
+    // if the prefix or the suffix have been modified, do nothing
     if (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue)) {
       return;
     }
