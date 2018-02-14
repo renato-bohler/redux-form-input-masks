@@ -8,7 +8,8 @@ export default options => {
     stringValue = false,
     locale = 'browser',
     onChange,
-  } = options || {};
+  } =
+    options || {};
 
   const numberToLocaleString = number =>
     number.toLocaleString(locale, {
@@ -21,7 +22,7 @@ export default options => {
     if (!number) {
       number = 0;
     } else if (typeof number !== 'number') {
-      number = parseInt(number.replace(/\D/g, ''), 10) / 10 ** decimalPlaces;
+      number = Number(number);
     }
 
     // reformat the number
@@ -30,7 +31,7 @@ export default options => {
     return `${prefix}${number}${suffix}`;
   };
 
-  const normalize = updatedValue => {
+  const normalize = (updatedValue, previousValue) => {
     const escapedPrefix = escapeRegExp(prefix);
     const escapedSuffix = escapeRegExp(suffix);
 
@@ -39,7 +40,7 @@ export default options => {
 
     // if the prefix or the suffix have been modified, do nothing
     if (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue)) {
-      return;
+      return previousValue;
     }
 
     // extract the digits out of updatedValue
@@ -68,6 +69,7 @@ export default options => {
       if (event.persist) {
         event.persist();
       }
+      // this timeout is needed to manage the caret position after onKeyDown
       setTimeout(() => {
         const caretPos = event.target.value.length - suffix.length;
         event.target.setSelectionRange(caretPos, caretPos);
@@ -76,8 +78,9 @@ export default options => {
   };
 
   return {
-    format: v => format(v),
-    normalize: v => normalize(v),
+    format: storeValue => format(storeValue),
+    normalize: (updatedValue, previousValue) =>
+      normalize(updatedValue, previousValue),
     onKeyDown: event => manageCaretPosition(event),
     onMouseDown: event => manageCaretPosition(event),
     onFocus: event => manageCaretPosition(event),
