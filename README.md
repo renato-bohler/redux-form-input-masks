@@ -111,7 +111,7 @@ This project is still under development, I'm still setting all up for the first 
 * [x] create codesandbox.io demos;
 * [x] specify an API for `createNumberMask`;
 * [x] implement `createNumberMask`;
-* [ ] add tests and code coverage structure to the project;
+* [x] add tests and code coverage structure to the project;
 * [ ] implement `createNumberMask` tests;
 * [ ] `createNumberMask` bugfixes;
 * [ ] specify an API for `createStringMask`, an easy and flexible string mask creator;
