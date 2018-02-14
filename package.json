@@ -7,7 +7,7 @@
     "prepublishOnly": "npm run build:docs",
     "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "postpublish": "git add . && git commit -m \"updates docs\" && git push",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -31,12 +31,33 @@
   },
   "homepage": "https://renato-bohler.github.io/redux-form-input-masks",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-preset-env": "^1.6.1",
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.7.0",
+    "intl": "^1.2.5",
+    "jest": "^22.3.0",
     "prettier": "^1.10.2"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }
