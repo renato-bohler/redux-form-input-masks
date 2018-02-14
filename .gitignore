@@ -28,9 +28,6 @@ bower_components/
 dist/
 build/
 
-# Test generated
-/coverage
-
 # Serverless generated files
 .serverless/
 
