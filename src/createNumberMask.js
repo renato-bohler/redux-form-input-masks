@@ -8,7 +8,7 @@ export default options => {
     stringValue = false,
     locale = 'browser',
     onChange,
-  } = options;
+  } = options || {};
 
   const numberToLocaleString = number =>
     number.toLocaleString(locale, {
