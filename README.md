@@ -112,8 +112,8 @@ This project is still under development, I'm still setting all up for the first 
 * [x] specify an API for `createNumberMask`;
 * [x] implement `createNumberMask`;
 * [x] add tests and code coverage structure to the project;
-* [ ] implement `createNumberMask` tests;
-* [ ] `createNumberMask` bugfixes;
+* [x] implement `createNumberMask` tests;
+* [x] `createNumberMask` bugfixes;
 * [ ] specify an API for `createStringMask`, an easy and flexible string mask creator;
 * [ ] implement `createStringMask` and its tests;
 * [ ] add repo workflow (contributing, code of conduct, issue template, Travis CI, danger, codecov);
