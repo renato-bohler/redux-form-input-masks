@@ -14,6 +14,12 @@ export default options => {
   } =
     options || {};
 
+  if (decimalPlaces > 10) {
+    throw new Error(
+      "The maximum value for createNumberMask's option `decimalPlaces` is 10.",
+    );
+  }
+
   const numberToLocaleString = number =>
     number.toLocaleString(locale, {
       minimumFractionDigits: decimalPlaces,

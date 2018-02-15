@@ -326,4 +326,10 @@ describe('Number mask', () => {
       ),
     ).toBe(absoluteString);
   });
+
+  it('should throw an error if decimalPlaces is greater than 10', () => {
+    expect(() => createNumberMask({ decimalPlaces: 11 })).toThrowError(
+      "The maximum value for createNumberMask's option `decimalPlaces` is 10.",
+    );
+  });
 });

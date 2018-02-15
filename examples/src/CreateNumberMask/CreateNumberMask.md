@@ -24,7 +24,7 @@ createNumberMask({
 | -------------- | ---------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | prefix         | `string`   | no       | `''`        | The input's prefix.                                                                                                                   |
 | suffix         | `string`   | no       | `''`        | The input's suffix.                                                                                                                   |
-| decimalPlaces  | `number`   | no       | `0`         | The amount of numbers following the decimal point. Maximum value is 10.                                                               |
+| decimalPlaces  | `number`   | no       | `0`         | The amount of numbers following the decimal point. **Maximum value is 10.**                                                               |
 | allowNegative  | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                           |
 | showPlusSign   | `boolean`  | no       | `false`     | If true, a plus sign (`+`) will be put before the prefix when the value is positive.                                                  |
 | spaceAfterSign | `boolean`  | no       | `false`     | If true, a space will be put after the sign if the sign is visible.                                                                   |
