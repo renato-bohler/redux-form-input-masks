@@ -78,6 +78,7 @@ let CreateNumberMask = props => {
               decimalPlaces: props.decimalPlaces,
               stringValue: props.stringValue,
               allowNegative: props.allowNegative,
+              showPlusSign: props.showPlusSign,
               locale: props.locale,
             })}
           />
@@ -125,18 +126,21 @@ let CreateNumberMask = props => {
           <div />
           <label>
             Convert to string
-            <Field name="stringValue" component="input" type="checkbox" />{' '}
+            <Field name="stringValue" component="input" type="checkbox" />
           </label>
         </div>
         <div>
           <div />
           <label>
             Allow negative values
-            <Field
-              name="allowNegative"
-              component="input"
-              type="checkbox"
-            />{' '}
+            <Field name="allowNegative" component="input" type="checkbox" />
+          </label>
+        </div>
+        <div>
+          <div />
+          <label>
+            Show plus sign
+            <Field name="showPlusSign" component="input" type="checkbox" />
           </label>
         </div>
       </form>
@@ -153,6 +157,7 @@ const mapStateToProps = state =>
     'decimalPlaces',
     'stringValue',
     'allowNegative',
+    'showPlusSign',
     'locale',
   );
 

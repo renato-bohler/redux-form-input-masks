@@ -7,6 +7,7 @@ export default options => {
     decimalPlaces = 0,
     stringValue = false,
     allowNegative = false,
+    showPlusSign = false,
     locale = 'browser',
     onChange,
   } =
@@ -26,26 +27,26 @@ export default options => {
       number = Number(number);
     }
 
-    // checks for negative numbers
-    let minusSign = '';
+    // checks for the sign
+    let sign = showPlusSign ? '+' : '';
     if (number < 0) {
       number *= -1;
       if (allowNegative) {
-        minusSign = '-';
+        sign = '-';
       }
     }
 
     // reformat the number
     number = numberToLocaleString(number);
 
-    return `${minusSign}${prefix}${number}${suffix}`;
+    return `${sign}${prefix}${number}${suffix}`;
   };
 
   const normalize = (updatedValue, previousValue) => {
     const escapedPrefix = escapeRegExp(prefix);
     const escapedSuffix = escapeRegExp(suffix);
 
-    const prefixRegex = new RegExp(`^-?${escapedPrefix}`);
+    const prefixRegex = new RegExp(`^[-|+]?${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
     // if the prefix or the suffix have been modified, do nothing

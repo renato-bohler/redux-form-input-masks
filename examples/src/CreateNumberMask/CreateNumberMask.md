@@ -26,6 +26,7 @@ createNumberMask({
 | suffix        | `string`   | no       | `''`        | The input's suffix.                                                                                                                   |
 | decimalPlaces | `number`   | no       | `0`         | The amount of numbers following the decimal point. Maximum value is 10.                                                               |
 | allowNegative | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                           |
+| showPlusSign  | `boolean`  | no       | `false`     | If true, a plus sign (`+`) will be put before the prefix when the value is positive.                                                  |
 | stringValue   | `boolean`  | no       | `false`     | If true, the value on the store will be converted to string.                                                                          |
 | locale        | `string`   | no       | `'browser'` | The locale to format the number in the input. `browser` will take the browser's locale. Examples: `en-US`, `fr`, `de`, `pt-BR`, `jp`. |
 | onChange      | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `(updatedValue) => console.log(updatedValue)`     |
