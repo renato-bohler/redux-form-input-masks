@@ -1,4 +1,6 @@
 const escapeRegExp = str =>
   str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 
-export { escapeRegExp };
+const countOcurrences = (str, regexp) => (str.match(regexp) || []).length;
+
+export { escapeRegExp, countOcurrences };

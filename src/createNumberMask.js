@@ -1,4 +1,4 @@
-import { escapeRegExp } from './utils';
+import { escapeRegExp, countOcurrences } from './utils';
 
 export default options => {
   const {
@@ -6,6 +6,7 @@ export default options => {
     suffix = '',
     decimalPlaces = 0,
     stringValue = false,
+    allowNegative = false,
     locale = 'browser',
     onChange,
   } =
@@ -25,17 +26,24 @@ export default options => {
       number = Number(number);
     }
 
+    // checks for negative numbers
+    let minusSign = '';
+    if (number < 0) {
+      minusSign = '-';
+      number *= -1;
+    }
+
     // reformat the number
     number = numberToLocaleString(number);
 
-    return `${prefix}${number}${suffix}`;
+    return `${minusSign}${prefix}${number}${suffix}`;
   };
 
   const normalize = (updatedValue, previousValue) => {
     const escapedPrefix = escapeRegExp(prefix);
     const escapedSuffix = escapeRegExp(suffix);
 
-    const prefixRegex = new RegExp(`^${escapedPrefix}`);
+    const prefixRegex = new RegExp(`^-?${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
     // if the prefix or the suffix have been modified, do nothing
@@ -43,8 +51,24 @@ export default options => {
       return previousValue;
     }
 
-    // extract the digits out of updatedValue
-    let digits = updatedValue.replace(prefixRegex, '');
+    // checks if we need to negate the value
+    let multiplier = 1;
+    if (allowNegative) {
+      const minusRegexp = /-/g;
+      const power =
+        countOcurrences(updatedValue, minusRegexp) -
+        countOcurrences(prefix, minusRegexp) -
+        countOcurrences(suffix, minusRegexp);
+      multiplier = (-1) ** power % 2;
+    }
+
+    // extracting the digits out of updatedValue
+    let digits = updatedValue;
+    // removes the prefix
+    if (prefix) {
+      digits = digits.replace(prefixRegex, '');
+    }
+    // removes the suffix
     if (suffix) {
       digits = digits.replace(suffixRegex, '');
     }
@@ -52,7 +76,7 @@ export default options => {
     digits = digits.replace(/\D/g, '').replace(/\b0+/g, '');
 
     // get the number out of digits
-    let number = Number(digits) / 10 ** decimalPlaces;
+    let number = Number(digits) / 10 ** decimalPlaces * multiplier;
     if (stringValue) {
       number = number.toString();
     }
