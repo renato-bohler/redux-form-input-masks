@@ -29,8 +29,10 @@ export default options => {
     // checks for negative numbers
     let minusSign = '';
     if (number < 0) {
-      minusSign = '-';
       number *= -1;
+      if (allowNegative) {
+        minusSign = '-';
+      }
     }
 
     // reformat the number

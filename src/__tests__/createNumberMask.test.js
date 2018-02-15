@@ -52,6 +52,48 @@ describe('Number mask', () => {
     expect(mask.format(string)).toBe('1,234.567');
   });
 
+  it('should be formatting correctly when the value is negative', () => {
+    const prefix = ' -- ';
+    const suffix = '-';
+    const stringValue = true;
+    const allowNegative = true;
+
+    const number = -1234;
+    const absoluteNumber = 1234;
+    const string = '-1234';
+
+    const negativeNumberMask = createNumberMask({
+      prefix,
+      suffix,
+      allowNegative,
+    });
+    const positiveNumberMask = createNumberMask({ prefix, suffix });
+    const negativeStringMask = createNumberMask({
+      prefix,
+      suffix,
+      stringValue,
+      allowNegative,
+    });
+    const positiveStringMask = createNumberMask({
+      prefix,
+      suffix,
+      stringValue,
+    });
+
+    expect(negativeNumberMask.format(number)).toBe(
+      `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+    );
+    expect(positiveNumberMask.format(number)).toBe(
+      `${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+    );
+    expect(negativeStringMask.format(string)).toBe(
+      `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+    );
+    expect(positiveStringMask.format(string)).toBe(
+      `${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+    );
+  });
+
   it('should be formatting as zero when the value on the store is undefined', () => {
     const mask = createNumberMask();
     expect(mask.format()).toBe(Number(0).toLocaleString());
@@ -188,5 +230,64 @@ describe('Number mask', () => {
     const mask = createNumberMask();
 
     expect(mask.autoComplete).toBe('off');
+  });
+
+  it('should handle negative values configurations properly', () => {
+    const prefix = ' -- ';
+    const suffix = '-';
+    const stringValue = true;
+    const allowNegative = true;
+
+    const number = -1234;
+    const absoluteNumber = 1234;
+    const string = '-1234';
+    const absoluteString = '1234';
+
+    const negativeNumberMask = createNumberMask({
+      prefix,
+      suffix,
+      allowNegative,
+    });
+    const positiveNumberMask = createNumberMask({ prefix, suffix });
+    const negativeStringMask = createNumberMask({
+      prefix,
+      suffix,
+      stringValue,
+      allowNegative,
+    });
+    const positiveStringMask = createNumberMask({
+      prefix,
+      suffix,
+      stringValue,
+    });
+
+    expect(
+      negativeNumberMask.normalize(
+        `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+      ),
+    ).toBe(number);
+    expect(
+      negativeNumberMask.normalize(
+        `${prefix}${absoluteNumber.toLocaleString()}-${suffix}`,
+      ),
+    ).toBe(number);
+
+    expect(
+      positiveNumberMask.normalize(
+        `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+      ),
+    ).toBe(absoluteNumber);
+
+    expect(
+      negativeStringMask.normalize(
+        `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+      ),
+    ).toBe(string);
+
+    expect(
+      positiveStringMask.normalize(
+        `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+      ),
+    ).toBe(absoluteString);
   });
 });
