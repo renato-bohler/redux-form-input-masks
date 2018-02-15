@@ -24,8 +24,12 @@ const converted = createNumberMask({
 const frLocale = createNumberMask({
   prefix: '€ ',
   decimalPlaces: 2,
-  stringValue: true,
   locale: 'fr',
+});
+
+const negative = createNumberMask({
+  decimalPlaces: 3,
+  allowNegative: true,
 });
 
 let CreateNumberMask = props => {
@@ -59,6 +63,10 @@ let CreateNumberMask = props => {
           <Field name="frLocale" component="input" type="tel" {...frLocale} />
         </div>
         <div>
+          <h3>Allow negative</h3>
+          <Field name="negative" component="input" type="tel" {...negative} />
+        </div>
+        <div>
           <h3>Dynamic</h3>
           <Field
             name="dynamic"
@@ -69,6 +77,7 @@ let CreateNumberMask = props => {
               suffix: props.suffix,
               decimalPlaces: props.decimalPlaces,
               stringValue: props.stringValue,
+              allowNegative: props.allowNegative,
               locale: props.locale,
             })}
           />
@@ -119,6 +128,17 @@ let CreateNumberMask = props => {
             <Field name="stringValue" component="input" type="checkbox" />{' '}
           </label>
         </div>
+        <div>
+          <div />
+          <label>
+            Allow negative values
+            <Field
+              name="allowNegative"
+              component="input"
+              type="checkbox"
+            />{' '}
+          </label>
+        </div>
       </form>
       <Values form="numberMask" />
     </App>
@@ -126,13 +146,22 @@ let CreateNumberMask = props => {
 };
 
 const mapStateToProps = state =>
-  selector(state, 'prefix', 'suffix', 'decimalPlaces', 'stringValue', 'locale');
+  selector(
+    state,
+    'prefix',
+    'suffix',
+    'decimalPlaces',
+    'stringValue',
+    'allowNegative',
+    'locale',
+  );
 
 CreateNumberMask = connect(mapStateToProps)(CreateNumberMask);
 
 export default reduxForm({
   form: 'numberMask',
   initialValues: {
+    negative: -1.234,
     decimalPlaces: 2,
   },
 })(CreateNumberMask);
