@@ -40,6 +40,23 @@ describe('Number mask', () => {
     expect(mask.format(1000)).toBe('+p1,000');
   });
 
+  it('should be able to format the number with a space after the sign', () => {
+    const prefix = 'p';
+    const allowNegative = true;
+    const showPlusSign = true;
+    const spaceAfterSign = true;
+
+    const mask = createNumberMask({
+      prefix,
+      allowNegative,
+      showPlusSign,
+      spaceAfterSign,
+    });
+
+    expect(mask.format(1000)).toBe('+ p1,000');
+    expect(mask.format(-1000)).toBe('- p1,000');
+  });
+
   it('should be formatting the number according to the locale', () => {
     // The default node build includes only en-US locale.
     const locale = 'en-US';
@@ -137,6 +154,9 @@ describe('Number mask', () => {
     expect(stringValueMask.normalize('1,2340')).toBe('12340');
 
     expect(allMask.normalize(`+${prefix}1,234.56789${suffix}`)).toBe(
+      '12345.6789',
+    );
+    expect(allMask.normalize(`+ ${prefix}1,234.56789${suffix}`)).toBe(
       '12345.6789',
     );
     expect(allMask.normalize(`${prefix}1,234.56789${suffix}`)).toBe(
@@ -275,6 +295,11 @@ describe('Number mask', () => {
     expect(
       negativeNumberMask.normalize(
         `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
+      ),
+    ).toBe(number);
+    expect(
+      negativeNumberMask.normalize(
+        `- ${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
       ),
     ).toBe(number);
     expect(

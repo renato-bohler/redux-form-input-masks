@@ -8,6 +8,7 @@ export default options => {
     stringValue = false,
     allowNegative = false,
     showPlusSign = false,
+    spaceAfterSign = false,
     locale = 'browser',
     onChange,
   } =
@@ -35,6 +36,9 @@ export default options => {
         sign = '-';
       }
     }
+    if (sign && spaceAfterSign) {
+      sign = `${sign} `;
+    }
 
     // reformat the number
     number = numberToLocaleString(number);
@@ -46,7 +50,7 @@ export default options => {
     const escapedPrefix = escapeRegExp(prefix);
     const escapedSuffix = escapeRegExp(suffix);
 
-    const prefixRegex = new RegExp(`^[-|+]?${escapedPrefix}`);
+    const prefixRegex = new RegExp(`^[-|+]? ?${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
     // if the prefix or the suffix have been modified, do nothing

@@ -79,6 +79,7 @@ let CreateNumberMask = props => {
               stringValue: props.stringValue,
               allowNegative: props.allowNegative,
               showPlusSign: props.showPlusSign,
+              spaceAfterSign: props.spaceAfterSign,
               locale: props.locale,
             })}
           />
@@ -143,6 +144,13 @@ let CreateNumberMask = props => {
             <Field name="showPlusSign" component="input" type="checkbox" />
           </label>
         </div>
+        <div>
+          <div />
+          <label>
+            Place a space before sign
+            <Field name="spaceAfterSign" component="input" type="checkbox" />
+          </label>
+        </div>
       </form>
       <Values form="numberMask" />
     </App>
@@ -158,6 +166,7 @@ const mapStateToProps = state =>
     'stringValue',
     'allowNegative',
     'showPlusSign',
+    'spaceAfterSign',
     'locale',
   );
 
