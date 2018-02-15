@@ -1,6 +1,6 @@
 {
   "name": "redux-form-input-masks",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Input masking with redux-form made easy",
   "main": "./src/index.js",
   "scripts": {
