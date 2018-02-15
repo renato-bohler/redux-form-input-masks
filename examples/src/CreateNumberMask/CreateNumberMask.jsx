@@ -147,7 +147,7 @@ let CreateNumberMask = props => {
         <div>
           <div />
           <label>
-            Place a space before sign
+            Place a space after the sign
             <Field name="spaceAfterSign" component="input" type="checkbox" />
           </label>
         </div>

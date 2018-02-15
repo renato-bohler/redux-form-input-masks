@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1518658422578" clover="3.2.0">
-  <project timestamp="1518658422578" name="All files">
+<coverage generated="1518658664256" clover="3.2.0">
+  <project timestamp="1518658664256" name="All files">
     <metrics statements="59" coveredstatements="59" conditionals="44" coveredconditionals="44" methods="14" coveredmethods="14" elements="117" coveredelements="117" complexity="0" loc="59" ncloc="59" packages="1" files="3" classes="3">
       <file name="createNumberMask.js" path="C:\Users\Renato\Documents\Workspace\redux-form-input-masks\src\createNumberMask.js">
         <metrics statements="56" coveredstatements="56" conditionals="42" coveredconditionals="42" methods="12" coveredmethods="12"/>
