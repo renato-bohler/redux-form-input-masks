@@ -1,6 +1,6 @@
 # Number Mask
 
-This mask is ideal for currency, percentage or any other number format you may come across. It is possible to add a prefix, suffix, choose the amount of decimal places, the locale to format the number and the data type to store the value (`number` or `string`).
+This mask is ideal for currency, percentage or any other number format you may come across. It is possible to add a prefix, suffix, choose the amount of decimal places, choose if it should allow negative values, the locale to format the number and the data type to store the value (`number` or `string`).
 
 **Note:** we recommend using `type="tel"` on the formatted field so that on mobile the keypad shows up instead of the regular keyboard.
 
@@ -13,6 +13,7 @@ createNumberMask({
   prefix: '',
   suffix: '',
   decimalPlaces: 0,
+  allowNegative: false,
   stringValue: false,
   locale: 'browser',
   onChange: () => {},
@@ -24,6 +25,7 @@ createNumberMask({
 | prefix        | `string`   | no       | `''`        | The input's prefix.                                                                                                                   |
 | suffix        | `string`   | no       | `''`        | The input's suffix.                                                                                                                   |
 | decimalPlaces | `number`   | no       | `0`         | The amount of numbers following the decimal point. Maximum value is 10.                                                               |
+| allowNegative | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                           |
 | stringValue   | `boolean`  | no       | `false`     | If true, the value on the store will be converted to string.                                                                          |
 | locale        | `string`   | no       | `'browser'` | The locale to format the number in the input. `browser` will take the browser's locale. Examples: `en-US`, `fr`, `de`, `pt-BR`, `jp`. |
 | onChange      | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `(updatedValue) => console.log(updatedValue)`     |
@@ -59,6 +61,7 @@ You could also call the function direcly inside the `Field`, if you need dynamic
     prefix: props.prefix,
     suffix: props.suffix,
     decimalPlaces: props.decimalPlaces,
+    allowNegative: props.allowNegative,
     stringValue: props.stringValue,
     locale: props.locale,
     onChange: props.onChange,
