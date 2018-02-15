@@ -32,6 +32,14 @@ describe('Number mask', () => {
     );
   });
 
+  it('should be able to format the number with a plus sign', () => {
+    const prefix = 'p';
+    const showPlusSign = true;
+
+    const mask = createNumberMask({ prefix, showPlusSign });
+    expect(mask.format(1000)).toBe('+p1,000');
+  });
+
   it('should be formatting the number according to the locale', () => {
     // The default node build includes only en-US locale.
     const locale = 'en-US';
@@ -128,6 +136,9 @@ describe('Number mask', () => {
     expect(stringValueMask.normalize('1,2345')).toBe('12345');
     expect(stringValueMask.normalize('1,2340')).toBe('12340');
 
+    expect(allMask.normalize(`+${prefix}1,234.56789${suffix}`)).toBe(
+      '12345.6789',
+    );
     expect(allMask.normalize(`${prefix}1,234.56789${suffix}`)).toBe(
       '12345.6789',
     );
