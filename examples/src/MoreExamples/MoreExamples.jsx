@@ -10,6 +10,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import { orange } from 'material-ui/colors';
 import createPalette from 'material-ui/styles/createPalette';
+/** semantic-ui-react */
+import { Input } from 'semantic-ui-react';
 
 const muiTheme = createMuiTheme({
   palette: createPalette({
@@ -47,6 +49,17 @@ let MoreExamples = () => {
               {...basic}
             />
           </MuiThemeProvider>
+        </div>
+        <div>
+          <h3>semantic-ui-react</h3>
+          <Field
+            name="semantic-ui-react"
+            component={Input}
+            type="tel"
+            label={{ icon: 'dollar' }}
+            labelPosition="left corner"
+            {...basic}
+          />
         </div>
       </form>
       <Values form="moreExamples" />
