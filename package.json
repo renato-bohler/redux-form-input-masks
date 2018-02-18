@@ -8,6 +8,7 @@
     "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "postpublish": "git add . && git commit -m \"updates docs\" && git push",
     "test": "jest",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
     "precommit": "npm-run-all lint:*"
@@ -38,6 +39,7 @@
     "babel-eslint": "^8.2.1",
     "babel-jest": "^22.2.2",
     "babel-preset-env": "^1.6.1",
+    "codecov.io": "^0.1.6",
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
     "eslint": "^4.18.0",
