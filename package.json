@@ -11,7 +11,8 @@
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
-    "precommit": "npm-run-all lint:*"
+    "precommit": "npm-run-all lint:*",
+    "danger-ci": "danger ci"
   },
   "repository": {
     "type": "git",
