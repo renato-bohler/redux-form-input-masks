@@ -1,3 +1,4 @@
 import createNumberMask from './createNumberMask';
+import createTextMask from './createTextMask';
 
-export { createNumberMask };
+export { createNumberMask, createTextMask };

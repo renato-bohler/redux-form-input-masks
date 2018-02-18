@@ -7,7 +7,10 @@
     "prepublishOnly": "npm run build:docs",
     "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "postpublish": "git add . && git commit -m \"updates docs\" && git push",
-    "test": "jest"
+    "test": "jest",
+    "lint:eslint": "eslint --ext .js,.jsx src examples",
+    "lint:prettier": "lint-staged",
+    "precommit": "npm-run-all lint:*"
   },
   "repository": {
     "type": "git",
@@ -32,16 +35,23 @@
   "homepage": "https://renato-bohler.github.io/redux-form-input-masks",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
     "babel-jest": "^22.2.2",
     "babel-preset-env": "^1.6.1",
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
-    "eslint": "^4.9.0",
+    "eslint": "^4.18.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.44.0",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
     "intl": "^1.2.5",
     "jest": "^22.3.0",
+    "lint-staged": "^6.1.1",
+    "npm-run-all": "^4.1.2",
     "prettier": "^1.10.2"
   },
   "jest": {
@@ -58,6 +68,12 @@
     ],
     "moduleDirectories": [
       "node_modules"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }

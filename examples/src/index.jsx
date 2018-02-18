@@ -14,12 +14,13 @@ const store = (window.devToolsExtension
   : createStore)(reducer);
 
 let render = () => {
+  /* eslint-disable */
   const PageNotFound = require('./App/PageNotFound.jsx').default;
   const GettingStarted = require('./GettingStarted/GettingStarted.jsx').default;
   const CreateNumberMask = require('./CreateNumberMask/CreateNumberMask.jsx')
     .default;
   const MoreExamples = require('./MoreExamples/MoreExamples.jsx').default;
-
+  /* eslint-enable */
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>

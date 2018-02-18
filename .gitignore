@@ -24,7 +24,10 @@ bower_components/
 .env
 .env.*
 
-#Build generated
+# Test generated
+coverage/
+
+# Build generated
 dist/
 build/
 
