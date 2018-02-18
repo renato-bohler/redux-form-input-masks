@@ -3,6 +3,46 @@ import { danger, markdown, message, schedule, warn } from 'danger';
 
 const removeAtSymbols = string => string.replace(/@/g, '');
 
+// Checks commit messages
+const commitLint = commit => {
+  /* eslint-disable */
+  // https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md
+  // <type>(<scope>): <subject> or <type>: <subject>
+  const headerRegex = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.{1,}\))?: (.{1,})/;
+  /* eslint-enable */
+
+  const { msg, sha } = commit;
+  const commitIdentificator = `Commit #${sha}`;
+
+  if (!msg) {
+    return `${commitIdentificator} has no commit message`;
+  }
+
+  if (!headerRegex.test(msg)) {
+    return (
+      `${commitIdentificator} commit message header does not comply with` +
+      ` the conventional-changelog conventions`
+    );
+  }
+
+  return undefined;
+};
+
+// Converts danger.github.commits to simple objects
+// { sha: 'a1b2c3d4', msg: 'chore: my commit message' }
+const commits = danger.github.commits.map(obj => ({
+  sha: obj.sha.substring(0, 8),
+  msg: obj.commit.message,
+}));
+
+const commitErrors = commits.map(commitLint);
+// If any of the commit messages of this PR isn't in complicance with the rules
+if (commitErrors.some(e => e !== undefined)) {
+  // Reject this PR
+  // TODO: change 'warn' to 'fail'
+  commitErrors.forEach(error => warn(error));
+}
+
 // Warn when there is a big PR
 const bigPRThreshold = 600;
 if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {

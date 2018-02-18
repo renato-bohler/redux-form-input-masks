@@ -13,7 +13,8 @@
     "lint:prettier": "lint-staged",
     "precommit": "npm-run-all lint:*",
     "danger-ci": "danger ci",
-    "commit": "git add -A && git-cz"
+    "commit": "git-cz",
+    "danger-pr": "danger pr https://github.com/renato-bohler/redux-form-input-masks/pull/1"
   },
   "repository": {
     "type": "git",
