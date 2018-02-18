@@ -3,7 +3,7 @@ import { danger, fail, markdown, message, schedule, warn } from 'danger';
 
 const removeAtSymbols = string => string.replace(/@/g, '');
 
-// Checks all the commit messages in this PR
+// ------- Fails if commit messages aren't complying with conventions -------
 const commitLint = commit => {
   /* eslint-disable */
   // https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md
@@ -45,7 +45,7 @@ if (commitErrors.some(e => e !== undefined)) {
   });
 }
 
-// Warn when there is a big PR
+// ------- Warns for Pull Requests with more than 600 lines modified -------
 const bigPRThreshold = 600;
 if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {
   warn(':exclamation: Big PR');
@@ -56,7 +56,7 @@ if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {
   );
 }
 
-// Always ensure the PR is assigned to someone
+// ------- Warns if Pull Request isn't assigned to someone -------
 if (danger.github.pr.assignee === null) {
   warn(
     'Please assign someone to merge this PR, and optionally include people' +
@@ -64,7 +64,7 @@ if (danger.github.pr.assignee === null) {
   );
 }
 
-// Checks for new dependencies
+// ------- Messages alerting for new dependencies added -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.dependencies) {
@@ -89,7 +89,7 @@ schedule(async () => {
   }
 });
 
-// Checks for removed dependencies
+// ------- Messages alerting for removed dependencies -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.dependencies) {
@@ -113,7 +113,7 @@ schedule(async () => {
   }
 });
 
-// Checks for updated dependencies
+// ------- Messages alerting for updated dependencies -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.dependencies) {
@@ -151,7 +151,7 @@ schedule(async () => {
   }
 });
 
-// Checks for new devDependencies
+// ------- Messages alerting for new devDependencies added -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.devDependencies) {
@@ -176,7 +176,7 @@ schedule(async () => {
   }
 });
 
-// Checks for removed devDependencies
+// ------- Messages alerting for removed devDependencies -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.devDependencies) {
@@ -203,7 +203,7 @@ schedule(async () => {
   }
 });
 
-// Checks for updated devDependencies
+// ------- Messages alerting for updated devDependencies -------
 schedule(async () => {
   const packageDiff = await danger.git.JSONDiffForFile('package.json');
   if (packageDiff && packageDiff.devDependencies) {
