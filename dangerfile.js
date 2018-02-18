@@ -3,16 +3,6 @@ import { danger, markdown, message, schedule, warn } from 'danger';
 
 const removeAtSymbols = string => string.replace(/@/g, '');
 
-// Checks if yarn.lock is changed when package.json was modified and vice-versa
-const packageChanged = danger.git.modified_files.includes('package.json');
-const lockfileChanged = danger.git.modified_files.includes('yarn.lock');
-
-if (packageChanged && !lockfileChanged) {
-  const warnMessage = 'Changes were made to package.json, but not to yarn.lock';
-  const idea = 'Perhaps you need to run `yarn install`?';
-  warn(`${warnMessage} - <i>${idea}</i>`);
-}
-
 // Warn when there is a big PR
 const bigPRThreshold = 600;
 if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {
