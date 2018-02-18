@@ -11,7 +11,7 @@ describe('escapeRegExp', () => {
 
 describe('countOcurrences', () => {
   it('should count ocurrences of substrings correctly', () => {
-    const string = "abc---";
+    const string = 'abc---';
 
     expect(countOcurrences(string, /a/g)).toBe(1);
     expect(countOcurrences(string, /b/g)).toBe(1);
