@@ -20,8 +20,8 @@ const commitLint = commit => {
 
   if (!headerRegex.test(msg)) {
     return (
-      `${commitIdentificator} commit message header does not comply with` +
-      ` the conventional-changelog conventions`
+      `${commitIdentificator} message does not comply with` +
+      ` the conventional-changelog-standard conventions`
     );
   }
 
@@ -37,7 +37,7 @@ const commits = danger.github.commits.map(obj => ({
 const commitErrors = commits.map(commitLint);
 // If any of the commit messages of this PR isn't in complicance with the rules
 if (commitErrors.some(e => e !== undefined)) {
-  // Reject this PR
+  // Fail the build
   commitErrors.forEach(error => {
     if (error !== undefined) {
       fail(error);
