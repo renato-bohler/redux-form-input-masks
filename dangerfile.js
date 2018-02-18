@@ -1,9 +1,9 @@
 // eslint-disable-next-line
-import { danger, markdown, message, schedule, warn } from 'danger';
+import { danger, fail, markdown, message, schedule, warn } from 'danger';
 
 const removeAtSymbols = string => string.replace(/@/g, '');
 
-// Checks commit messages
+// Checks all the commit messages in this PR
 const commitLint = commit => {
   /* eslint-disable */
   // https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md
@@ -12,7 +12,7 @@ const commitLint = commit => {
   /* eslint-enable */
 
   const { msg, sha } = commit;
-  const commitIdentificator = `Commit #${sha}`;
+  const commitIdentificator = `Commit ${sha}`;
 
   if (!msg) {
     return `${commitIdentificator} has no commit message`;
@@ -29,9 +29,8 @@ const commitLint = commit => {
 };
 
 // Converts danger.github.commits to simple objects
-// { sha: 'a1b2c3d4', msg: 'chore: my commit message' }
 const commits = danger.github.commits.map(obj => ({
-  sha: obj.sha.substring(0, 8),
+  sha: obj.sha,
   msg: obj.commit.message,
 }));
 
@@ -39,8 +38,11 @@ const commitErrors = commits.map(commitLint);
 // If any of the commit messages of this PR isn't in complicance with the rules
 if (commitErrors.some(e => e !== undefined)) {
   // Reject this PR
-  // TODO: change 'warn' to 'fail'
-  commitErrors.forEach(error => warn(error));
+  commitErrors.forEach(error => {
+    if (error !== undefined) {
+      fail(error);
+    }
+  });
 }
 
 // Warn when there is a big PR
