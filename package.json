@@ -86,8 +86,5 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
-  },
-  "engines": {
-    "node": ">= 8.3.0"
   }
 }
