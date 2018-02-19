@@ -10,6 +10,5 @@ script:
   - npm test
   - npm run danger-ci
 after_success:
-  - npm run build:docs
   - npm run report-coverage
   - npx semantic-release
