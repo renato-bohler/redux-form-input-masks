@@ -1,5 +1,32 @@
 # redux-form-input-masks
 
+<p align="center">
+    <span>
+        <img alt="travis ci build status" src="https://img.shields.io/travis/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="percentage of code coverage by tests" src="https://img.shields.io/codecov/c/github/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="latest release" src="https://img.shields.io/github/release/renato-bohler/redux-form-input-masks/all.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="minimum node version" src="https://img.shields.io/node/v/redux-form-input-masks.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="commitizen friendly" src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="semantic release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square">
+    </span>
+    <span>
+        <img alt="license MIT" src="https://img.shields.io/github/license/renato-bohler/redux-form-input-masks.svg?style=flat-square">
+    </span>
+</p>
+
 ## [Documentation and examples](https://renato-bohler.github.io/redux-form-input-masks)
 
 ## Getting started
