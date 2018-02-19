@@ -2,7 +2,7 @@
 
 This mask is ideal for currency, percentage or any other number format you may come across. It is possible to add a prefix, suffix, choose the amount of decimal places, choose if it should allow negative values, the locale to format the number and the data type to store the value (`number` or `string`).
 
-Because it allows you to store the field value as a `number`, it is very easy to create `redux-form`'s validations for `Field`s using this mask. Check an example at [`more examples`](#/more)
+Because it allows you to store the field value as a `number`, it is very easy to create `redux-form`'s validations for `Field`s using this mask. Check an example at [`more examples`](#/more).
 
 **Note:** we recommend using `type="tel"` on the formatted field so that on mobile the keypad shows up instead of the regular keyboard.
 
