@@ -6,6 +6,11 @@ install:
 cache:
   directories:
     - "node_modules"
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: /docs
+  github_token: $GH_TOKEN
 script:
   - npm test
   - npm run danger-ci
