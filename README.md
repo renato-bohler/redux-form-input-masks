@@ -11,9 +11,6 @@
         <img alt="latest release" src="https://img.shields.io/github/release/renato-bohler/redux-form-input-masks/all.svg?style=flat-square">
     </span>
     <span>
-        <img alt="minimum node version" src="https://img.shields.io/node/v/redux-form-input-masks.svg?style=flat-square">
-    </span>
-    <span>
         <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
     </span>
     <span>
