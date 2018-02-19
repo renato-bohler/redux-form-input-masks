@@ -5,12 +5,15 @@
   "main": "./src/index.js",
   "scripts": {
     "prepublishOnly": "npm run build:docs",
-    "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
-    "postpublish": "git add . && git commit -m \"updates docs\" && git push",
+    "build:docs": "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
+    "postpublish": "git commit -a -m \"docs: updates documentation\" && git push",
     "test": "jest",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
-    "precommit": "npm-run-all lint:*"
+    "precommit": "npm-run-all lint:*",
+    "danger-ci": "danger ci",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -38,8 +41,12 @@
     "babel-eslint": "^8.2.1",
     "babel-jest": "^22.2.2",
     "babel-preset-env": "^1.6.1",
+    "codecov.io": "^0.1.6",
+    "commitizen": "^2.9.6",
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
+    "cz-conventional-changelog": "^2.1.0",
+    "danger": "^3.1.7",
     "eslint": "^4.18.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -52,7 +59,8 @@
     "jest": "^22.3.0",
     "lint-staged": "^6.1.1",
     "npm-run-all": "^4.1.2",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "semantic-release": "^12.4.1"
   },
   "jest": {
     "verbose": true,
@@ -75,5 +83,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
