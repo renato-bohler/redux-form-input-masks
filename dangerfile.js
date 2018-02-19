@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { danger, markdown, message, schedule, warn } from 'danger';
+import { danger, fail, markdown, message, schedule, warn } from 'danger';
 
 const removeAtSymbols = string => string.replace(/@/g, '');
 
@@ -40,7 +40,7 @@ if (commitErrors.some(e => e !== undefined)) {
   // Fail the build
   commitErrors.forEach(error => {
     if (error !== undefined) {
-      warn(error);
+      fail(error);
     }
   });
 }
