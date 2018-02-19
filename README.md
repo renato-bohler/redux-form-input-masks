@@ -141,7 +141,10 @@ This project is still under development, I'm still setting all up for the first 
 * [x] add tests and code coverage structure to the project;
 * [x] implement `createNumberMask` tests;
 * [x] `createNumberMask` bugfixes;
+* [x] add repo workflow (Travis CI, danger, codecov, commitizen, semantic release);
+* [x] add fancy badges ([#4](https://github.com/renato-bohler/redux-form-input-masks/issues/4);
+* [ ] add issue template ([#2](https://github.com/renato-bohler/redux-form-input-masks/issues/2);
+* [ ] add code of conduct ([#3](https://github.com/renato-bohler/redux-form-input-masks/issues/3);
+* [ ] add contributing ([#5](https://github.com/renato-bohler/redux-form-input-masks/issues/5);
 * [ ] specify an API for `createStringMask`, an easy and flexible string mask creator;
-* [ ] implement `createStringMask` and its tests;
-* [ ] add repo workflow (contributing, code of conduct, issue template, Travis CI, danger, codecov);
-* [ ] add fancy badges.
+* [ ] implement `createStringMask` and its tests.
