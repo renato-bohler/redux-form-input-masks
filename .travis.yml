@@ -17,3 +17,4 @@ script:
 after_success:
   - npm run report-coverage
   - npx semantic-release
+  - npm run build:docs
