@@ -4,17 +4,14 @@
   "description": "Input masking with redux-form made easy",
   "main": "./src/index.js",
   "scripts": {
-    "prepublishOnly": "npm run build:docs",
     "build:docs": "cd examples && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
-    "postpublish": "git add . && git commit -m \"updates docs\" && git push",
     "test": "jest",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
     "precommit": "npm-run-all lint:*",
     "danger-ci": "danger ci",
-    "commit": "git-cz",
-    "danger-pr": "danger pr https://github.com/renato-bohler/redux-form-input-masks/pull/1"
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
