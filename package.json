@@ -6,7 +6,6 @@
   "scripts": {
     "prepublishOnly": "npm run build:docs",
     "build:docs": "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
-    "postpublish": "git commit -a -m \"docs: updates documentation\" && git push",
     "test": "jest",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
