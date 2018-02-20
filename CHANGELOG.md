@@ -1,3 +1,11 @@
+<a name="0.3.11"></a>
+## [0.3.11](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.10...v0.3.11) (2018-02-20)
+
+
+### Bug Fixes
+
+* **dangerfile:** adds new rules to commit message validation ([1cef917](https://github.com/renato-bohler/redux-form-input-masks/commit/1cef917))
+
 <a name="0.3.10"></a>
 ## [0.3.10](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.9...v0.3.10) (2018-02-20)
 
