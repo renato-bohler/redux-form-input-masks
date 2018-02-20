@@ -4,7 +4,8 @@
   "description": "Input masking with redux-form made easy",
   "main": "./src/index.js",
   "scripts": {
-    "build:docs": "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
+    "build:docs":
+      "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "test": "jest",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
@@ -28,7 +29,8 @@
     "field",
     "react"
   ],
-  "author": "Renato Böhler <renato.bohler@gmail.com> (https://github.com/renato-bohler)",
+  "author":
+    "Renato Böhler <renato.bohler@gmail.com> (https://github.com/renato-bohler)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/renato-bohler/redux-form-input-masks/issues"
@@ -69,22 +71,27 @@
     "globals": {
       "NODE_ENV": "test"
     },
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ]
+    "moduleFileExtensions": ["js"],
+    "moduleDirectories": ["node_modules"]
   },
   "lint-staged": {
-    "*.{js,jsx,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx,css,md}": ["prettier --write", "git add"]
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
   }
 }
