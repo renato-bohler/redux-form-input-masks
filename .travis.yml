@@ -7,17 +7,15 @@ cache:
   directories:
     - "node_modules"
 before_deploy:
-  echo "Before deploy..."
+  - npm run build:docs
 deploy:
   provider: pages
   skip_cleanup: true
   local_dir: /docs
   github_token: $GH_TOKEN
-  committer-from-gh: true
 script:
   - npm test
   - npm run danger-ci
 after_success:
   - npm run report-coverage
   - npx semantic-release
-  - npm run build:docs
