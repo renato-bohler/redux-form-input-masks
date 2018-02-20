@@ -37,6 +37,8 @@
   },
   "homepage": "https://renato-bohler.github.io/redux-form-input-masks",
   "devDependencies": {
+    "@semantic-release/changelog": "^1.0.1",
+    "@semantic-release/git": "^3.0.1",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-jest": "^22.2.2",
@@ -86,7 +88,8 @@
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/git",
+      "@semantic-release/github"
     ],
     "prepare": [
       "@semantic-release/changelog",
@@ -96,7 +99,8 @@
         "assets": ["package.json"],
         "message":
           "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
+      },
+      "@semantic-release/github"
     ]
   }
 }
