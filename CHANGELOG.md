@@ -4,6 +4,15 @@
 
 ### Bug Fixes
 
+* **docs:** adds theme-color to the documentations ([9da97dc](https://github.com/renato-bohler/redux-form-input-masks/commit/9da97dc))
+* **travis:** changes build:docs script to before_deploy ([c5b8cc2](https://github.com/renato-bohler/redux-form-input-masks/commit/c5b8cc2))
+
+<a name="0.3.10"></a>
+## [0.3.10](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.9...v0.3.10) (2018-02-20)
+
+
+### Bug Fixes
+
 * **travis:** changes build:docs script to before_deploy ([c5b8cc2](https://github.com/renato-bohler/redux-form-input-masks/commit/c5b8cc2))
 
 <a name="0.3.9"></a>
