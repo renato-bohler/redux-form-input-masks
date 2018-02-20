@@ -90,7 +90,6 @@
     }
   },
   "release": {
-    "debug": true,
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
