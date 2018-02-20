@@ -53,7 +53,7 @@ yarn add redux-form-input-masks
 ## Features
 
 * **simple to setup:** works with `redux-form` out of the box, you just need to install `redux-form-input-masks` and you're good to go;
-* **simple to use:** import a mask creator and apply it... and that's it;
+* **simple to use:** import a mask creator and apply it... and that's it. There's no need to change the component you're already using;
 * **flexible:** it lets you choose how you want the input mask to behave;
 * **lightweight:** not a single dependency is added to `redux-form-input-masks`;
 * compatible with component libraries like `material-ui` and `redux-form-material-ui`'s wrappers, for both v0-stable and v1-beta versions.
@@ -140,8 +140,8 @@ This project is still under development, I'm still setting all up for the first 
 * [x] `createNumberMask` bugfixes;
 * [x] add repo workflow (Travis CI, danger, codecov, commitizen, semantic release);
 * [x] add fancy badges ([#4](https://github.com/renato-bohler/redux-form-input-masks/issues/4));
-* [ ] add issue template ([#2](https://github.com/renato-bohler/redux-form-input-masks/issues/2));
-* [ ] add code of conduct ([#3](https://github.com/renato-bohler/redux-form-input-masks/issues/3));
+* [x] add issue template ([#2](https://github.com/renato-bohler/redux-form-input-masks/issues/2));
+* [x] add code of conduct ([#3](https://github.com/renato-bohler/redux-form-input-masks/issues/3));
 * [ ] add contributing ([#5](https://github.com/renato-bohler/redux-form-input-masks/issues/5));
 * [ ] specify an API for `createStringMask`, an easy and flexible string mask creator;
 * [ ] implement `createStringMask` and its tests.
