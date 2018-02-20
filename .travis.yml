@@ -11,6 +11,8 @@ deploy:
   skip_cleanup: true
   local_dir: /docs
   github_token: $GH_TOKEN
+  name: $GIT_NAME
+  email: $GIT_EMAIL
 script:
   - npm test
   - npm run danger-ci
