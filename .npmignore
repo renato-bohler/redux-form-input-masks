@@ -1,7 +1,12 @@
 .npmignore
 .eslint*
 .prettierrc
+.babelrc
+.travis.yml
+webpack.config.prod.js
 package-lock.json
 yarn.lock
+dangerfile.js
 examples
-docs
+src
+.github
