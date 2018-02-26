@@ -18,4 +18,5 @@ script:
   - npm run danger-ci
 after_success:
   - npm run report-coverage
+  - npm run build
   - npx semantic-release
