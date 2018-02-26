@@ -1,3 +1,11 @@
+<a name="0.3.12"></a>
+## [0.3.12](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.11...v0.3.12) (2018-02-26)
+
+
+### Bug Fixes
+
+* **README:** updates `Milestones to v1.0.0` section ([ed83fc9](https://github.com/renato-bohler/redux-form-input-masks/commit/ed83fc9))
+
 <a name="0.3.11"></a>
 ## [0.3.11](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.10...v0.3.11) (2018-02-20)
 
