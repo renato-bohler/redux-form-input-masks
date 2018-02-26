@@ -16,6 +16,8 @@ createNumberMask({
   suffix: '',
   decimalPlaces: 0,
   allowNegative: false,
+  showPlusSign: false,
+  spaceAfterSign: false,
   stringValue: false,
   locale: 'browser',
   onChange: () => {},
