@@ -5,14 +5,17 @@
   "main": "./dist/bundle.js",
   "scripts": {
     "build:clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build:docs": "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
+    "build:webpack":
+      "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:docs":
+      "cd examples && npm i && npm run build && cpy index.html ../docs && cpy dist/bundle.js ../docs",
     "build": "npm run build:clean && npm run build:webpack",
     "test": "jest",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
     "commit": "git-cz",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "npm-run-all lint:*",
     "danger-ci": "danger ci"
   },
@@ -31,13 +34,16 @@
     "field",
     "react"
   ],
-  "author": "Renato Böhler <renato.bohler@gmail.com> (https://github.com/renato-bohler)",
+  "author":
+    "Renato Böhler <renato.bohler@gmail.com> (https://github.com/renato-bohler)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/renato-bohler/redux-form-input-masks/issues"
   },
   "homepage": "https://renato-bohler.github.io/redux-form-input-masks",
   "devDependencies": {
+    "@commitlint/cli": "^6.1.2",
+    "@commitlint/config-conventional": "^6.1.2",
     "@semantic-release/changelog": "^2.0.0",
     "@semantic-release/git": "^4.0.0",
     "babel-core": "^6.26.0",
@@ -60,6 +66,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.6.1",
+    "husky": "^0.14.3",
     "intl": "^1.2.5",
     "jest": "^22.3.0",
     "lint-staged": "^6.1.1",
@@ -78,18 +85,11 @@
     "globals": {
       "NODE_ENV": "test"
     },
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ]
+    "moduleFileExtensions": ["js"],
+    "moduleDirectories": ["node_modules"]
   },
   "lint-staged": {
-    "*.{js,jsx,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx,css,md}": ["prettier --write", "git add"]
   },
   "config": {
     "commitizen": {
@@ -108,16 +108,11 @@
       "@semantic-release/npm",
       {
         "path": "@semantic-release/git",
-        "assets": [
-          "package.json",
-          "CHANGELOG.md"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "assets": ["package.json", "CHANGELOG.md"],
+        "message":
+          "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
-    "publish": [
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ]
+    "publish": ["@semantic-release/npm", "@semantic-release/github"]
   }
 }
