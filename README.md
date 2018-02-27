@@ -143,7 +143,7 @@ This project is still under development, I'm still setting all up for the first 
 * [x] add issue template ([#2](https://github.com/renato-bohler/redux-form-input-masks/issues/2));
 * [x] add code of conduct ([#3](https://github.com/renato-bohler/redux-form-input-masks/issues/3));
 * [x] add build process;
+* [x] add contributing ([#5](https://github.com/renato-bohler/redux-form-input-masks/issues/5));
 * [ ] fix [#14](https://github.com/renato-bohler/redux-form-input-masks/issues/14)
-* [ ] add contributing ([#5](https://github.com/renato-bohler/redux-form-input-masks/issues/5));
 * [ ] specify an API for `createStringMask`, an easy and flexible string mask creator;
 * [ ] implement `createStringMask` and its tests.
