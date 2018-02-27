@@ -4,6 +4,7 @@
 .babelrc
 .travis.yml
 webpack.config.prod.js
+commitlint.config.js
 package-lock.json
 yarn.lock
 dangerfile.js
