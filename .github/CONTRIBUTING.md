@@ -28,7 +28,7 @@ This project and everyone participating in it is governed by this [Code of condu
 If you've found a bug on `redux-form-input-masks`, follow these steps:
 
 * check if anyone have already reported it [on our opened issues](https://github.com/renato-bohler/redux-form-input-masks/issues). If you find an already existing issue reporting a similar bug, you should comment on this issue instead of creating a new one;
-* if there's no similar issues opened, please do [open a new issue](https://github.com/renato-bohler/redux-form-input-masks/issues/new), using a clear and descriptive title and filling the (issue template)[ISSUE_TEMPLATE.md] with as many details as possible.
+* if there's no similar issues opened, please do [open a new issue](https://github.com/renato-bohler/redux-form-input-masks/issues/new), using a clear and descriptive title and filling the [issue template](ISSUE_TEMPLATE.md) with as many details as possible.
 
 ### Suggesting enhancements
 
