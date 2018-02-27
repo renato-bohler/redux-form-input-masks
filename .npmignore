@@ -7,6 +7,7 @@ webpack.config.prod.js
 package-lock.json
 yarn.lock
 dangerfile.js
+coverage
+.github
 examples
 src
-.github
