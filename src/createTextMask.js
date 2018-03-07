@@ -7,18 +7,18 @@ import {
   maskStrip,
   validCaretPositions,
 } from './utils';
+import defaultMaskDefinitions from './defaultMaskDefinitions';
 
 export default options => {
   const {
     pattern,
-    placeholder,
-    maskDefinitions,
-    stripMask,
-    guide,
+    placeholder = '_',
+    maskDefinitions = defaultMaskDefinitions,
+    guide = true,
+    stripMask = true,
     onChange,
     onCompletePattern,
-  } =
-    options || {};
+  } = options;
 
   const validPositions = validCaretPositions(pattern, maskDefinitions);
   const strippedPattern = maskStrip(
@@ -59,11 +59,7 @@ export default options => {
       maskDefinitions,
     );
 
-    // If any change was made to the pattern itself, discard the change
-    if (strippedValue === false) {
-      return previousValue;
-    }
-
+    // Apply the `transform` function on the inputted character
     const transformedValue = applyTransform(
       strippedValue,
       stripMask
@@ -77,12 +73,12 @@ export default options => {
     const hasValueChanged =
       transformedValue !== previousValue && previousValue !== undefined;
 
-    // We call onChange if it was set and if the value actually changed
+    // We call `onChange` if it was set and if the value actually changed
     if (onChange && hasValueChanged) {
       onChange(newValue);
     }
 
-    // We call onCompletePattern if it was set and the pattern is complete
+    // We call `onCompletePattern` if it was set and the pattern is complete
     if (
       onCompletePattern &&
       isPatternComplete(formattedValue, pattern, maskDefinitions) &&
@@ -107,7 +103,7 @@ export default options => {
   };
 
   const goToNearestValidPosition = (target, position, direction) => {
-    /* validPositions is ordered from least to greatest, so we find the first
+    /* `validPositions` is ordered from least to greatest, so we find the first
     valid positon after `position` */
     const nearestIndexToTheRight = validPositions.findIndex(
       element => element > position,
