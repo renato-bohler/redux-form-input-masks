@@ -207,7 +207,7 @@ describe('Number mask', () => {
     expect(onChange).toBeCalledWith(updatedValue);
   });
 
-  it('should fix the caret position before the suffix', async () => {
+  it('should fix the caret position before the suffix', () => {
     // needed because we use setTimeout on our manageCaretPosition function
     jest.useFakeTimers();
 
