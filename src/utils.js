@@ -1,9 +1,16 @@
-// general
-const escapeRegExp = str =>
-  str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+// general use
+/**
+ * This function should escape every special RegExp characters
+ */
+const escapeRegExp = string =>
+  string.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 
 // createNumberMask.js
-const countOcurrences = (str, regexp) => (str.match(regexp) || []).length;
+/**
+ * This function should return the amount of occurrences of a given RegExp on a
+ * given string
+ */
+const countOcurrences = (string, regexp) => (string.match(regexp) || []).length;
 
 // createStringMask.js
 /**
@@ -14,14 +21,18 @@ const getMaskDefinition = (char, maskDefinitions) => maskDefinitions[char];
 
 /**
  * This function should take any masked value and remove all the non-pattern
- * characters that it contains.
+ * characters that it contains. It should return `false` when the given
+ * maskedValue is incorrect.
  */
 const maskStrip = (maskedValue, pattern, placeholder, maskDefinitions) => {
   let stripped = '';
 
   const value = !maskedValue ? '' : maskedValue;
+
+  // This is used to check if there's a valid char after the first placeholder
   let foundPlaceholder = false;
 
+  // For every char in value...
   for (let index = 0; index < value.length; index += 1) {
     const valueChar = value.charAt(index);
     const patternChar = pattern.charAt(index);
@@ -30,12 +41,15 @@ const maskStrip = (maskedValue, pattern, placeholder, maskDefinitions) => {
     if (maskDefinition) {
       if (maskDefinition.regExp.test(valueChar)) {
         if (foundPlaceholder) {
+          // After the first placeholder, we shouldn't have found any valid char
           return false;
         }
         stripped = stripped.concat(valueChar);
       } else if (valueChar !== placeholder) {
+        // `valueChar` is neither a valid char for this pattern or a placeholder
         return false;
       } else {
+        // We found the first placeholder
         foundPlaceholder = true;
       }
     }
@@ -57,30 +71,49 @@ const applyMask = (
   let applied = '';
 
   let value = !strippedValue ? '' : strippedValue;
+
+  // There are two indexes we need to control: value and pattern
   let valueIndex = 0;
 
+  // For every char in the pattern...
   for (let patternIndex = 0; patternIndex < pattern.length; patternIndex += 1) {
+    // Take the current value char
     const valueChar = value.charAt(valueIndex);
+    // Take the current pattern char
     const patternChar = pattern.charAt(patternIndex);
+    // Take the mask definition for the current pattern char
     const maskDefinition = getMaskDefinition(patternChar, maskDefinitions);
 
     if (maskDefinition) {
+      // If the current pattern char have a mask definition
       if (valueChar) {
+        // If the current value char is defined
         if (maskDefinition.regExp.test(valueChar)) {
+          // If the current value char is valid, we concatenate it
           applied = applied.concat(valueChar);
           valueIndex += 1;
         } else if (guide) {
+          /* If the current value char isn't valid and the mask is guided, we
+          concatenate a placeholder */
           applied = applied.concat(placeholder);
           value = '';
         } else {
+          /* If the current value isn't valid and the mask isn't guided, we are
+          finished */
           return applied;
         }
       } else if (guide) {
+        /* If the current pattern char doesn't have a mask definition and the
+        mask is guided, we concatenate a placeholder */
         applied = applied.concat(placeholder);
       } else {
+        /* If the current pattern char doesn't have a mask definition and the
+        mask isn't guided, we are done */
         return applied;
       }
     } else {
+      /* If the current pattern char doesn't have a mask definition, we
+      concatenate it */
       applied = applied.concat(patternChar);
     }
   }
@@ -111,7 +144,7 @@ const inputReformat = (
     }
   }
 
-  // Removes placeholder
+  // Removes placeholders
   const placeholderRegExp = escapeRegExp(placeholder);
   string = string.replace(placeholderRegExp, '');
 
@@ -119,28 +152,39 @@ const inputReformat = (
 };
 
 /**
- * This function should simply return wether a given value completely fills the
- * given pattern
+ * This function should return wether a given value completely fills the given
+ * pattern
  */
 const isPatternComplete = (formattedValue, pattern, maskDefinitions) => {
+  // Trivial case
   if (formattedValue.length !== pattern.length) {
     return false;
   }
 
+  // For every char in the formatted value
   for (let index = 0; index < formattedValue.length; index += 1) {
+    // Take the current value char
     const valueChar = formattedValue.charAt(index);
+    // Take the current pattern char
     const patternChar = pattern.charAt(index);
+    // Take the mask definition for the current pattern char
     const maskDefinition = getMaskDefinition(patternChar, maskDefinitions);
 
     if (maskDefinition) {
+      // If the current pattern char have a mask definition
       if (!maskDefinition.regExp.test(valueChar)) {
+        // If the current value char isn't according to the mask definition
         return false;
       }
     } else if (valueChar !== patternChar) {
+      /* If the current pattern char doesn't have a mask definition and the
+      current value char is not equal to the current pattern char */
       return false;
     }
   }
 
+  /* If we passed the above loop without returning false, then formattedValue
+  completely fills the given pattern */
   return true;
 };
 
@@ -151,6 +195,7 @@ const isPatternComplete = (formattedValue, pattern, maskDefinitions) => {
 const validCaretPositions = (pattern, maskDefinitions) => {
   const validPositions = [];
 
+  // Trivial case
   if (!pattern || typeof pattern !== 'string' || pattern.length === 0) {
     return validPositions;
   }
@@ -162,7 +207,9 @@ const validCaretPositions = (pattern, maskDefinitions) => {
 
   // The middle caret positions are valid iff any adjacent char is inputtable
   for (let index = 1; index < pattern.length; index += 1) {
+    // Take the char before the current caret position
     const charBefore = pattern.charAt(index - 1);
+    // Take the char after the current caret position
     const charAfter = pattern.charAt(index);
 
     if (
@@ -191,7 +238,7 @@ const firstUnfilledPosition = (
   placeholder,
   maskDefinitions,
 ) => {
-  // trivial case
+  // Trivial case
   if (value === '') {
     return 0;
   }
@@ -249,12 +296,14 @@ const applyTransform = (
       const patternChar = strippedPattern.charAt(index);
       const maskDefinition = getMaskDefinition(patternChar, maskDefinitions);
       if (maskDefinition && maskDefinition.transform) {
-        // if it has changed and it have transform defined, apply it
+        // If it has changed and it have transform defined, apply it
         transformed = transformed.concat(maskDefinition.transform(valueChar));
       } else {
+        // No transform function is defined
         transformed = transformed.concat(valueChar);
       }
     } else {
+      // Transform was already applied, do not apply again
       transformed = transformed.concat(valueChar);
     }
   }
