@@ -297,6 +297,12 @@ describe('maskStrip', () => {
       utils.maskStrip('___-____', mixedPattern, placeholder, maskDefinitions),
     ).toBe('');
     expect(
+      utils.maskStrip('1__-____', mixedPattern, placeholder, maskDefinitions),
+    ).toBe('');
+    expect(
+      utils.maskStrip('___-__1_', mixedPattern, placeholder, maskDefinitions),
+    ).toBe('');
+    expect(
       utils.maskStrip('ABC-12__', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC12');
     expect(
@@ -309,6 +315,22 @@ describe('maskStrip', () => {
     expect(
       utils.maskStrip(
         '(___) ___-____',
+        numericPattern,
+        placeholder,
+        maskDefinitions,
+      ),
+    ).toBe('');
+    expect(
+      utils.maskStrip(
+        '(___) ___-__1_',
+        numericPattern,
+        placeholder,
+        maskDefinitions,
+      ),
+    ).toBe('');
+    expect(
+      utils.maskStrip(
+        '(A__) ___-____',
         numericPattern,
         placeholder,
         maskDefinitions,
@@ -330,53 +352,6 @@ describe('maskStrip', () => {
         maskDefinitions,
       ),
     ).toBe('012345');
-  });
-
-  it('should return false for incorrect formatted values', () => {
-    mixedPattern;
-    expect(
-      utils.maskStrip('1', mixedPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-    expect(
-      utils.maskStrip('___-1___', mixedPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-    expect(
-      utils.maskStrip('AB,-____', mixedPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-    expect(
-      utils.maskStrip('ABC-<234', mixedPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-    expect(
-      utils.maskStrip('ABC-12>4', mixedPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-
-    expect(
-      utils.maskStrip('(a', numericPattern, placeholder, maskDefinitions),
-    ).toBe(false);
-    expect(
-      utils.maskStrip(
-        '(___) 1__-____',
-        numericPattern,
-        placeholder,
-        maskDefinitions,
-      ),
-    ).toBe(false);
-    expect(
-      utils.maskStrip(
-        '(01_) 1__-____',
-        numericPattern,
-        placeholder,
-        maskDefinitions,
-      ),
-    ).toBe(false);
-    expect(
-      utils.maskStrip(
-        '(012) 3!5-6789',
-        numericPattern,
-        placeholder,
-        maskDefinitions,
-      ),
-    ).toBe(false);
   });
 
   it('should strip overflowing formatted values', () => {
