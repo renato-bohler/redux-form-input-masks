@@ -99,7 +99,7 @@ export default options => {
       maskDefinitions,
     );
 
-    target.setSelectionRange(caretPos, caretPos, 'none');
+    target.setSelectionRange(caretPos, caretPos);
   };
 
   const goToNearestValidPosition = (target, position, direction) => {
@@ -125,7 +125,7 @@ export default options => {
         direction === 'left' ? 0 : validPositions.length - 1;
       caretPos = validPositions[fallbackIndex];
     }
-    target.setSelectionRange(caretPos, caretPos, 'none');
+    target.setSelectionRange(caretPos, caretPos);
   };
 
   const manageCaretPosition = event => {
