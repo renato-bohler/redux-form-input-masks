@@ -21,16 +21,12 @@ const getMaskDefinition = (char, maskDefinitions) => maskDefinitions[char];
 
 /**
  * This function should take any masked value and remove all the non-pattern
- * characters that it contains. It should return `false` when the given
- * maskedValue is incorrect.
+ * characters that it contains
  */
-const maskStrip = (maskedValue, pattern, placeholder, maskDefinitions) => {
+const maskStrip = (formattedValue, pattern, placeholder, maskDefinitions) => {
   let stripped = '';
 
-  const value = !maskedValue ? '' : maskedValue;
-
-  // This is used to check if there's a valid char after the first placeholder
-  let foundPlaceholder = false;
+  let value = !formattedValue ? '' : formattedValue;
 
   // For every char in value...
   for (let index = 0; index < value.length; index += 1) {
@@ -40,17 +36,10 @@ const maskStrip = (maskedValue, pattern, placeholder, maskDefinitions) => {
 
     if (maskDefinition) {
       if (maskDefinition.regExp.test(valueChar)) {
-        if (foundPlaceholder) {
-          // After the first placeholder, we shouldn't have found any valid char
-          return false;
-        }
         stripped = stripped.concat(valueChar);
-      } else if (valueChar !== placeholder) {
-        // `valueChar` is neither a valid char for this pattern or a placeholder
-        return false;
-      } else {
-        // We found the first placeholder
-        foundPlaceholder = true;
+      } else if (valueChar === placeholder) {
+        // Ignore everything after the first placeholder
+        value = '';
       }
     }
   }
