@@ -47,6 +47,8 @@ export default class App extends React.Component {
             {' | '}
             <Link to="/number-mask">Number mask</Link>
             {' | '}
+            <Link to="/text-mask">Text mask</Link>
+            {' | '}
             <Link to="/more">More examples</Link>
           </div>
         </div>
