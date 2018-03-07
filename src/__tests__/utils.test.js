@@ -18,9 +18,9 @@ const maskDefinitions = {
   },
 };
 
-const codePattern = 'AAA-9999';
-const phonePattern = '(999) 999-9999';
-const crazyPattern = 'AA-=-=-99==';
+const numericPattern = '(999) 999-9999';
+const mixedPattern = 'AAA-9999';
+const positionsPattern = '--AA-=-=-99==';
 const transformPattern = 'AAA-00009';
 const placeholder = '_';
 
@@ -64,7 +64,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         'ABC0123',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -73,7 +73,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         'ABC0123',
-        codePattern,
+        mixedPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -83,7 +83,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         '0123456789',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -92,7 +92,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         '0123456789',
-        phonePattern,
+        numericPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -102,38 +102,28 @@ describe('applyMask', () => {
 
   it('should apply mask to incomplete and correct stripped values', () => {
     expect(
-      utils.applyMask('', codePattern, placeholder, true, maskDefinitions),
-    ).toBe('___-____');
-    expect(
-      utils.applyMask('A', codePattern, placeholder, true, maskDefinitions),
-    ).toBe('A__-____');
-    expect(
-      utils.applyMask('ABC1', codePattern, placeholder, true, maskDefinitions),
-    ).toBe('ABC-1___');
-
-    expect(
-      utils.applyMask('', codePattern, placeholder, false, maskDefinitions),
+      utils.applyMask('', mixedPattern, placeholder, false, maskDefinitions),
     ).toBe('');
-    expect(
-      utils.applyMask('A', codePattern, placeholder, false, maskDefinitions),
-    ).toBe('A');
-    expect(
-      utils.applyMask('ABC1', codePattern, placeholder, false, maskDefinitions),
-    ).toBe('ABC-1');
 
     expect(
-      utils.applyMask('', phonePattern, placeholder, true, maskDefinitions),
+      utils.applyMask('', numericPattern, placeholder, true, maskDefinitions),
     ).toBe('(___) ___-____');
     expect(
-      utils.applyMask('9', phonePattern, placeholder, true, maskDefinitions),
+      utils.applyMask('9', numericPattern, placeholder, true, maskDefinitions),
     ).toBe('(9__) ___-____');
     expect(
-      utils.applyMask('9876', phonePattern, placeholder, true, maskDefinitions),
+      utils.applyMask(
+        '9876',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
     ).toBe('(987) 6__-____');
     expect(
       utils.applyMask(
         '9876543',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -141,15 +131,15 @@ describe('applyMask', () => {
     ).toBe('(987) 654-3___');
 
     expect(
-      utils.applyMask('', phonePattern, placeholder, false, maskDefinitions),
+      utils.applyMask('', numericPattern, placeholder, false, maskDefinitions),
     ).toBe('(');
     expect(
-      utils.applyMask('9', phonePattern, placeholder, false, maskDefinitions),
+      utils.applyMask('9', numericPattern, placeholder, false, maskDefinitions),
     ).toBe('(9');
     expect(
       utils.applyMask(
         '9876',
-        phonePattern,
+        numericPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -158,7 +148,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         '9876543',
-        phonePattern,
+        numericPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -167,13 +157,14 @@ describe('applyMask', () => {
   });
 
   it('should apply mask to incorrect stripped values', () => {
+    mixedPattern;
     expect(
-      utils.applyMask('1', codePattern, placeholder, true, maskDefinitions),
+      utils.applyMask('1', mixedPattern, placeholder, true, maskDefinitions),
     ).toBe('___-____');
     expect(
       utils.applyMask(
         '$234567',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -182,7 +173,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         'ABC$?45',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -190,12 +181,12 @@ describe('applyMask', () => {
     ).toBe('ABC-____');
 
     expect(
-      utils.applyMask('1', codePattern, placeholder, false, maskDefinitions),
+      utils.applyMask('1', mixedPattern, placeholder, false, maskDefinitions),
     ).toBe('');
     expect(
       utils.applyMask(
         '$234567',
-        codePattern,
+        mixedPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -204,7 +195,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         'ABC$?45',
-        codePattern,
+        mixedPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -212,12 +203,12 @@ describe('applyMask', () => {
     ).toBe('ABC-');
 
     expect(
-      utils.applyMask('a', phonePattern, placeholder, true, maskDefinitions),
+      utils.applyMask('a', numericPattern, placeholder, true, maskDefinitions),
     ).toBe('(___) ___-____');
     expect(
       utils.applyMask(
         '012345$678',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -225,12 +216,12 @@ describe('applyMask', () => {
     ).toBe('(012) 345-____');
 
     expect(
-      utils.applyMask('a', phonePattern, placeholder, false, maskDefinitions),
+      utils.applyMask('a', numericPattern, placeholder, false, maskDefinitions),
     ).toBe('(');
     expect(
       utils.applyMask(
         '012345$678',
-        phonePattern,
+        numericPattern,
         placeholder,
         false,
         maskDefinitions,
@@ -239,10 +230,11 @@ describe('applyMask', () => {
   });
 
   it('should apply mask to overflowing stripped values', () => {
+    mixedPattern;
     expect(
       utils.applyMask(
         'ABC12345',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -251,7 +243,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         'ABC1234*',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -261,7 +253,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         '01234567891',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -270,7 +262,7 @@ describe('applyMask', () => {
     expect(
       utils.applyMask(
         '0123456789+',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -281,14 +273,15 @@ describe('applyMask', () => {
 
 describe('maskStrip', () => {
   it('should strip complete and correct formatted values', () => {
+    mixedPattern;
     expect(
-      utils.maskStrip('ABC-1234', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('ABC-1234', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC1234');
 
     expect(
       utils.maskStrip(
         '(012) 345-6789',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -296,37 +289,43 @@ describe('maskStrip', () => {
   });
 
   it('should strip incomplete and correct formatted values', () => {
-    expect(utils.maskStrip('', codePattern, placeholder, maskDefinitions)).toBe(
-      '',
-    );
+    mixedPattern;
     expect(
-      utils.maskStrip('___-____', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('', mixedPattern, placeholder, maskDefinitions),
     ).toBe('');
     expect(
-      utils.maskStrip('ABC-12__', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('___-____', mixedPattern, placeholder, maskDefinitions),
+    ).toBe('');
+    expect(
+      utils.maskStrip('ABC-12__', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC12');
     expect(
-      utils.maskStrip('ABC-12', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('ABC-12', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC12');
 
     expect(
-      utils.maskStrip('', phonePattern, placeholder, maskDefinitions),
+      utils.maskStrip('', numericPattern, placeholder, maskDefinitions),
     ).toBe('');
     expect(
       utils.maskStrip(
         '(___) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
     ).toBe('');
     expect(
-      utils.maskStrip('(012) 345-', phonePattern, placeholder, maskDefinitions),
+      utils.maskStrip(
+        '(012) 345-',
+        numericPattern,
+        placeholder,
+        maskDefinitions,
+      ),
     ).toBe('012345');
     expect(
       utils.maskStrip(
         '(012) 345-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -334,29 +333,30 @@ describe('maskStrip', () => {
   });
 
   it('should return false for incorrect formatted values', () => {
+    mixedPattern;
     expect(
-      utils.maskStrip('1', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('1', mixedPattern, placeholder, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.maskStrip('___-1___', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('___-1___', mixedPattern, placeholder, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.maskStrip('AB,-____', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('AB,-____', mixedPattern, placeholder, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.maskStrip('ABC-<234', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('ABC-<234', mixedPattern, placeholder, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.maskStrip('ABC-12>4', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('ABC-12>4', mixedPattern, placeholder, maskDefinitions),
     ).toBe(false);
 
     expect(
-      utils.maskStrip('(a', phonePattern, placeholder, maskDefinitions),
+      utils.maskStrip('(a', numericPattern, placeholder, maskDefinitions),
     ).toBe(false);
     expect(
       utils.maskStrip(
         '(___) 1__-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -364,7 +364,7 @@ describe('maskStrip', () => {
     expect(
       utils.maskStrip(
         '(01_) 1__-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -372,7 +372,7 @@ describe('maskStrip', () => {
     expect(
       utils.maskStrip(
         '(012) 3!5-6789',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -380,14 +380,15 @@ describe('maskStrip', () => {
   });
 
   it('should strip overflowing formatted values', () => {
+    mixedPattern;
     expect(
-      utils.maskStrip('ABC-12345', codePattern, placeholder, maskDefinitions),
+      utils.maskStrip('ABC-12345', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC1234');
 
     expect(
       utils.maskStrip(
         '(012) 345-67890',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -396,11 +397,12 @@ describe('maskStrip', () => {
 });
 
 describe('inputReformat', () => {
-  it('should handle user input', () => {
+  it('should handle user input for guided masks', () => {
+    mixedPattern;
     expect(
       utils.inputReformat(
         '___-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -409,7 +411,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         'A___-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -417,26 +419,8 @@ describe('inputReformat', () => {
     ).toBe('A__-____');
     expect(
       utils.inputReformat(
-        'AB__-____',
-        codePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('AB_-____');
-    expect(
-      utils.inputReformat(
-        'ABC_-____',
-        codePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-____');
-    expect(
-      utils.inputReformat(
         'ABC1-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -445,7 +429,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         'ABC-1____',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -453,26 +437,8 @@ describe('inputReformat', () => {
     ).toBe('ABC-1___');
     expect(
       utils.inputReformat(
-        'ABC-12___',
-        codePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-12__');
-    expect(
-      utils.inputReformat(
-        'ABC-123__',
-        codePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-123_');
-    expect(
-      utils.inputReformat(
         'ABC-1234_',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -480,91 +446,21 @@ describe('inputReformat', () => {
     ).toBe('ABC-1234');
 
     expect(
-      utils.inputReformat('', codePattern, placeholder, false, maskDefinitions),
-    ).toBe('');
+      utils.inputReformat('', mixedPattern, placeholder, true, maskDefinitions),
+    ).toBe('___-____');
     expect(
       utils.inputReformat(
         'A',
-        codePattern,
+        mixedPattern,
         placeholder,
-        false,
+        true,
         maskDefinitions,
       ),
-    ).toBe('A');
-    expect(
-      utils.inputReformat(
-        'AB',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('AB');
-    expect(
-      utils.inputReformat(
-        'ABC',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-');
-    expect(
-      utils.inputReformat(
-        'ABC1-',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-1');
-    expect(
-      utils.inputReformat(
-        'ABC-1',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-1');
-    expect(
-      utils.inputReformat(
-        'ABC-12',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-12');
-    expect(
-      utils.inputReformat(
-        'ABC-123',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-123');
-    expect(
-      utils.inputReformat(
-        'ABC-1234',
-        codePattern,
-        placeholder,
-        false,
-        maskDefinitions,
-      ),
-    ).toBe('ABC-1234');
-
-    expect(
-      utils.inputReformat('', codePattern, placeholder, true, maskDefinitions),
-    ).toBe('___-____');
-    expect(
-      utils.inputReformat('A', codePattern, placeholder, true, maskDefinitions),
     ).toBe('A__-____');
     expect(
       utils.inputReformat(
         'ABC-1',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -573,7 +469,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         'ABC-1234_',
-        codePattern,
+        mixedPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -583,7 +479,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(___) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -592,7 +488,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '0(___) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -601,7 +497,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(0___) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -610,7 +506,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(01__) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -619,7 +515,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(012_) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -628,7 +524,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(0123) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -637,7 +533,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(012)3 ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -646,7 +542,7 @@ describe('inputReformat', () => {
     expect(
       utils.inputReformat(
         '(012) 3___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -654,26 +550,8 @@ describe('inputReformat', () => {
     ).toBe('(012) 3__-____');
     expect(
       utils.inputReformat(
-        '(012) 34__-____',
-        phonePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('(012) 34_-____');
-    expect(
-      utils.inputReformat(
-        '(012) 345_-____',
-        phonePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('(012) 345-____');
-    expect(
-      utils.inputReformat(
         '(012) 3456-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
@@ -681,302 +559,354 @@ describe('inputReformat', () => {
     ).toBe('(012) 345-6___');
     expect(
       utils.inputReformat(
-        '(012) 345-67___',
-        phonePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('(012) 345-67__');
-    expect(
-      utils.inputReformat(
-        '(012) 345-678__',
-        phonePattern,
-        placeholder,
-        true,
-        maskDefinitions,
-      ),
-    ).toBe('(012) 345-678_');
-    expect(
-      utils.inputReformat(
         '(012) 345-6789_',
-        phonePattern,
+        numericPattern,
         placeholder,
         true,
         maskDefinitions,
       ),
     ).toBe('(012) 345-6789');
+
+    expect(
+      utils.inputReformat(
+        '',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
+    ).toBe('(___) ___-____');
+    expect(
+      utils.inputReformat(
+        '(0',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
+    ).toBe('(0__) ___-____');
+    expect(
+      utils.inputReformat(
+        '(0123) ___-____',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3__-____');
+    expect(
+      utils.inputReformat(
+        '(012)3 ___-____',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3__-____');
+    expect(
+      utils.inputReformat(
+        '(012) 3___-____',
+        numericPattern,
+        placeholder,
+        true,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3__-____');
   });
 
-  expect(
-    utils.inputReformat('(', phonePattern, placeholder, false, maskDefinitions),
-  ).toBe('(');
-  expect(
-    utils.inputReformat(
-      '0(',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(0');
-  expect(
-    utils.inputReformat(
-      '(0',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(0');
-  expect(
-    utils.inputReformat(
-      '(01',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(01');
-  expect(
-    utils.inputReformat(
-      '(012',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) ');
-  expect(
-    utils.inputReformat(
-      '(0123',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012)3',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012) 3',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012) 34',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 34');
-  expect(
-    utils.inputReformat(
-      '(012) 345',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-');
-  expect(
-    utils.inputReformat(
-      '(012) 3456-',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-6');
-  expect(
-    utils.inputReformat(
-      '(012) 345-6',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-6');
-  expect(
-    utils.inputReformat(
-      '(012) 345-67',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-67');
-  expect(
-    utils.inputReformat(
-      '(012) 345-678',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-678');
-  expect(
-    utils.inputReformat(
-      '(012) 345-6789',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-6789');
+  it('should handle user input for non guided masks', () => {
+    mixedPattern;
+    expect(
+      utils.inputReformat(
+        '',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('');
+    expect(
+      utils.inputReformat(
+        'A',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('A');
+    expect(
+      utils.inputReformat(
+        'ABC',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('ABC-');
+    expect(
+      utils.inputReformat(
+        'ABC1-',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('ABC-1');
+    expect(
+      utils.inputReformat(
+        'ABC-1',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('ABC-1');
+    expect(
+      utils.inputReformat(
+        'ABC-1234',
+        mixedPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('ABC-1234');
 
-  expect(
-    utils.inputReformat('', phonePattern, placeholder, true, maskDefinitions),
-  ).toBe('(___) ___-____');
-  expect(
-    utils.inputReformat('(0', phonePattern, placeholder, true, maskDefinitions),
-  ).toBe('(0__) ___-____');
-  expect(
-    utils.inputReformat(
-      '(0123) ___-____',
-      phonePattern,
-      placeholder,
-      true,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3__-____');
-  expect(
-    utils.inputReformat(
-      '(012)3 ___-____',
-      phonePattern,
-      placeholder,
-      true,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3__-____');
-  expect(
-    utils.inputReformat(
-      '(012) 3___-____',
-      phonePattern,
-      placeholder,
-      true,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3__-____');
+    expect(
+      utils.inputReformat(
+        '(',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(');
+    expect(
+      utils.inputReformat(
+        '0(',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(0');
+    expect(
+      utils.inputReformat(
+        '(0',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(0');
+    expect(
+      utils.inputReformat(
+        '(01',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(01');
+    expect(
+      utils.inputReformat(
+        '(012',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) ');
+    expect(
+      utils.inputReformat(
+        '(0123',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012)3',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012) 3',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012) 345',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-');
+    expect(
+      utils.inputReformat(
+        '(012) 3456-',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-6');
+    expect(
+      utils.inputReformat(
+        '(012) 345-6',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-6');
+    expect(
+      utils.inputReformat(
+        '(012) 345-6789',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-6789');
 
-  expect(
-    utils.inputReformat('', phonePattern, placeholder, false, maskDefinitions),
-  ).toBe('(');
-  expect(
-    utils.inputReformat(
-      '(0',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(0');
-  expect(
-    utils.inputReformat(
-      '(0123)',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012)3',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012) 3',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 3');
-  expect(
-    utils.inputReformat(
-      '(012) 3456-',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-6');
-  expect(
-    utils.inputReformat(
-      '(012) 345-6',
-      phonePattern,
-      placeholder,
-      false,
-      maskDefinitions,
-    ),
-  ).toBe('(012) 345-6');
+    expect(
+      utils.inputReformat(
+        '',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(');
+    expect(
+      utils.inputReformat(
+        '(0',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(0');
+    expect(
+      utils.inputReformat(
+        '(0123)',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012)3',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012) 3',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 3');
+    expect(
+      utils.inputReformat(
+        '(012) 3456-',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-6');
+    expect(
+      utils.inputReformat(
+        '(012) 345-6',
+        numericPattern,
+        placeholder,
+        false,
+        maskDefinitions,
+      ),
+    ).toBe('(012) 345-6');
+  });
 });
 
 describe('isPatternComplete', () => {
   it('should return true when a pattern is completely and correctly filled', () => {
+    mixedPattern;
     expect(
-      utils.isPatternComplete('ABC-1234', codePattern, maskDefinitions),
+      utils.isPatternComplete('ABC-1234', mixedPattern, maskDefinitions),
     ).toBe(true);
     expect(
-      utils.isPatternComplete('(012) 345-6789', phonePattern, maskDefinitions),
+      utils.isPatternComplete(
+        '(012) 345-6789',
+        numericPattern,
+        maskDefinitions,
+      ),
     ).toBe(true);
   });
 
   it('should return false when a pattern is not completely and correctly filled', () => {
-    expect(utils.isPatternComplete('', codePattern, maskDefinitions)).toBe(
+    mixedPattern;
+    expect(utils.isPatternComplete('', mixedPattern, maskDefinitions)).toBe(
       false,
     );
     expect(
-      utils.isPatternComplete('___-____', codePattern, maskDefinitions),
+      utils.isPatternComplete('___-____', mixedPattern, maskDefinitions),
     ).toBe(false);
-    expect(utils.isPatternComplete('ABC-', codePattern, maskDefinitions)).toBe(
+    expect(utils.isPatternComplete('ABC-', mixedPattern, maskDefinitions)).toBe(
       false,
     );
     expect(
-      utils.isPatternComplete('ABC-____', codePattern, maskDefinitions),
+      utils.isPatternComplete('ABC-____', mixedPattern, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.isPatternComplete('ABC-123', codePattern, maskDefinitions),
+      utils.isPatternComplete('ABC-123', mixedPattern, maskDefinitions),
     ).toBe(false);
     expect(
-      utils.isPatternComplete('ABC!1234', codePattern, maskDefinitions),
+      utils.isPatternComplete('ABC!1234', mixedPattern, maskDefinitions),
     ).toBe(false);
 
     expect(
-      utils.isPatternComplete('(0__) ___-____', phonePattern, maskDefinitions),
+      utils.isPatternComplete(
+        '(0__) ___-____',
+        numericPattern,
+        maskDefinitions,
+      ),
     ).toBe(false);
-    expect(utils.isPatternComplete('(0', phonePattern, maskDefinitions)).toBe(
+    expect(utils.isPatternComplete('(0', numericPattern, maskDefinitions)).toBe(
       false,
     );
     expect(
-      utils.isPatternComplete('(012] 345-6789', phonePattern, maskDefinitions),
+      utils.isPatternComplete(
+        '(012] 345-6789',
+        numericPattern,
+        maskDefinitions,
+      ),
     ).toBe(false);
   });
 });
 
 describe('validCaretPositions', () => {
-  it('should return all valid caret positions', () => {
+  it('should return all valid caret positions for any pattern', () => {
+    mixedPattern;
     // AAA-9999: all positions are valid
-    expect(utils.validCaretPositions(codePattern, maskDefinitions)).toEqual([
+    expect(utils.validCaretPositions(mixedPattern, maskDefinitions)).toEqual([
       0,
       1,
       2,
@@ -989,7 +919,7 @@ describe('validCaretPositions', () => {
     ]);
 
     // |(999)| 999-9999: positions marked with pipe should be invalid
-    expect(utils.validCaretPositions(phonePattern, maskDefinitions)).toEqual([
+    expect(utils.validCaretPositions(numericPattern, maskDefinitions)).toEqual([
       1,
       2,
       3,
@@ -1005,15 +935,11 @@ describe('validCaretPositions', () => {
       14,
     ]);
 
-    // AA-|=|-|=|-99: positions marked with pipe should be invalid
-    expect(utils.validCaretPositions(crazyPattern, maskDefinitions)).toEqual([
-      0,
-      1,
-      2,
-      7,
-      8,
-      9,
-    ]);
+    // |-|-AA-|=|-|=|-99=|=|: positions marked with pipe should be invalid
+    // --AA-=-=-99==
+    expect(
+      utils.validCaretPositions(positionsPattern, maskDefinitions),
+    ).toEqual([2, 3, 4, 9, 10, 11]);
 
     expect(utils.validCaretPositions()).toEqual([]);
     expect(utils.validCaretPositions('')).toEqual([]);
@@ -1023,10 +949,11 @@ describe('validCaretPositions', () => {
 
 describe('firstUnfilledPosition', () => {
   it('should return the first unfilled position for any value', () => {
+    mixedPattern;
     expect(
       utils.firstUnfilledPosition(
         '',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1034,7 +961,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '___-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1042,7 +969,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'A__-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1050,7 +977,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'ABC-____',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1058,7 +985,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'ABC-1234',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1067,7 +994,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'A',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1075,7 +1002,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'ABC-',
-        codePattern,
+        mixedPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1084,7 +1011,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(___) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1092,7 +1019,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(0__) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1100,7 +1027,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) ___-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1108,7 +1035,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) 345-____',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1116,7 +1043,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) 345-6789',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1125,7 +1052,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012)',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1133,7 +1060,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) ',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1141,7 +1068,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) 345',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1149,7 +1076,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '(012) 345-',
-        phonePattern,
+        numericPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1158,7 +1085,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         '',
-        crazyPattern,
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1166,7 +1093,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'A_-=-=-__==',
-        crazyPattern,
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1174,24 +1101,24 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'AA-=-=-__==',
-        crazyPattern,
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
     ).toBe(7);
     expect(
       utils.firstUnfilledPosition(
-        'AA-=-=-99==',
-        crazyPattern,
+        '--AA-=-=-99==',
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
-    ).toBe(9);
+    ).toBe(11);
 
     expect(
       utils.firstUnfilledPosition(
         'A',
-        crazyPattern,
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
@@ -1199,7 +1126,7 @@ describe('firstUnfilledPosition', () => {
     expect(
       utils.firstUnfilledPosition(
         'AA',
-        crazyPattern,
+        positionsPattern,
         placeholder,
         maskDefinitions,
       ),
