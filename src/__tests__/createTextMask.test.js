@@ -283,6 +283,34 @@ describe('Text mask', () => {
     expect(mask.normalize('', '')).toBe('?? (???) ???-????');
   });
 
+  describe('Validations', () => {
+    it('should validate if the pattern was informed', () => {
+      expect(() => createTextMask({})).toThrowError(
+        'The key `pattern` is required for createTextMask. You probably forgot to add it to your options.',
+      );
+    });
+
+    it('should validate if the pattern is valid', () => {
+      expect(() => createTextMask({ pattern: '---' })).toThrowError(
+        'The pattern `---` passed for createTextMask is not valid.',
+      );
+    });
+
+    it("should validate the placeholder's length", () => {
+      expect(() =>
+        createTextMask({ pattern: complexPattern, placeholder: '' }),
+      ).toThrowError(
+        'The key `placeholder` should have a single character as a value.',
+      );
+
+      expect(() =>
+        createTextMask({ pattern: complexPattern, placeholder: '--' }),
+      ).toThrowError(
+        'The key `placeholder` should have a single character as a value.',
+      );
+    });
+  });
+
   describe('Event handlers', () => {
     it('should handle the caret position upon insertion', () => {
       // Needed because we use setTimeout on our manageCaretPosition function
