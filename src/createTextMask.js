@@ -196,8 +196,6 @@ export default options => {
               goToNearestValidPosition(target, previousSelection, 'right');
             }
             break;
-          default:
-            break;
         }
       });
     }
