@@ -20,7 +20,28 @@ export default options => {
     onCompletePattern,
   } = options;
 
+  if (!pattern) {
+    throw new Error(
+      'The key `pattern` is required for createTextMask.' +
+        ' You probably forgot to add it to your options.',
+    );
+  }
+
+  if (!placeholder || placeholder.length !== 1) {
+    throw new Error(
+      'The key `placeholder` should have a single character as a value.',
+    );
+  }
+
   const validPositions = validCaretPositions(pattern, maskDefinitions);
+
+  // If there's no valid position for this pattern, throw an error
+  if (validPositions.length === 0) {
+    throw new Error(
+      `The pattern \`${pattern}\` passed for createTextMask is not valid.`,
+    );
+  }
+
   const strippedPattern = maskStrip(
     pattern,
     pattern,
