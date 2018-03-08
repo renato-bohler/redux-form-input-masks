@@ -282,4 +282,458 @@ describe('Text mask', () => {
     expect(mask.format('')).toBe('?? (???) ???-????');
     expect(mask.normalize('', '')).toBe('?? (???) ???-????');
   });
+
+  describe('Event handlers', () => {
+    it('should handle the caret position upon insertion', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const valueBefore = '---ABC.xyz_---__-_--';
+      const valueAfter = '---ABC.xyz---__-_--';
+      const correctCaretPosition = 13;
+
+      // Mocked events
+      const event = {
+        type: 'change',
+        persist: jest.fn(),
+        target: {
+          value: valueBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate change event
+      mask.onChange(event);
+
+      // Simulate value updating
+      event.target.value = valueAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon remotion', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const valueBefore = '---ABC.xyz---U_-_--';
+      const valueAfter = '---ABC.xyz---__-_--';
+      const correctCaretPosition = 13;
+
+      // Mocked events
+      const event = {
+        type: 'change',
+        persist: jest.fn(),
+        target: {
+          value: valueBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate change event
+      mask.onChange(event);
+
+      // Simulate value updating
+      event.target.value = valueAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon mask remotion', () => {
+      /** Example (pipe represents the caret position):
+       * ---ABC.xyz---|__-_--
+       * [user presses backspace]
+       * ---ABC.xyz|---__-_--
+       */
+
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const valueBefore = '---ABC.xyz--__-_--';
+      const caretPositionBefore = 12;
+      const valueAfter = '---ABC.xyz---__-_--';
+      const correctCaretPosition = 10;
+
+      // Mocked events
+      const event = {
+        type: 'change',
+        persist: jest.fn(),
+        target: {
+          value: valueBefore,
+          selectionStart: caretPositionBefore,
+          selectionEnd: caretPositionBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate change event
+      mask.onChange(event);
+
+      // Simulate value and caret position updating
+      event.target.value = valueAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon focus', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-_--';
+      const correctCaretPosition = 16;
+
+      // Mocked events
+      const event = {
+        type: 'focus',
+        persist: jest.fn(),
+        target: {
+          value,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate focus event
+      mask.onFocus(event);
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon valid click', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-_--';
+      const clickPosition = 5;
+
+      // Mocked events
+      const event = {
+        type: 'click',
+        persist: jest.fn(),
+        preventDefault: jest.fn(),
+        target: {
+          value,
+          selectionStart: clickPosition,
+          selectionEnd: clickPosition,
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate click event
+      mask.onClick(event);
+
+      jest.runAllTimers();
+
+      expect(event.preventDefault).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon invalid click', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-_--';
+      const clickPosition = 1;
+      const correctCaretPosition = 16;
+
+      // Mocked events
+      const event = {
+        type: 'click',
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart: clickPosition,
+          selectionEnd: clickPosition,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate click event
+      mask.onClick(event);
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not handle the caret position upon selection', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-_--';
+      const selectionStart = 0;
+      const selectionEnd = 19;
+
+      // Mocked events
+      const event = {
+        type: 'click',
+        preventDefault: jest.fn(),
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart,
+          selectionEnd,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate click (selection) event
+      mask.onClick(event);
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).not.toBeCalled();
+      expect(event.preventDefault).not.toBeCalled();
+
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon arrow left keypress', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-1--';
+      const caretPositionBefore = 13;
+      const caretPositionAfter = 12;
+      const correctCaretPosition = 10;
+
+      // Mocked events
+      const event = {
+        type: 'keydown',
+        key: 'ArrowLeft',
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart: caretPositionBefore,
+          selectionEnd: caretPositionBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate keydown event
+      mask.onKeyDown(event);
+
+      // Simulate caret position updating
+      event.target.selectionStart = caretPositionAfter;
+      event.target.selectionEnd = caretPositionAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon arrow right keypress', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-1--';
+      const caretPositionBefore = 10;
+      const caretPositionAfter = 11;
+      const correctCaretPosition = 13;
+
+      // Mocked events
+      const event = {
+        type: 'keydown',
+        key: 'ArrowRight',
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart: caretPositionBefore,
+          selectionEnd: caretPositionBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate keydown event
+      mask.onKeyDown(event);
+
+      // Simulate caret position updating
+      event.target.selectionStart = caretPositionAfter;
+      event.target.selectionEnd = caretPositionAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should handle the caret position upon arrow left keypress at the first inputtable position', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-1--';
+      const caretPositionBefore = 3;
+      const caretPositionAfter = 2;
+      const correctCaretPosition = 3;
+
+      // Mocked events
+      const event = {
+        type: 'keydown',
+        key: 'ArrowLeft',
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart: caretPositionBefore,
+          selectionEnd: caretPositionBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate keydown event
+      mask.onKeyDown(event);
+
+      // Simulate caret position updating
+      event.target.selectionStart = caretPositionAfter;
+      event.target.selectionEnd = caretPositionAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not control any keypress other than ArrowLeft and ArrowRight', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-1--';
+
+      // Mocked events
+      const event = {
+        type: 'keydown',
+        key: 'any',
+        target: {
+          value,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate keydown event
+      mask.onKeyDown(event);
+
+      expect(event.target.setSelectionRange).not.toBeCalled();
+    });
+
+    it('should handle the caret position upon arrow right keypress at the last inputtable position', () => {
+      // Needed because we use setTimeout on our manageCaretPosition function
+      jest.useFakeTimers();
+
+      const value = '---ABC.xyz---Ul-1--';
+      const caretPositionBefore = 17;
+      const caretPositionAfter = 18;
+      const correctCaretPosition = 17;
+
+      // Mocked events
+      const event = {
+        type: 'keydown',
+        key: 'ArrowRight',
+        persist: jest.fn(),
+        target: {
+          value,
+          selectionStart: caretPositionBefore,
+          selectionEnd: caretPositionBefore,
+          setSelectionRange: jest.fn(),
+        },
+      };
+
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // Simulate keydown event
+      mask.onKeyDown(event);
+
+      // Simulate caret position updating
+      event.target.selectionStart = caretPositionAfter;
+      event.target.selectionEnd = caretPositionAfter;
+
+      jest.runAllTimers();
+
+      expect(event.target.setSelectionRange).toHaveBeenLastCalledWith(
+        correctCaretPosition,
+        correctCaretPosition,
+      );
+
+      expect(event.target.setSelectionRange).toHaveBeenCalledTimes(1);
+      expect(event.persist).toHaveBeenCalledTimes(1);
+    });
+
+    it('should do nothing if the event does not have a target', () => {
+      const mask = createTextMask({ pattern: complexPattern });
+
+      // These are used just to cover the else statements
+      mask.onChange({});
+    });
+  });
 });
