@@ -22,7 +22,7 @@ export default class App extends React.Component {
           </div>
           <div className="buttons">
             <a
-              class="github-button"
+              className="github-button"
               href="https://github.com/renato-bohler/redux-form-input-masks"
               data-icon="octicon-star"
               data-size="large"
@@ -32,7 +32,7 @@ export default class App extends React.Component {
               Star
             </a>
             <a
-              class="github-button"
+              className="github-button"
               href="https://github.com/renato-bohler/redux-form-input-masks/subscription"
               data-icon="octicon-eye"
               data-size="large"
