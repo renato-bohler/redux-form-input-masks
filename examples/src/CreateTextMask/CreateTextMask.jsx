@@ -1,36 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+// import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { createTextMask } from '../../../src/index';
 import { Markdown, Values } from 'redux-form-website-template';
 import { App, Demo } from '../App';
 import documentation from './CreateTextMask.md';
 
-const selector = formValueSelector('numberMask');
+// const selector = formValueSelector('textMask');
 
-const basic = createTextMask({
-  pattern: '---AA---999---000---',
-  placeholder: '_',
-  maskDefinitions: {
-    A: {
-      regExp: /[A-Za-z]/,
-      transform: char => char.toUpperCase(),
-    },
-    9: {
-      regExp: /[0-9]/,
-    },
-    0: {
-      regExp: /[0-9]/,
-      transform: char => (Number(char) === 9 ? 0 : Number(char) + 1),
-    },
-  },
-  stripMask: true,
-  guide: false,
-  onChange: v => console.warn('Value change', v),
-  onCompletePattern: v => console.warn('Patern complete', v),
+const guidedStripped = createTextMask({
+  pattern: '(999) 999-9999',
 });
 
-let CreateNumberMask = props => {
+const notGuided = createTextMask({
+  pattern: '(999) 999-9999',
+  guide: false,
+});
+
+const notStripped = createTextMask({
+  pattern: '(999) 999-9999',
+  stripMask: false,
+});
+
+const norGuidedOrStripped = createTextMask({
+  pattern: '(999) 999-9999',
+  guide: false,
+  stripMask: false,
+});
+
+let CreateTextMask = props => {
   return (
     <App>
       <div className="path">
@@ -49,34 +48,85 @@ let CreateNumberMask = props => {
 
       <form>
         <div>
-          <h3>Basic</h3>
-          <Field name="basic" component="input" type="text" {...basic} />
+          <h3>
+            Phone number <small>(guided and stripped)</small>
+          </h3>
+          <Field
+            name="guidedStripped"
+            component="input"
+            type="tel"
+            {...guidedStripped}
+          />
+        </div>
+        <div>
+          <h3>
+            Phone number <small>(not guided)</small>
+          </h3>
+          <Field name="notGuided" component="input" type="tel" {...notGuided} />
+        </div>
+        <div>
+          <h3>
+            Phone number <small>(not stripped)</small>
+          </h3>
+          <Field
+            name="notStripped"
+            component="input"
+            type="tel"
+            {...notStripped}
+          />
+        </div>
+        <div>
+          <h3>
+            Phone number <small>(nor guided or stripped)</small>
+          </h3>
+          <Field
+            name="norGuidedOrStripped"
+            component="input"
+            type="tel"
+            {...norGuidedOrStripped}
+          />
+        </div>
+        <div>
+          <h3>
+            Transform to random <small>(AAA-999)</small>
+          </h3>
+          <Field
+            name="transform"
+            component="input"
+            type="text"
+            {...createTextMask({
+              pattern: 'AAA-999',
+              maskDefinitions: {
+                A: {
+                  regExp: /[A-Za-z]/,
+                  transform: char => {
+                    const possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    const randomIndex = Math.floor(
+                      Math.random() * possibleChars.length,
+                    );
+                    return possibleChars.charAt(randomIndex);
+                  },
+                },
+                9: {
+                  regExp: /[0-9]/,
+                  transform: () => Math.floor(Math.random() * 9),
+                },
+              },
+            })}
+          />
         </div>
       </form>
-      <Values form="numberMask" />
+      <Values form="textMask" />
     </App>
   );
 };
 
-const mapStateToProps = state =>
-  selector(
-    state,
-    'prefix',
-    'suffix',
-    'decimalPlaces',
-    'stringValue',
-    'allowNegative',
-    'showPlusSign',
-    'spaceAfterSign',
-    'locale',
-  );
+// const mapStateToProps = state => selector(state, 'basic');
+const mapStateToProps = () => ({});
 
-CreateNumberMask = connect(mapStateToProps)(CreateNumberMask);
+CreateTextMask = connect(mapStateToProps)(CreateTextMask);
 
 export default reduxForm({
-  form: 'numberMask',
-  initialValues: {
-    negative: -1.234,
-    decimalPlaces: 2,
-  },
-})(CreateNumberMask);
+  form: 'textMask',
+  initialValues: {},
+})(CreateTextMask);
