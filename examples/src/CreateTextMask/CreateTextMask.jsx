@@ -40,8 +40,8 @@ let CreateNumberMask = props => {
         <a href="https://github.com/renato-bohler/redux-form-input-masks/tree/master/src">
           src
         </a>
-        <a href="https://github.com/renato-bohler/redux-form-input-masks/blob/master/src/createNumberMask.js">
-          createNumberMask
+        <a href="https://github.com/renato-bohler/redux-form-input-masks/blob/master/src/createTextMask.js">
+          createTextMask
         </a>
       </div>
       <Markdown content={documentation} />
