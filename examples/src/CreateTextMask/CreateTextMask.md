@@ -91,4 +91,17 @@ const defaultMaskDefinitions = {
 
 ## Usage
 
-Todo.
+You just need to import `createTextMask` from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes), just like that:
+
+```jsx
+import { Field } from 'redux-form';
+import { createTextMask } from 'redux-form-input-masks';
+
+const phoneMask = createTextMask({
+  pattern: '(999) 999-9999',
+});
+
+const inputPhone = () => (
+  <Field name="phone" component="input" type="tel" {...phoneMask} />
+);
+```
