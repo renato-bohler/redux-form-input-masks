@@ -220,6 +220,9 @@ describe('Text mask', () => {
   });
 
   it('should call onCompletePattern when there the mask is filled', () => {
+    // Needed because we use setTimeout on onCompletePattern
+    jest.useFakeTimers();
+
     const onCompletePattern = jest.fn();
 
     const mask = createTextMask({
@@ -229,10 +232,15 @@ describe('Text mask', () => {
 
     const updatedValue = mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl');
 
+    jest.runAllTimers();
+
     expect(onCompletePattern).toBeCalledWith(updatedValue);
   });
 
   it('should not call onCompletePattern when there is not a change on the value', () => {
+    // Needed because we use setTimeout on onCompletePattern
+    jest.useFakeTimers();
+
     const onCompletePattern = jest.fn();
 
     const mask = createTextMask({
@@ -241,6 +249,8 @@ describe('Text mask', () => {
     });
 
     const updatedValue = mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl1');
+
+    jest.runAllTimers();
 
     expect(onCompletePattern).not.toBeCalled();
   });
