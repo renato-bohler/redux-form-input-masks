@@ -105,7 +105,9 @@ export default options => {
       isPatternComplete(formattedValue, pattern, maskDefinitions) &&
       hasValueChanged
     ) {
-      onCompletePattern(newValue);
+      /* setTimeout is used to avoid the function being called before rendering
+      the last input from the user */
+      setTimeout(() => onCompletePattern(newValue), 10);
     }
 
     // We need to reformat the string before storing
