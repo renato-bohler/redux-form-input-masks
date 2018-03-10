@@ -5,7 +5,7 @@ import {
   inputReformat,
   isPatternComplete,
   maskStrip,
-  placeholderMatchTest,
+  charMatchTest,
   validCaretPositions,
 } from './utils';
 import defaultMaskDefinitions from './defaultMaskDefinitions';
@@ -43,7 +43,7 @@ export default options => {
     );
   }
 
-  const placeholderMatch = placeholderMatchTest(placeholder, maskDefinitions);
+  const placeholderMatch = charMatchTest(placeholder, maskDefinitions);
   if (placeholderMatch) {
     throw new Error(
       `The placeholder \`${placeholder}\` matches the mask definition` +
@@ -166,7 +166,6 @@ export default options => {
       if (event.persist) {
         event.persist();
       }
-      console.log(event.type);
 
       // We get these values before updating
       const previousSelection = event.target.selectionStart;
@@ -183,10 +182,7 @@ export default options => {
             backspace to move the caret accordingly */
             if (
               value.length === previousValue.length + 1 &&
-              !placeholderMatchTest(
-                value.charAt(previousSelection),
-                maskDefinitions,
-              )
+              !charMatchTest(value.charAt(previousSelection), maskDefinitions)
             ) {
               // Backspace was pressed at a pattern char
               goToNearestValidPosition(target, previousSelection, 'left');

@@ -1176,26 +1176,18 @@ describe('applyTransform', () => {
     ).toBe('ABC12344');
   });
 
-  describe('placeholderMatchTest', () => {
-    it('should return the RegExp that matches the placeholder on mask definitions', () => {
-      expect(utils.placeholderMatchTest('B', defaultMaskDefinitions)).toBe('A');
-      expect(utils.placeholderMatchTest('b', defaultMaskDefinitions)).toBe('A');
-      expect(utils.placeholderMatchTest('0', defaultMaskDefinitions)).toBe('9');
+  describe('charMatchTest', () => {
+    it('should return the RegExp that matches the char on mask definitions', () => {
+      expect(utils.charMatchTest('B', defaultMaskDefinitions)).toBe('A');
+      expect(utils.charMatchTest('b', defaultMaskDefinitions)).toBe('A');
+      expect(utils.charMatchTest('0', defaultMaskDefinitions)).toBe('9');
     });
 
-    it('should return undefined if placeholder does not match any mask definition', () => {
-      expect(utils.placeholderMatchTest('_', defaultMaskDefinitions)).toBe(
-        undefined,
-      );
-      expect(utils.placeholderMatchTest('-', defaultMaskDefinitions)).toBe(
-        undefined,
-      );
-      expect(utils.placeholderMatchTest('?', defaultMaskDefinitions)).toBe(
-        undefined,
-      );
-      expect(utils.placeholderMatchTest(' ', defaultMaskDefinitions)).toBe(
-        undefined,
-      );
+    it('should return undefined if char does not match any mask definition', () => {
+      expect(utils.charMatchTest('_', defaultMaskDefinitions)).toBe(undefined);
+      expect(utils.charMatchTest('-', defaultMaskDefinitions)).toBe(undefined);
+      expect(utils.charMatchTest('?', defaultMaskDefinitions)).toBe(undefined);
+      expect(utils.charMatchTest(' ', defaultMaskDefinitions)).toBe(undefined);
     });
   });
 });
