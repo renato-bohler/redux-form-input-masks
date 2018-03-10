@@ -76,3 +76,21 @@ You could also call the function direcly inside the `Field`, if you need dynamic
   })}
 />
 ```
+
+## Validation
+
+It is easy to create `redux-form`'s validations to any `Field` formatted with `createNumberMask`. Validation functions can be as simple as
+
+```jsx
+const validation = value => value > 10 ? 'Maximum value is 10' : '';
+
+(...)
+
+<Field
+  name="my-numeric-field"
+  component={TextField}
+  type="tel"
+  validate={validation}
+  {...createNumberMask()}
+/>
+```

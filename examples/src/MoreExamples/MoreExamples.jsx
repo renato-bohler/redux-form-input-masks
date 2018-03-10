@@ -27,8 +27,6 @@ const basic = createNumberMask({
   locale: 'en-US',
 });
 
-const validation = value => (value > 10 ? 'Maximum value is 10' : '');
-
 const MoreExamples = () => (
   <App>
     <div className="path">
@@ -62,19 +60,6 @@ const MoreExamples = () => (
           labelPosition="left corner"
           {...basic}
         />
-      </div>
-      <h2>Validation</h2>
-      <div>
-        <h3>Maximum value is 10</h3>
-        <MuiThemeProvider theme={muiTheme}>
-          <Field
-            name="material-ui-validation"
-            component={TextField}
-            type="tel"
-            validate={validation}
-            {...basic}
-          />
-        </MuiThemeProvider>
       </div>
     </form>
     <Values form="moreExamples" />

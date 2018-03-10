@@ -5,6 +5,19 @@ import { createNumberMask } from '../../../src/index';
 import { Code, Markdown, Values } from 'redux-form-website-template';
 import { App, Demo, ResultCode } from '../App';
 import documentation from './CreateNumberMask.md';
+/** material-ui@next */
+import { TextField } from 'redux-form-material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import { orange } from 'material-ui/colors';
+import createPalette from 'material-ui/styles/createPalette';
+
+const muiTheme = createMuiTheme({
+  palette: createPalette({
+    primary: orange,
+    type: 'light',
+  }),
+});
 
 const selector = formValueSelector('numberMask');
 
@@ -31,6 +44,8 @@ const negative = createNumberMask({
   decimalPlaces: 3,
   allowNegative: true,
 });
+
+const validation = value => (value > 10 ? 'Maximum value is 10' : '');
 
 let CreateNumberMask = props => {
   // createNumberMask on try/catch to build custom mask
@@ -108,6 +123,19 @@ let CreateNumberMask = props => {
         <div>
           <h3>Allow negative</h3>
           <Field name="negative" component="input" type="tel" {...negative} />
+        </div>
+        <h2>Validation</h2>
+        <div>
+          <h3>Maximum value is 10</h3>
+          <MuiThemeProvider theme={muiTheme}>
+            <Field
+              name="material-ui-validation"
+              component={TextField}
+              type="tel"
+              validate={validation}
+              {...basic}
+            />
+          </MuiThemeProvider>
         </div>
         <div>
           <Values form="numberMask" />
