@@ -300,6 +300,24 @@ const applyTransform = (
   return transformed;
 };
 
+/**
+ * This function is used to validate that the placeholder doesn't match with any
+ * of the maskDefinitions. It should return the mask definition key that matches
+ * with the placeholder if there are any.
+ */
+const placeholderMatchTest = (placeholder, maskDefinitions) => {
+  const keys = Object.keys(maskDefinitions);
+
+  for (let index = 0; index < keys.length; index += 1) {
+    const key = keys[index];
+    const maskDefinition = maskDefinitions[key];
+
+    if (maskDefinition.regExp.test(placeholder)) {
+      return key;
+    }
+  }
+};
+
 export {
   applyMask,
   applyTransform,
@@ -310,5 +328,6 @@ export {
   inputReformat,
   isPatternComplete,
   maskStrip,
+  placeholderMatchTest,
   validCaretPositions,
 };
