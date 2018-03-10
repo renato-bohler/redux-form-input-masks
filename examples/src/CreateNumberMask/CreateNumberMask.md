@@ -19,22 +19,22 @@ createNumberMask({
   showPlusSign: false,
   spaceAfterSign: false,
   stringValue: false,
-  locale: 'browser',
+  locale, // defaults to browser's locale when undefined
   onChange: () => {},
 });
 ```
 
-| Key            | Type       | Required | Default     | Description                                                                                                                           |
-| -------------- | ---------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| prefix         | `string`   | no       | `''`        | The input's prefix.                                                                                                                   |
-| suffix         | `string`   | no       | `''`        | The input's suffix.                                                                                                                   |
-| decimalPlaces  | `number`   | no       | `0`         | The amount of numbers following the decimal point. **Maximum value is 10.**                                                               |
-| allowNegative  | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                           |
-| showPlusSign   | `boolean`  | no       | `false`     | If true, a plus sign (`+`) will be put before the prefix when the value is positive.                                                  |
-| spaceAfterSign | `boolean`  | no       | `false`     | If true, a space will be put after the sign if the sign is visible.                                                                   |
-| stringValue    | `boolean`  | no       | `false`     | If true, the value on the store will be converted to string.                                                                          |
-| locale         | `string`   | no       | `'browser'` | The locale to format the number in the input. `browser` will take the browser's locale. Examples: `en-US`, `fr`, `de`, `pt-BR`, `jp`. |
-| onChange       | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `(updatedValue) => console.log(updatedValue)`     |
+| Key            | Type       | Required | Default     | Description                                                                                                                             |
+| -------------- | ---------- | -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| prefix         | `string`   | no       | `''`        | The input's prefix.                                                                                                                     |
+| suffix         | `string`   | no       | `''`        | The input's suffix.                                                                                                                     |
+| decimalPlaces  | `number`   | no       | `0`         | The amount of numbers following the decimal point. **Maximum value is 10.**                                                             |
+| allowNegative  | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                             |
+| showPlusSign   | `boolean`  | no       | `false`     | If true, a plus sign (`+`) will be put before the prefix when the value is positive.                                                    |
+| spaceAfterSign | `boolean`  | no       | `false`     | If true, a space will be put after the sign if the sign is visible.                                                                     |
+| stringValue    | `boolean`  | no       | `false`     | If true, the value on the store will be converted to string.                                                                            |
+| locale         | `string`   | no       | `undefined` | The locale to format the number in the input. `undefined` will take the browser's locale. Examples: `en-US`, `fr`, `de`, `pt-BR`, `jp`. |
+| onChange       | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `(updatedValue) => console.log(updatedValue)`       |
 
 ## Usage
 

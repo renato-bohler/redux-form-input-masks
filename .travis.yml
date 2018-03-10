@@ -13,6 +13,8 @@ deploy:
   skip_cleanup: true
   local_dir: /docs
   github_token: $GH_TOKEN
+  edge:
+    branch: v1.8.47
 script:
   - npm test
   - npm run danger-ci
