@@ -94,7 +94,9 @@ export default options => {
       number = number.toString();
     }
 
-    if (onChange) {
+    const hasValueChanged = number !== previousValue;
+
+    if (onChange && hasValueChanged) {
       onChange(number);
     }
 
