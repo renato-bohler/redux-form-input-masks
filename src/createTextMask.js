@@ -188,21 +188,11 @@ export default options => {
               goToNearestValidPosition(target, previousSelection, 'left');
               break;
             }
-            goToFirstUnfilledPosition(
-              target,
-              pattern,
-              placeholder,
-              maskDefinitions,
-            );
+            goToFirstUnfilledPosition(target);
             break;
           case 'focus':
             // Upon focus, we move to the first unfilled position
-            goToFirstUnfilledPosition(
-              target,
-              pattern,
-              placeholder,
-              maskDefinitions,
-            );
+            goToFirstUnfilledPosition(target);
             break;
           case 'click':
             /* Upon click, we first check if the caret is on a valid position.
@@ -211,12 +201,7 @@ export default options => {
               if (validPositions.includes(selectionStart)) {
                 event.preventDefault();
               } else {
-                goToFirstUnfilledPosition(
-                  target,
-                  pattern,
-                  placeholder,
-                  maskDefinitions,
-                );
+                goToFirstUnfilledPosition(target);
               }
             }
             break;
