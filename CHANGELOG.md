@@ -1,3 +1,11 @@
+<a name="0.3.13"></a>
+## [0.3.13](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.12...v0.3.13) (2018-03-10)
+
+
+### Bug Fixes
+
+* **createNumberMask:** fixes browser's locale not working on IE ([4467f18](https://github.com/renato-bohler/redux-form-input-masks/commit/4467f18))
+
 <a name="0.3.12"></a>
 ## [0.3.12](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.11...v0.3.12) (2018-02-26)
 
