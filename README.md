@@ -55,6 +55,7 @@ yarn add redux-form-input-masks
 * **simple to setup:** works with `redux-form` out of the box, you just need to install `redux-form-input-masks` and you're good to go;
 * **simple to use:** import a mask creator and apply it... and that's it. There's no need to change the component you're already using;
 * **flexible:** it lets you choose how you want the input mask to behave;
+* **not restrictive about dependencies**: `redux-form-input-masks` works with basically all combinations of versions of `react`, `react-dom`, `react-redux`, `redux` and `redux-form`;
 * **lightweight:** not a single dependency is added to `redux-form-input-masks`;
 * compatible with component libraries like `material-ui` and `redux-form-material-ui`'s wrappers, for both v0-stable and v1-beta versions.
 
