@@ -20,7 +20,7 @@ createNumberMask({
   spaceAfterSign: false,
   stringValue: false,
   locale, // defaults to browser's locale when undefined
-  onChange: () => {},
+  onChange: updatedValue => {},
 });
 ```
 
@@ -34,7 +34,7 @@ createNumberMask({
 | spaceAfterSign | `boolean`  | no       | `false`     | If true, a space will be put after the sign if the sign is visible.                                                                     |
 | stringValue    | `boolean`  | no       | `false`     | If true, the value on the store will be converted to string.                                                                            |
 | locale         | `string`   | no       | `undefined` | The locale to format the number in the input. `undefined` will take the browser's locale. Examples: `en-US`, `fr`, `de`, `pt-BR`, `jp`. |
-| onChange       | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `(updatedValue) => console.log(updatedValue)`       |
+| onChange       | `function` | no       | `undefined` | You can pass a function which receives the updated value to do your stuff. Example: `updatedValue => console.log(updatedValue)`         |
 
 ## Usage
 
