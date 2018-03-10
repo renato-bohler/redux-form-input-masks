@@ -166,6 +166,7 @@ export default options => {
       if (event.persist) {
         event.persist();
       }
+      console.log(event.type);
 
       // We get these values before updating
       const previousSelection = event.target.selectionStart;
@@ -182,7 +183,10 @@ export default options => {
             backspace to move the caret accordingly */
             if (
               value.length === previousValue.length + 1 &&
-              value.charAt(previousSelection) !== placeholder
+              !placeholderMatchTest(
+                value.charAt(previousSelection),
+                maskDefinitions,
+              )
             ) {
               // Backspace was pressed at a pattern char
               goToNearestValidPosition(target, previousSelection, 'left');
