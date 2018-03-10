@@ -12,6 +12,16 @@ const escapeRegExp = string =>
  */
 const countOcurrences = (string, regexp) => (string.match(regexp) || []).length;
 
+/**
+ * This function is used to format the number based on a given locale and the
+ * amount of decimal places
+ */
+const numberToLocaleString = (number, locale, decimalPlaces) =>
+  number.toLocaleString(locale, {
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  });
+
 // createStringMask.js
 /**
  * This function should simply return the mask definition for a given pattern
@@ -328,6 +338,7 @@ export {
   inputReformat,
   isPatternComplete,
   maskStrip,
+  numberToLocaleString,
   charMatchTest,
   validCaretPositions,
 };

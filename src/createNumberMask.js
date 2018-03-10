@@ -1,4 +1,4 @@
-import { escapeRegExp, countOcurrences } from './utils';
+import { escapeRegExp, countOcurrences, numberToLocaleString } from './utils';
 
 export default options => {
   const {
@@ -19,12 +19,6 @@ export default options => {
       "The maximum value for createNumberMask's option `decimalPlaces` is 10.",
     );
   }
-
-  const numberToLocaleString = number =>
-    number.toLocaleString(locale, {
-      minimumFractionDigits: decimalPlaces,
-      maximumFractionDigits: decimalPlaces,
-    });
 
   const format = storeValue => {
     let number = storeValue;
@@ -47,7 +41,7 @@ export default options => {
     }
 
     // reformat the number
-    number = numberToLocaleString(number);
+    number = numberToLocaleString(number, locale, decimalPlaces);
 
     return `${sign}${prefix}${number}${suffix}`;
   };

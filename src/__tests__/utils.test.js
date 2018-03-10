@@ -46,6 +46,16 @@ describe('countOcurrences', () => {
   });
 });
 
+describe('numberToLocaleString', () => {
+  it('should transform a number to locale string', () => {
+    expect(utils.numberToLocaleString(1, 'en-US', 0)).toBe('1');
+    expect(utils.numberToLocaleString(1234, 'en-US', 0)).toBe('1,234');
+    expect(utils.numberToLocaleString(1234.56, 'en-US', 0)).toBe('1,235');
+    expect(utils.numberToLocaleString(1234.56, 'en-US', 2)).toBe('1,234.56');
+    expect(utils.numberToLocaleString(1234.56, 'en-US', 1)).toBe('1,234.6');
+  });
+});
+
 describe('getMaskDefinition', () => {
   it('should return the mask definition for a given char', () => {
     expect(utils.getMaskDefinition('A', maskDefinitions)).toBe(
