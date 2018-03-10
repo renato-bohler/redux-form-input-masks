@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector, change } from 'redux-form';
 import { createTextMask } from '../../../src/index';
-import { Markdown, Values, Code } from 'redux-form-website-template';
+import { Code, Markdown, Values } from 'redux-form-website-template';
 import { App, Demo, ResultCode } from '../App';
 import documentation from './CreateTextMask.md';
 
@@ -159,7 +159,7 @@ let CreateTextMask = props => {
           <Field
             name="customized"
             component="input"
-            type="tel"
+            type="text"
             {...safeTextMask}
           />
         </div>
