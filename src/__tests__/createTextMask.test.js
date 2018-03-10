@@ -319,6 +319,32 @@ describe('Text mask', () => {
         'The key `placeholder` should have a single character as a value.',
       );
     });
+
+    it('should validate if the placeholder matches any mask definition', () => {
+      expect(() =>
+        createTextMask({ pattern: 'AAA', placeholder: 'B' }),
+      ).toThrowError(
+        `The placeholder \`B\` matches the mask definition` +
+          `\`A\`. The mask created using \`createTextMask\`` +
+          'is therefore invalid.',
+      );
+
+      expect(() =>
+        createTextMask({ pattern: 'AAA', placeholder: 'b' }),
+      ).toThrowError(
+        `The placeholder \`b\` matches the mask definition` +
+          `\`A\`. The mask created using \`createTextMask\`` +
+          'is therefore invalid.',
+      );
+
+      expect(() =>
+        createTextMask({ pattern: '999', placeholder: '8' }),
+      ).toThrowError(
+        `The placeholder \`8\` matches the mask definition` +
+          `\`9\`. The mask created using \`createTextMask\`` +
+          'is therefore invalid.',
+      );
+    });
   });
 
   describe('Event handlers', () => {
