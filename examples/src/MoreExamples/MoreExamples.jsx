@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, change } from 'redux-form';
-import { createNumberMask } from '../../../src/index';
+import { createNumberMask, createTextMask } from '../../../src/index';
 import { Markdown, Values } from 'redux-form-website-template';
 import { App, Demo } from '../App';
 import documentation from './MoreExamples.md';
@@ -26,6 +26,37 @@ const basic = createNumberMask({
   suffix: ' per item',
   decimalPlaces: 2,
   locale: 'en-US',
+});
+
+// Luhn algorithm. Adapted from https://stackoverflow.com/a/23222600
+const validateCardNumber = number => {
+  const regex = new RegExp('^[0-9]{16}$');
+  if (!regex.test(number)) return false;
+
+  let sum = 0;
+  for (let i = 0; i < number.length; i += 1) {
+    var intVal = parseInt(number.substr(i, 1), 10);
+    if (i % 2 === 0) {
+      intVal *= 2;
+      if (intVal > 9) {
+        intVal = 1 + intVal % 10;
+      }
+    }
+    sum += intVal;
+  }
+  return sum % 10 === 0;
+};
+
+const creditCard = createTextMask({
+  pattern: '9999 - 9999 - 9999 - 9999',
+  placeholder: '_',
+  onCompletePattern: value => {
+    if (validateCardNumber(value)) {
+      window.alert('This credit card number is valid!');
+    } else {
+      window.alert("This credit card number isn't valid!");
+    }
+  },
 });
 
 const conversionRate = 6800;
@@ -91,6 +122,20 @@ let MoreExamples = props => {
         <div>
           <Field name="BTC" component="input" type="tel" {...btcMask} />
           <Field name="EUR" component="input" type="tel" {...eurMask} />
+        </div>
+        <h2>Credit card (16 digits) with validation</h2>
+        <div>
+          <h3>
+            <small>
+              this is valid: <strong>3530 1113 3330 0000</strong>
+            </small>
+          </h3>
+          <Field
+            name="creditCard"
+            component="input"
+            type="tel"
+            {...creditCard}
+          />
         </div>
       </form>
       <Values form="moreExamples" />
