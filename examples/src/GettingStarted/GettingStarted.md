@@ -41,58 +41,37 @@ yarn add redux-form-input-masks
 
 It's super simple to apply a mask using this library. You just need to import your mask creator from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes). Yep, it's that easy.
 
-The following is a use case for [`createNumberMask`](#/number-mask). It consists of two inputs that convert bitcoins to euros and vice versa. Check the demo below the code. You can also check it on [codesandbox.io](https://codesandbox.io/s/v0rj4p6y0). Please note that this conversion does not reflect real conversion rates.
+Here's a simple snippet that uses `createNumberMask` and `createTextMask` and applies them to `Field`s:
 
 ```jsx
-import React from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm, change } from 'redux-form';
-import { createNumberMask } from 'redux-form-input-masks';
+import { createNumberMask, createTextMask } from 'redux-form-input-masks';
 
-const conversionRate = 6800;
+(...)
 
-let GettingStarted = props => {
-  const btcChange = btc => {
-    props.change('gettingStarted', 'EUR', btc * conversionRate);
-  };
+const currencyMask = createNumberMask({
+  prefix: 'US$ ',
+  suffix: ' per item',
+  decimalPlaces: 2,
+  locale: 'en-US',
+})
 
-  const eurChange = eur => {
-    props.change('gettingStarted', 'BTC', eur / conversionRate);
-  };
-
-  const btcMask = createNumberMask({
-    prefix: 'BTC ',
-    decimalPlaces: 5,
-    locale: 'en-US',
-    onChange: btcChange,
-  });
-
-  const eurMask = createNumberMask({
-    suffix: ' €',
-    decimalPlaces: 2,
-    locale: 'de',
-    onChange: eurChange,
-  });
-
-  return (
-    <form>
-      <div>
-        <Field name="BTC" component="input" type="tel" {...btcMask} />
-        <Field name="EUR" component="input" type="tel" {...eurMask} />
-      </div>
-    </form>
-  );
-};
-
-const mapStateToProps = undefined;
-
-const mapDispatchToProps = dispatch => ({
-  change: (form, field, value) => dispatch(change(form, field, value)),
+const phoneMask = createTextMask({
+  pattern: '(999) 999-9999',
 });
 
-GettingStarted = connect(mapStateToProps, mapDispatchToProps)(GettingStarted);
+(...)
 
-export default reduxForm({
-  form: 'gettingStarted',
-})(GettingStarted);
+<Field
+  name="amount"
+  component="input"
+  type="tel"
+  {...currencyMask}
+/>
+
+<Field
+  name="phone"
+  component="input"
+  type="tel"
+  {...phoneMask}
+/>
 ```
