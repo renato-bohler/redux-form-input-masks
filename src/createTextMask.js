@@ -5,6 +5,7 @@ import {
   inputReformat,
   isPatternComplete,
   maskStrip,
+  placeholderMatchTest,
   validCaretPositions,
 } from './utils';
 import defaultMaskDefinitions from './defaultMaskDefinitions';
@@ -39,6 +40,15 @@ export default options => {
   if (validPositions.length === 0) {
     throw new Error(
       `The pattern \`${pattern}\` passed for createTextMask is not valid.`,
+    );
+  }
+
+  const placeholderMatch = placeholderMatchTest(placeholder, maskDefinitions);
+  if (placeholderMatch) {
+    throw new Error(
+      `The placeholder \`${placeholder}\` matches the mask definition` +
+        `\`${placeholderMatch}\`. The mask created using \`createTextMask\`` +
+        'is therefore invalid.',
     );
   }
 
