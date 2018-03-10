@@ -116,7 +116,7 @@ let CreateNumberMask = props => {
         <div>
           <div />
           <Field name="locale" component="select">
-            <option>browser</option>
+            <option value="">browser</option>
             <option>en-US</option>
             <option>fr</option>
             <option>de</option>

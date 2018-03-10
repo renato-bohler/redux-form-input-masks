@@ -25,7 +25,7 @@ describe('Number mask', () => {
 
     const mask = createNumberMask({ prefix, suffix, decimalPlaces });
     expect(mask.format(number)).toBe(
-      `${prefix}${number.toLocaleString('browser', {
+      `${prefix}${number.toLocaleString(undefined, {
         minimumFractionDigits: decimalPlaces,
         maximumFractionDigits: decimalPlaces,
       })}${suffix}`,

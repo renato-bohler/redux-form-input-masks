@@ -9,7 +9,7 @@ export default options => {
     allowNegative = false,
     showPlusSign = false,
     spaceAfterSign = false,
-    locale = 'browser',
+    locale,
     onChange,
   } =
     options || {};
