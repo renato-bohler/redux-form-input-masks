@@ -68,7 +68,7 @@ export default reduxForm({
 
 ## Credit card (16 digits) with validation
 
-You can use `createTextMask`'s `onCompletePattern` to execute validations upon pattern completion. This is an example of 16 digits credit card validation using Luhn algorithm adapted from [here](https://stackoverflow.com/a/23222600).
+You can use [`createTextMask`](#/text-mask)'s `onCompletePattern` to execute validations upon pattern completion. This is an example of 16 digits credit card validation using Luhn algorithm adapted from [here](https://stackoverflow.com/a/23222600).
 
 ```jsx
 import { createTextMask } from 'redux-form-input-masks';

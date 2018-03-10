@@ -2,7 +2,7 @@
 
 The text mask is designed to be easily used in any kind of string formatted inputs, like telephone numbers, zip codes, credit card numbers and so on. You can build your own text mask with ease: the only required parameter is the `pattern`. It is also possible to customize the `placeholder` and specify `maskDefinitions`, if the `guide` should show or not and if the value stored should be stripped or not.
 
-It is also possible to specify an `onChange` function (to be called every time the value changes) and `onCompletePattern` (to be called when the pattern is completely filled by the user).
+It is also possible to specify an `onChange` function (to be called every time the value changes) and `onCompletePattern` (to be called when the pattern is completely filled by the user). There's an example of 16 digits credit card validation at [`more examples`](#/more).
 
 **Note:** we recommend using `type="tel"` on only numeric fields, so that on mobile the keypad shows up instead of the regular keyboard.
 
