@@ -1,4 +1,5 @@
 import * as utils from '../utils';
+import defaultMaskDefinitions from '../defaultMaskDefinitions';
 
 const maskDefinitions = {
   A: {
@@ -1173,5 +1174,28 @@ describe('applyTransform', () => {
         maskDefinitions,
       ),
     ).toBe('ABC12344');
+  });
+
+  describe('placeholderMatchTest', () => {
+    it('should return the RegExp that matches the placeholder on mask definitions', () => {
+      expect(utils.placeholderMatchTest('B', defaultMaskDefinitions)).toBe('A');
+      expect(utils.placeholderMatchTest('b', defaultMaskDefinitions)).toBe('A');
+      expect(utils.placeholderMatchTest('0', defaultMaskDefinitions)).toBe('9');
+    });
+
+    it('should return undefined if placeholder does not match any mask definition', () => {
+      expect(utils.placeholderMatchTest('_', defaultMaskDefinitions)).toBe(
+        undefined,
+      );
+      expect(utils.placeholderMatchTest('-', defaultMaskDefinitions)).toBe(
+        undefined,
+      );
+      expect(utils.placeholderMatchTest('?', defaultMaskDefinitions)).toBe(
+        undefined,
+      );
+      expect(utils.placeholderMatchTest(' ', defaultMaskDefinitions)).toBe(
+        undefined,
+      );
+    });
   });
 });
