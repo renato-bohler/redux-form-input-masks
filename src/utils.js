@@ -155,7 +155,10 @@ const inputReformat = (
  * pattern
  */
 const isPatternComplete = (formattedValue, pattern, maskDefinitions) => {
-  // Trivial case
+  // Trivial cases
+  if (!formattedValue || formattedValue.length === 0) {
+    return false;
+  }
   if (formattedValue.length !== pattern.length) {
     return false;
   }
