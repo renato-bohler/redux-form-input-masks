@@ -1,3 +1,23 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.13...v0.4.0) (2018-03-11)
+
+
+### Bug Fixes
+
+* **createNumberMask:** fixes high speed input problems on Firefox ([8d6c24a](https://github.com/renato-bohler/redux-form-input-masks/commit/8d6c24a))
+* **createNumberMask:** fixes onChange called when the value didn't actually change ([c3fc1a3](https://github.com/renato-bohler/redux-form-input-masks/commit/c3fc1a3))
+* **createTextMask:** fixes incorrect caret position on change ([1a1ffc2](https://github.com/renato-bohler/redux-form-input-masks/commit/1a1ffc2))
+* **createTextMask:** fixes input rendering after onCompletePattern ([4dce88e](https://github.com/renato-bohler/redux-form-input-masks/commit/4dce88e))
+* **utils:** adds null checking on `isPatternComplete` ([ef10d90](https://github.com/renato-bohler/redux-form-input-masks/commit/ef10d90))
+
+
+### Features
+
+* **createTextMask:** implements options validations ([374856e](https://github.com/renato-bohler/redux-form-input-masks/commit/374856e))
+* **createTextMask:** implements pattern matching validation ([459383d](https://github.com/renato-bohler/redux-form-input-masks/commit/459383d))
+* **createTextMask:** initial createTextMask implementation ([dd034ad](https://github.com/renato-bohler/redux-form-input-masks/commit/dd034ad))
+* **utils:** implements `placeholderMatchTest` function ([636f9c5](https://github.com/renato-bohler/redux-form-input-masks/commit/636f9c5))
+
 <a name="0.3.13"></a>
 ## [0.3.13](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.12...v0.3.13) (2018-03-10)
 
