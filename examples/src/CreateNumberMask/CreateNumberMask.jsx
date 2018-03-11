@@ -2,9 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { createNumberMask } from '../../../src/index';
-import { Markdown, Values } from 'redux-form-website-template';
-import { App, Demo } from '../App';
+import { Code, Markdown, Values } from 'redux-form-website-template';
+import { App, Demo, ResultCode } from '../App';
 import documentation from './CreateNumberMask.md';
+/** material-ui@next */
+import { TextField } from 'redux-form-material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import { orange } from 'material-ui/colors';
+import createPalette from 'material-ui/styles/createPalette';
+
+const muiTheme = createMuiTheme({
+  palette: createPalette({
+    primary: orange,
+    type: 'light',
+  }),
+});
 
 const selector = formValueSelector('numberMask');
 
@@ -32,7 +45,52 @@ const negative = createNumberMask({
   allowNegative: true,
 });
 
+const validation = value => (value > 10 ? 'Maximum value is 10' : '');
+
 let CreateNumberMask = props => {
+  // createNumberMask on try/catch to build custom mask
+  let safeNumberMask;
+  let customizedCode;
+  let error;
+  try {
+    safeNumberMask = createNumberMask({
+      prefix: props.prefix,
+      suffix: props.suffix,
+      decimalPlaces: props.decimalPlaces,
+      stringValue: props.stringValue,
+      allowNegative: props.allowNegative,
+      showPlusSign: props.showPlusSign,
+      spaceAfterSign: props.spaceAfterSign,
+      locale: props.locale,
+    });
+
+    customizedCode =
+      "import { createNumberMask } from 'redux-form-input-masks';\n\n" +
+      'const myCustomNumberMask = createNumberMask({\n' +
+      (props.prefix !== '' ? `    prefix: '${props.prefix}',\n` : '') +
+      (props.suffix !== '' ? `    suffix: '${props.suffix}',\n` : '') +
+      (props.decimalPlaces !== '0'
+        ? `    decimalPlaces: ${props.decimalPlaces},\n`
+        : '') +
+      (props.stringValue !== false
+        ? `    stringValue: ${props.stringValue},\n`
+        : '') +
+      (props.allowNegative !== false
+        ? `    allowNegative: ${props.allowNegative},\n`
+        : '') +
+      (props.showPlusSign !== false
+        ? `    showPlusSign: ${props.showPlusSign},\n`
+        : '') +
+      (props.spaceAfterSign !== false
+        ? `    spaceAfterSign: ${props.spaceAfterSign},\n`
+        : '') +
+      (props.locale !== undefined ? `    locale: '${props.locale}',\n` : '') +
+      '    // onChange: value => console.log(value),\n' +
+      '});';
+  } catch (e) {
+    customizedCode = '// Fix the errors above to generate the code';
+    error = e.message;
+  }
   return (
     <App>
       <div className="path">
@@ -66,22 +124,36 @@ let CreateNumberMask = props => {
           <h3>Allow negative</h3>
           <Field name="negative" component="input" type="tel" {...negative} />
         </div>
+        <h2>Validation</h2>
         <div>
-          <h3>Dynamic</h3>
+          <h3>Maximum value is 10</h3>
+          <MuiThemeProvider theme={muiTheme}>
+            <Field
+              name="material-ui-validation"
+              component={TextField}
+              type="tel"
+              validate={validation}
+              {...basic}
+            />
+          </MuiThemeProvider>
+        </div>
+        <div>
+          <Values form="numberMask" />
+        </div>
+        <h2>Build your own</h2>
+        {error && (
+          <div className="buildError">
+            <strong>Error: </strong>
+            {error}
+          </div>
+        )}
+        <div>
+          <h3>Customized</h3>
           <Field
-            name="dynamic"
+            name="customized"
             component="input"
             type="tel"
-            {...createNumberMask({
-              prefix: props.prefix,
-              suffix: props.suffix,
-              decimalPlaces: props.decimalPlaces,
-              stringValue: props.stringValue,
-              allowNegative: props.allowNegative,
-              showPlusSign: props.showPlusSign,
-              spaceAfterSign: props.spaceAfterSign,
-              locale: props.locale,
-            })}
+            {...safeNumberMask}
           />
         </div>
         <div>
@@ -152,7 +224,8 @@ let CreateNumberMask = props => {
           </label>
         </div>
       </form>
-      <Values form="numberMask" />
+      <ResultCode />
+      <Code source={customizedCode} />
     </App>
   );
 };
@@ -177,5 +250,11 @@ export default reduxForm({
   initialValues: {
     negative: -1.234,
     decimalPlaces: 2,
+    prefix: '',
+    suffix: '',
+    stringValue: false,
+    allowNegative: false,
+    showPlusSign: false,
+    spaceAfterSign: false,
   },
 })(CreateNumberMask);

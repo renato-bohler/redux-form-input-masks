@@ -14,19 +14,19 @@ const store = (window.devToolsExtension
   : createStore)(reducer);
 
 let render = () => {
-  /* eslint-disable */
   const PageNotFound = require('./App/PageNotFound.jsx').default;
   const GettingStarted = require('./GettingStarted/GettingStarted.jsx').default;
   const CreateNumberMask = require('./CreateNumberMask/CreateNumberMask.jsx')
     .default;
+  const CreateTextMask = require('./CreateTextMask/CreateTextMask.jsx').default;
   const MoreExamples = require('./MoreExamples/MoreExamples.jsx').default;
-  /* eslint-enable */
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
         <Switch>
           <Route exact path="/" component={GettingStarted} />
           <Route exact path="/number-mask" component={CreateNumberMask} />
+          <Route exact path="/text-mask" component={CreateTextMask} />
           <Route exact path="/more" component={MoreExamples} />
           <Route path="*" component={PageNotFound} />
         </Switch>
@@ -53,6 +53,8 @@ if (module.hot) {
   module.hot.accept('./GettingStarted/GettingStarted.md', rerender);
   module.hot.accept('./CreateNumberMask/CreateNumberMask.jsx', rerender);
   module.hot.accept('./CreateNumberMask/CreateNumberMask.md', rerender);
+  module.hot.accept('./CreateTextMask/CreateTextMask.jsx', rerender);
+  module.hot.accept('./CreateTextMask/CreateTextMask.md', rerender);
   module.hot.accept('./MoreExamples/MoreExamples.jsx', rerender);
   module.hot.accept('./MoreExamples/MoreExamples.md', rerender);
 }

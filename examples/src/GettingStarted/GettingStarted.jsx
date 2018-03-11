@@ -1,36 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, change } from 'redux-form';
-import { createNumberMask } from '../../../src/index';
+import { createNumberMask, createTextMask } from '../../../src/index';
 import { Markdown } from 'redux-form-website-template';
-import { App } from '../App';
+import { App, Demo } from '../App';
 import documentation from './GettingStarted.md';
 
-const conversionRate = 6800;
+const currencyMask = createNumberMask({
+  prefix: 'US$ ',
+  suffix: ' per item',
+  decimalPlaces: 2,
+  locale: 'en-US',
+});
+
+const phoneMask = createTextMask({
+  pattern: '(999) 999-9999',
+});
 
 let GettingStarted = props => {
-  const btcChange = btc => {
-    props.change('gettingStarted', 'EUR', btc * conversionRate);
-  };
-
-  const eurChange = eur => {
-    props.change('gettingStarted', 'BTC', eur / conversionRate);
-  };
-
-  const btcMask = createNumberMask({
-    prefix: 'BTC ',
-    decimalPlaces: 5,
-    locale: 'en-US',
-    onChange: btcChange,
-  });
-
-  const eurMask = createNumberMask({
-    suffix: ' €',
-    decimalPlaces: 2,
-    locale: 'de',
-    onChange: eurChange,
-  });
-
   return (
     <App>
       <div className="path">
@@ -39,10 +26,15 @@ let GettingStarted = props => {
         </a>
       </div>
       <Markdown content={documentation} />
+      <Demo codesandbox="v0rj4p6y0" />
       <form>
         <div>
-          <Field name="BTC" component="input" type="tel" {...btcMask} />
-          <Field name="EUR" component="input" type="tel" {...eurMask} />
+          <h3>Amount</h3>
+          <Field name="amount" component="input" type="tel" {...currencyMask} />
+        </div>
+        <div>
+          <h3>Phone number</h3>
+          <Field name="phone" component="input" type="tel" {...phoneMask} />
         </div>
       </form>
     </App>

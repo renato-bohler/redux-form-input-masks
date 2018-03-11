@@ -10,6 +10,7 @@ const commitLint = commit => {
   // where <header> = <type>(<scope>): <subject> or <type>: <subject>
   // https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md
   const headerRegex = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.{1,}\))?: (.{1,})/;
+  const mergeRegex = /^Merge branch '.{1,}' into .{1,}/;
   /* eslint-enable */
 
   const { msg, sha } = commit;
@@ -22,38 +23,18 @@ const commitLint = commit => {
     return `${commitIdentificator} has no commit message`;
   }
 
+  // checks for Merge message
+  if (mergeRegex.test(msg)) {
+    return;
+  }
+
   // checks for <header>
   if (!headerRegex.test(msg)) {
     return (
-      `${errorMessage} Line #1 should be \`<type>(<scope>): <subject>\` or ` +
-      `\`<type>: <subject>\`.`
+      `${errorMessage} Header should be **\`<type>(<scope>): <subject>\`** ` +
+      `or **\`<type>: <subject>\`**.`
     );
   }
-
-  const msgLines = msg.split('\n');
-  const hasTextRegex = /([^\W\_]){1,}/;
-
-  // checks for <blank line> between <header> and <body>
-  if (msgLines.length > 1 && msgLines[1] !== '') {
-    return `${errorMessage} Line #2 should be \`<blank line>\`.`;
-  }
-
-  // checks for <body>
-  if (msgLines.length > 2 && !hasTextRegex.test(msgLines[2])) {
-    return `${errorMessage} Line #3 should be \`<body>\` (with text).`;
-  }
-
-  // checks for <blank line> between <body> and <footer>
-  if (msgLines.length > 3 && msgLines[3] !== '') {
-    return `${errorMessage} Line #4 should be \`<blank line>\`.`;
-  }
-
-  // checks for <footer>
-  if (msgLines.length > 4 && !hasTextRegex.test(msgLines[4])) {
-    return `${errorMessage} Line #3 should be \`<footer>\` with text.`;
-  }
-
-  return undefined;
 };
 
 // Converts danger.github.commits to simple objects

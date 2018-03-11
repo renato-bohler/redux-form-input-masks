@@ -207,8 +207,8 @@ describe('Number mask', () => {
     expect(onChange).toBeCalledWith(updatedValue);
   });
 
-  it('should fix the caret position before the suffix', async () => {
-    // needed because we use setTimeout on our manageCaretPosition function
+  it('should fix the caret position before the suffix', () => {
+    // Needed because we use setTimeout on our manageCaretPosition function
     jest.useFakeTimers();
 
     const prefix = 'prefix 1@,.';
@@ -216,7 +216,7 @@ describe('Number mask', () => {
     const value = '1,234.56789';
     const decimalPlaces = '5';
 
-    // mocked events
+    // Mocked events
     const event = {
       persist: jest.fn(),
       target: {
@@ -226,13 +226,13 @@ describe('Number mask', () => {
     };
 
     // prefix 1@,.1,234.56789|
-    // caret should be here! ^ in the 22th position
+    // Caret should be here! ^ in the 22th position
     const correctCaretPosition = 22;
 
     const mask = createNumberMask({ prefix, suffix, decimalPlaces });
 
-    // simulate events
-    mask.onKeyDown(event);
+    // Simulate events
+    mask.onChange(event);
     mask.onMouseDown(event);
     mask.onFocus(event);
     mask.onClick(event);
@@ -247,9 +247,9 @@ describe('Number mask', () => {
     expect(event.target.setSelectionRange).toHaveBeenCalledTimes(4);
     expect(event.persist).toHaveBeenCalledTimes(4);
 
-    // these are used just to cover the else statements
-    mask.onKeyDown({});
-    mask.onKeyDown({
+    // These are used just to cover the else statements
+    mask.onChange({});
+    mask.onChange({
       target: {
         value: `${prefix}${value}${suffix}`,
         setSelectionRange: () => {},

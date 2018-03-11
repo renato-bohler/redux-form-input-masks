@@ -10,6 +10,7 @@
     ],
     "arrow-parens": ["error", "as-needed"],
     "consistent-return": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "default-case": "off"
   }
 }
