@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GitHubButton from 'react-github-button';
 import { version } from '../../../package.json';
 import Prism from './prism';
 
@@ -21,26 +22,12 @@ export default class App extends React.Component {
             Input masking with redux-form made easy
           </div>
           <div className="buttons">
-            <a
-              className="github-button"
-              href="https://github.com/renato-bohler/redux-form-input-masks"
-              data-icon="octicon-star"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Star renato-bohler/redux-form-input-masks on GitHub"
-            >
-              Star
-            </a>
-            <a
-              className="github-button"
-              href="https://github.com/renato-bohler/redux-form-input-masks/subscription"
-              data-icon="octicon-eye"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Watch renato-bohler/redux-form-input-masks on GitHub"
-            >
-              Watch
-            </a>
+            <GitHubButton
+              type="stargazers"
+              size="large"
+              namespace="renato-bohler"
+              repo="redux-form-input-masks"
+            />
           </div>
           <div className="menu">
             <Link to="/">Getting started</Link>
