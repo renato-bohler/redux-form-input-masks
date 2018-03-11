@@ -6,7 +6,7 @@ import Prism from './prism';
 
 export default class App extends React.Component {
   componentDidMount() {
-    // we need this in order to work with routers
+    // We need this in order to work with routers
     Prism.highlightAll();
   }
 
