@@ -1,4 +1,4 @@
-// general use
+// General use
 /**
  * This function should escape every special RegExp characters
  */

@@ -28,7 +28,7 @@ export default options => {
       number = Number(number);
     }
 
-    // checks for the sign
+    // Checks for the sign
     let sign = showPlusSign ? '+' : '';
     if (number < 0) {
       number *= -1;
@@ -40,7 +40,7 @@ export default options => {
       sign = `${sign} `;
     }
 
-    // reformat the number
+    // Reformat the number
     number = numberToLocaleString(number, locale, decimalPlaces);
 
     return `${sign}${prefix}${number}${suffix}`;
@@ -53,12 +53,12 @@ export default options => {
     const prefixRegex = new RegExp(`^[-|+]? ?${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
-    // if the prefix or the suffix have been modified, do nothing
+    // If the prefix or the suffix have been modified, do nothing
     if (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue)) {
       return previousValue;
     }
 
-    // checks if we need to negate the value
+    // Checks if we need to negate the value
     let multiplier = 1;
     if (allowNegative) {
       const minusRegexp = /-/g;
@@ -69,20 +69,20 @@ export default options => {
       multiplier = (-1) ** power % 2;
     }
 
-    // extracting the digits out of updatedValue
+    // Extracting the digits out of updatedValue
     let digits = updatedValue;
-    // removes the prefix
+    // Removes the prefix
     if (prefix) {
       digits = digits.replace(prefixRegex, '');
     }
-    // removes the suffix
+    // Removes the suffix
     if (suffix) {
       digits = digits.replace(suffixRegex, '');
     }
-    // removes non-digits and leading zeros
+    // Removes non-digits and leading zeros
     digits = digits.replace(/\D/g, '').replace(/\b0+/g, '');
 
-    // get the number out of digits
+    // Get the number out of digits
     let number = Number(digits) / 10 ** decimalPlaces * multiplier;
     if (stringValue) {
       number = number.toString();
@@ -102,7 +102,8 @@ export default options => {
       if (event.persist) {
         event.persist();
       }
-      // this timeout is needed to manage the caret position after onKeyDown
+
+      // This timeout is needed to get updated values
       setTimeout(() => {
         const caretPos = event.target.value.length - suffix.length;
         event.target.setSelectionRange(caretPos, caretPos);
@@ -114,7 +115,7 @@ export default options => {
     format: storeValue => format(storeValue),
     normalize: (updatedValue, previousValue) =>
       normalize(updatedValue, previousValue),
-    onKeyDown: event => manageCaretPosition(event),
+    onChange: event => manageCaretPosition(event),
     onMouseDown: event => manageCaretPosition(event),
     onFocus: event => manageCaretPosition(event),
     onClick: event => manageCaretPosition(event),
