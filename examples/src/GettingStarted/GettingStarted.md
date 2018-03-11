@@ -40,7 +40,7 @@ yarn add redux-form-input-masks
 
 ## Usage
 
-It's super simple to apply a mask using this library. You just need to import your mask creator from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes). Yep, it's that easy.
+It's super simple to apply a mask using this library. You just need to import your mask creator from `redux-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes). Yep, it's that easy.
 
 Here's a simple snippet that uses `createNumberMask` and `createTextMask` and applies them to `Field`s:
 

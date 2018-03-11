@@ -91,7 +91,7 @@ const defaultMaskDefinitions = {
 
 ## Usage
 
-You just need to import `createTextMask` from `react-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes), just like that:
+You just need to import `createTextMask` from `redux-form-input-masks`, specify the parameters and pass it to the `Field` using [spread attributes](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes), just like that:
 
 ```jsx
 import { Field } from 'redux-form';
