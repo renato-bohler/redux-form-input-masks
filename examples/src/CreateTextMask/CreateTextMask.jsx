@@ -73,7 +73,7 @@ let CreateTextMask = props => {
         </a>
       </div>
       <Markdown content={documentation} />
-      <Demo codesandbox="k0op1kwywr" />
+      <Demo codesandbox="9o5vyqxn84" />
 
       <form>
         <div>
