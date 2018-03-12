@@ -25,7 +25,7 @@ createTextMask({
 | Key               | Type       | Required | Default     | Description                                                                                                                                   |
 | ----------------- | ---------- | -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | pattern           | `string`   | yes      |             | The input's pattern. Example: `(999) 999-9999`, where the character `9` is specified in the `maskDefinitions`                                 |
-| placeholder       | `string`   | no       | `'\_'`      | The placeholder to fill the guide. It should be a single character                                                                            |
+| placeholder       | `string`   | no       | `'_'`       | The placeholder to fill the guide. It should be a single character                                                                            |
 | maskDefinitions   | see below  | no       | see below   | An object with the inputtable characters for the `pattern`. Check the section below for more info                                             |
 | guide             | `boolean`  | no       | `true`      | If true, the non inputted part of the mask will be shown and the inputtable characters of the `pattern` will be replaced by the `placeholder` |
 | stripMask         | `boolean`  | no       | `true`      | If true, the value on the store will not contain any characters that the user didn't input                                                    |
@@ -55,7 +55,7 @@ const myTextMask = createTextMask({
 });
 ```
 
-This means that `myTextMask` would have the guide `\_\_\_-\_\_\_` and would accept:
+This means that `myTextMask` would have the guide `___-___` and would accept:
 
 * any numeric character (`/[0-9]/`) for the first three positions;
 * any upper or lowercase letter from A to Z (`/[A-Za-z]/`), transforming it to uppercase for the three last positions.
