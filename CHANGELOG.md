@@ -1,3 +1,11 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.4.0...v0.4.1) (2018-03-12)
+
+
+### Bug Fixes
+
+* fixes dependency vulnerability on examples project ([42cfc5f](https://github.com/renato-bohler/redux-form-input-masks/commit/42cfc5f))
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v0.3.13...v0.4.0) (2018-03-11)
 
