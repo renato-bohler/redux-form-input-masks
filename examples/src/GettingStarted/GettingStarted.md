@@ -6,6 +6,8 @@ This page contains the documentation and some working examples of `redux-form-in
 
 Redux is awesome and so are input masks: they help standardizing inputs and improves the UX of the application. `redux-form` has support for input formatting, parseing and normalizing, but it can get pretty tricky to implement a mask with these functions. `redux-form-input-masks` offer simple APIs to create these masks so you don't need to worry about it!
 
+Also, the value of the `Field`s in any application should be agnostic of how the `Field`s themselves are presented to the user. For example, if there's a currency field in a form, it makes more sense to store the value as a number. Storing `Field` values in a way that makes more sense for the application makes it easier to integrate form data with backend services and to create validations for it. With `redux-form-input-masks` you can also choose how the value of a formatted `Field` will be stored in the application's store.
+
 ## Under the hood
 
 `redux-form-input-masks` returns objects implementing `redux-form`'s [Value Lifecycle Hooks](https://redux-form.com/7.2.3/docs/valuelifecycle.md/) and also some [Global Event Handlers](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers) to manage the caret position.
