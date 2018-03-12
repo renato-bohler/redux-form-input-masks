@@ -109,28 +109,3 @@ const phoneMask = createTextMask({
   {...phoneMask}
 />
 ```
-
-## Warning
-
-This project is still under development, I'm still setting all up for the first official release (v1.0.0). Until then, some breaking changes in v0 may occur.
-
-### Milestones to v1.0.0
-
-* [x] create repo basic structure;
-* [x] create multi purpose dev server (gh-pages documentation and live demos);
-* [x] create codesandbox.io demos;
-* [x] specify an API for `createNumberMask`;
-* [x] implement `createNumberMask`;
-* [x] add tests and code coverage structure to the project;
-* [x] implement `createNumberMask` tests;
-* [x] `createNumberMask` bugfixes;
-* [x] add repo workflow (Travis CI, danger, codecov, commitizen, semantic release);
-* [x] add fancy badges ([#4](https://github.com/renato-bohler/redux-form-input-masks/issues/4));
-* [x] add issue template ([#2](https://github.com/renato-bohler/redux-form-input-masks/issues/2));
-* [x] add code of conduct ([#3](https://github.com/renato-bohler/redux-form-input-masks/issues/3));
-* [x] add build process;
-* [x] add contributing ([#5](https://github.com/renato-bohler/redux-form-input-masks/issues/5));
-* [x] fix [#14](https://github.com/renato-bohler/redux-form-input-masks/issues/14)
-* [x] specify an API for `createStringMask`, an easy and flexible string mask creator;
-* [x] implement `createStringMask` and its tests;
-* [ ] update documentation's codesandboxes.
