@@ -24,15 +24,15 @@
     </span>
 </p>
 
-<div align="center">
-    <img alt="Example GIF" src="examples/example.gif">
-</div>
-
 ## [Documentation and examples](https://renato-bohler.github.io/redux-form-input-masks)
 
 ## Getting started
 
 `redux-form-input-masks` is a library that works with [`redux-form`](https://github.com/erikras/redux-form) to easily add masking to `Field`s.
+
+<div align="center">
+    <img alt="Example GIF" src="examples/example.gif">
+</div>
 
 ## Motivation
 
