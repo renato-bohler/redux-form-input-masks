@@ -4,13 +4,13 @@ var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: ['./src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/dist/',
     library: 'library',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   plugins: [
     new webpack.DefinePlugin({

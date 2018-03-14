@@ -138,9 +138,14 @@ export default options => {
   const goToNearestValidPosition = (target, position, direction) => {
     /* `validPositions` is ordered from least to greatest, so we find the first
     valid positon after `position` */
-    const nearestIndexToTheRight = validPositions.findIndex(
-      element => element > position,
-    );
+    let nearestIndexToTheRight;
+    for (let index = 0; index <= validPositions.length; index += 1) {
+      const element = validPositions[index];
+      if (element > position) {
+        nearestIndexToTheRight = index;
+        break;
+      }
+    }
 
     let caretPos;
     if (direction === 'left') {
@@ -198,7 +203,7 @@ export default options => {
             /* Upon click, we first check if the caret is on a valid position.
             If it isn't, we move it to the first unfilled position */
             if (selectionStart === selectionEnd) {
-              if (validPositions.includes(selectionStart)) {
+              if (validPositions.indexOf(selectionStart) >= 0) {
                 event.preventDefault();
               } else {
                 goToFirstUnfilledPosition(target);
