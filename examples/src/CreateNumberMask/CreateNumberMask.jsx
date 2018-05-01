@@ -58,6 +58,7 @@ let CreateNumberMask = props => {
       suffix: props.suffix,
       decimalPlaces: props.decimalPlaces,
       stringValue: props.stringValue,
+      allowEmpty: props.allowEmpty,
       allowNegative: props.allowNegative,
       showPlusSign: props.showPlusSign,
       spaceAfterSign: props.spaceAfterSign,
@@ -74,6 +75,9 @@ let CreateNumberMask = props => {
         : '') +
       (props.stringValue !== false
         ? `    stringValue: ${props.stringValue},\n`
+        : '') +
+      (props.allowEmpty !== false
+        ? `    allowEmpty: ${props.allowEmpty},\n`
         : '') +
       (props.allowNegative !== false
         ? `    allowNegative: ${props.allowNegative},\n`
@@ -205,6 +209,13 @@ let CreateNumberMask = props => {
         <div>
           <div />
           <label>
+            Allow empty values
+            <Field name="allowEmpty" component="input" type="checkbox" />
+          </label>
+        </div>
+        <div>
+          <div />
+          <label>
             Allow negative values
             <Field name="allowNegative" component="input" type="checkbox" />
           </label>
@@ -237,6 +248,7 @@ const mapStateToProps = state =>
     'suffix',
     'decimalPlaces',
     'stringValue',
+    'allowEmpty',
     'allowNegative',
     'showPlusSign',
     'spaceAfterSign',
@@ -253,6 +265,7 @@ export default reduxForm({
     prefix: '',
     suffix: '',
     stringValue: false,
+    allowEmpty: false,
     allowNegative: false,
     showPlusSign: false,
     spaceAfterSign: false,

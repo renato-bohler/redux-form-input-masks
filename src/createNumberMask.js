@@ -6,6 +6,7 @@ export default options => {
     suffix = '',
     decimalPlaces = 0,
     stringValue = false,
+    allowEmpty = false,
     allowNegative = false,
     showPlusSign = false,
     spaceAfterSign = false,
@@ -22,7 +23,10 @@ export default options => {
 
   const format = storeValue => {
     let number = storeValue;
-    if (!number) {
+    if (number === undefined) {
+      if (allowEmpty) {
+        return '';
+      }
       number = 0;
     } else if (typeof number !== 'number') {
       number = Number(number);
@@ -54,7 +58,10 @@ export default options => {
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
     // If the prefix or the suffix have been modified, do nothing
-    if (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue)) {
+    if (
+      previousValue &&
+      (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue))
+    ) {
       return previousValue;
     }
 
@@ -79,8 +86,26 @@ export default options => {
     if (suffix) {
       digits = digits.replace(suffixRegex, '');
     }
-    // Removes non-digits and leading zeros
-    digits = digits.replace(/\D/g, '').replace(/\b0+/g, '');
+    // Removes non-digits
+    digits = digits.replace(/\D/g, '');
+
+    if (allowEmpty) {
+      // input value has no digital values
+      const emptyInput = digits === '';
+      // input value contains zeroes only
+      const zeroInput = digits.replace(/0+/g, '') === '';
+      // one character was removed for sure
+      const characterIsRemoved = digits.length <= decimalPlaces;
+      // the value entered before is undefined
+      const previousValueIsEmpty = previousValue === undefined;
+
+      if (
+        emptyInput ||
+        (!previousValueIsEmpty && characterIsRemoved && zeroInput)
+      ) {
+        return '';
+      }
+    }
 
     // Get the number out of digits
     let number = Number(digits) / 10 ** decimalPlaces * multiplier;
