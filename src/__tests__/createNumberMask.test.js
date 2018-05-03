@@ -119,9 +119,24 @@ describe('Number mask', () => {
     );
   });
 
-  it('should be formatting as zero when the value on the store is undefined', () => {
-    const mask = createNumberMask();
-    expect(mask.format()).toBe(Number(0).toLocaleString());
+  it('should be formatting as zero when the value on the store is undefined and allowEmpty=false', () => {
+    const prefix = 'p';
+    const suffix = 's';
+    const mask = createNumberMask({ prefix, suffix, allowEmpty: false });
+
+    expect(mask.format()).toBe(
+      `${prefix}${Number(0).toLocaleString()}${suffix}`,
+    );
+  });
+
+  it('should be formatting as empty string when the value on the store is undefined and allowEmpty=true', () => {
+    const mask = createNumberMask({
+      prefix: 'p',
+      suffix: 's',
+      allowEmpty: true,
+    });
+
+    expect(mask.format()).toBe('');
   });
 
   it('should update the stored value correctly', () => {
@@ -196,6 +211,14 @@ describe('Number mask', () => {
 
     expect(mask.normalize(`${prefix}1,234a${suffix}`)).toBe(123.4);
     expect(mask.normalize(`${prefix}a1,!2?3.4/${suffix}`)).toBe(123.4);
+  });
+
+  it('should return empty string for empty input when allowEmpty=true', () => {
+    const mask = createNumberMask({ allowEmpty: true, decimalPlaces: 2 });
+
+    expect(mask.normalize('')).toBe('');
+    expect(mask.normalize('0.0', 0)).toBe('');
+    expect(mask.normalize('0.00', 0)).toBe(0);
   });
 
   it('should call onChange if it is passed as an option', () => {
