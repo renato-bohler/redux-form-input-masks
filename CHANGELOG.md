@@ -1,3 +1,11 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.0...v1.1.1) (2018-05-05)
+
+
+### Bug Fixes
+
+* **createTextMask:** fixes backspace not controlling caret position correctly on some cases ([4efad32](https://github.com/renato-bohler/redux-form-input-masks/commit/4efad32)), closes [#27](https://github.com/renato-bohler/redux-form-input-masks/issues/27)
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.0.1...v1.1.0) (2018-05-03)
 
