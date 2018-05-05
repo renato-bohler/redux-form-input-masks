@@ -187,7 +187,8 @@ export default options => {
             backspace to move the caret accordingly */
             if (
               value.length === previousValue.length + 1 &&
-              !charMatchTest(value.charAt(previousSelection), maskDefinitions)
+              value.charAt(previousSelection) ===
+                pattern.charAt(previousSelection)
             ) {
               // Backspace was pressed at a pattern char
               goToNearestValidPosition(target, previousSelection, 'left');
