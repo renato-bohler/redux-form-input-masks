@@ -90,13 +90,13 @@ export default options => {
     digits = digits.replace(/\D/g, '');
 
     if (allowEmpty) {
-      // input value has no digital values
+      // Input value has no digits
       const emptyInput = digits === '';
-      // input value contains zeroes only
+      // Input value contains zeroes only
       const zeroInput = digits.replace(/0+/g, '') === '';
-      // one character was removed for sure
+      // One character was removed for sure
       const characterIsRemoved = digits.length <= decimalPlaces;
-      // the value entered before is undefined
+      // The value entered before is undefined
       const previousValueIsEmpty = previousValue === undefined;
 
       if (

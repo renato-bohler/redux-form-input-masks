@@ -119,7 +119,7 @@ describe('Number mask', () => {
     );
   });
 
-  it('should be formatting as zero when the value on the store is undefined and allowEmpty=false', () => {
+  it('should be formatting as zero when the value on the store is undefined and allowEmpty is false', () => {
     const prefix = 'p';
     const suffix = 's';
     const mask = createNumberMask({ prefix, suffix, allowEmpty: false });
@@ -129,7 +129,7 @@ describe('Number mask', () => {
     );
   });
 
-  it('should be formatting as empty string when the value on the store is undefined and allowEmpty=true', () => {
+  it('should be formatting as empty string when the value on the store is undefined and allowEmpty is true', () => {
     const mask = createNumberMask({
       prefix: 'p',
       suffix: 's',
@@ -213,7 +213,7 @@ describe('Number mask', () => {
     expect(mask.normalize(`${prefix}a1,!2?3.4/${suffix}`)).toBe(123.4);
   });
 
-  it('should return empty string for empty input when allowEmpty=true', () => {
+  it('should return empty string for empty input when allowEmpty is true', () => {
     const mask = createNumberMask({ allowEmpty: true, decimalPlaces: 2 });
 
     expect(mask.normalize('')).toBe('');
