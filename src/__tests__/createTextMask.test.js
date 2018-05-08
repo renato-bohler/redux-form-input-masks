@@ -214,12 +214,13 @@ describe('Text mask', () => {
       onChange,
     });
 
-    const updatedValue = mask.normalize('---A__.___---__-_--', 'A');
+    mask.normalize('---A__.___---__-_--', 'A');
+    mask.normalize('---___.___---__-_--', undefined);
 
     expect(onChange).not.toBeCalled();
   });
 
-  it('should call onCompletePattern when there the mask is filled', () => {
+  it('should call onCompletePattern when the mask is filled', () => {
     // Needed because we use setTimeout on onCompletePattern
     jest.useFakeTimers();
 
@@ -248,7 +249,7 @@ describe('Text mask', () => {
       onCompletePattern,
     });
 
-    const updatedValue = mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl1');
+    mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl1');
 
     jest.runAllTimers();
 
