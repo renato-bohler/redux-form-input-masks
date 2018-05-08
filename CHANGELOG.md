@@ -1,3 +1,11 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.1...v1.1.2) (2018-05-08)
+
+
+### Bug Fixes
+
+* **createTextMask:** fixes onCompletePattern and onChange not being called sometimes ([5081b55](https://github.com/renato-bohler/redux-form-input-masks/commit/5081b55)), closes [#28](https://github.com/renato-bohler/redux-form-input-masks/issues/28) [#25](https://github.com/renato-bohler/redux-form-input-masks/issues/25)
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.0...v1.1.1) (2018-05-05)
 
