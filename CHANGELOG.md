@@ -1,3 +1,11 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.2...v1.1.3) (2018-05-12)
+
+
+### Bug Fixes
+
+* **allowEmpty:** return empty string also when value is empty string ([894deeb](https://github.com/renato-bohler/redux-form-input-masks/commit/894deeb))
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.1...v1.1.2) (2018-05-08)
 
