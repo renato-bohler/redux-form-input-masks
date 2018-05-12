@@ -139,6 +139,16 @@ describe('Number mask', () => {
     expect(mask.format()).toBe('');
   });
 
+  it('should be formatting as empty string when the value on the store is empty string and allowEmpty is true', () => {
+    const mask = createNumberMask({
+      prefix: 'p',
+      suffix: 's',
+      allowEmpty: true,
+    });
+
+    expect(mask.format('')).toBe('');
+  });
+
   it('should update the stored value correctly', () => {
     const prefix = 'prefix 1@,.';
     const suffix = '1@,. suffix';

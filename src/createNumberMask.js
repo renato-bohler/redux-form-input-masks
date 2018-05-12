@@ -23,7 +23,7 @@ export default options => {
 
   const format = storeValue => {
     let number = storeValue;
-    if (number === undefined) {
+    if (number === undefined || number === '') {
       if (allowEmpty) {
         return '';
       }
