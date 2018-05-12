@@ -15,7 +15,7 @@
     "commit": "git-cz",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "npm-run-all lint:*",
-    "danger-ci": "danger ci"
+    "danger-ci": "danger ci --verbose"
   },
   "repository": {
     "type": "git",
