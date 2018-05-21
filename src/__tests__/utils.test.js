@@ -168,7 +168,6 @@ describe('applyMask', () => {
   });
 
   it('should apply mask to incorrect stripped values', () => {
-    mixedPattern;
     expect(
       utils.applyMask('1', mixedPattern, placeholder, true, maskDefinitions),
     ).toBe('___-____');
@@ -241,7 +240,6 @@ describe('applyMask', () => {
   });
 
   it('should apply mask to overflowing stripped values', () => {
-    mixedPattern;
     expect(
       utils.applyMask(
         'ABC12345',
@@ -284,7 +282,6 @@ describe('applyMask', () => {
 
 describe('maskStrip', () => {
   it('should strip complete and correct formatted values', () => {
-    mixedPattern;
     expect(
       utils.maskStrip('ABC-1234', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC1234');
@@ -300,7 +297,6 @@ describe('maskStrip', () => {
   });
 
   it('should strip incomplete and correct formatted values', () => {
-    mixedPattern;
     expect(
       utils.maskStrip('', mixedPattern, placeholder, maskDefinitions),
     ).toBe('');
@@ -366,7 +362,6 @@ describe('maskStrip', () => {
   });
 
   it('should strip overflowing formatted values', () => {
-    mixedPattern;
     expect(
       utils.maskStrip('ABC-12345', mixedPattern, placeholder, maskDefinitions),
     ).toBe('ABC1234');
@@ -384,7 +379,6 @@ describe('maskStrip', () => {
 
 describe('inputReformat', () => {
   it('should handle user input for guided masks', () => {
-    mixedPattern;
     expect(
       utils.inputReformat(
         '___-____',
@@ -601,7 +595,6 @@ describe('inputReformat', () => {
   });
 
   it('should handle user input for non guided masks', () => {
-    mixedPattern;
     expect(
       utils.inputReformat(
         '',
@@ -834,7 +827,6 @@ describe('inputReformat', () => {
 
 describe('isPatternComplete', () => {
   it('should return true when a pattern is completely and correctly filled', () => {
-    mixedPattern;
     expect(
       utils.isPatternComplete('ABC-1234', mixedPattern, maskDefinitions),
     ).toBe(true);
@@ -848,7 +840,6 @@ describe('isPatternComplete', () => {
   });
 
   it('should return false when a pattern is not completely and correctly filled', () => {
-    mixedPattern;
     expect(utils.isPatternComplete('', mixedPattern, maskDefinitions)).toBe(
       false,
     );
@@ -890,7 +881,6 @@ describe('isPatternComplete', () => {
 
 describe('validCaretPositions', () => {
   it('should return all valid caret positions for any pattern', () => {
-    mixedPattern;
     // AAA-9999: all positions are valid
     expect(utils.validCaretPositions(mixedPattern, maskDefinitions)).toEqual([
       0,
@@ -935,7 +925,6 @@ describe('validCaretPositions', () => {
 
 describe('firstUnfilledPosition', () => {
   it('should return the first unfilled position for any value', () => {
-    mixedPattern;
     expect(
       utils.firstUnfilledPosition(
         '',
