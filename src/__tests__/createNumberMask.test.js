@@ -307,6 +307,9 @@ describe('Number mask', () => {
     const string = '-1234';
     const absoluteString = '1234';
 
+    const simpleNegativeNumberMask = createNumberMask({
+      allowNegative,
+    });
     const negativeNumberMask = createNumberMask({
       prefix,
       suffix,
@@ -325,6 +328,9 @@ describe('Number mask', () => {
       stringValue,
     });
 
+    expect(
+      simpleNegativeNumberMask.normalize(`-${absoluteNumber.toLocaleString()}`),
+    ).toBe(number);
     expect(
       negativeNumberMask.normalize(
         `-${prefix}${absoluteNumber.toLocaleString()}${suffix}`,
