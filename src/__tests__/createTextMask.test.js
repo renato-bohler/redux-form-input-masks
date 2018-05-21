@@ -183,10 +183,18 @@ describe('Text mask', () => {
       pattern: complexPattern,
     });
 
+    const notStrippedMask = createTextMask({
+      pattern: complexPattern,
+      stripMask: false,
+    });
+
     // Invalid insertions
     expect(mask.normalize('---ABC.___---__-_--', 'ABC')).toBe('ABC');
     expect(mask.normalize('---ABC,x__---__-_--', 'ABC')).toBe('ABC');
     expect(mask.normalize('---ABC.___---__-1--', 'ABC')).toBe('ABC');
+    expect(
+      notStrippedMask.normalize('---___.___---__-_--', '---9__.___---__-_--'),
+    ).toBe('---___.___---__-_--');
 
     // Mask remotions
     expect(mask.normalize('--ABC.1__---__-_--', 'ABC')).toBe('ABC');
