@@ -222,8 +222,19 @@ describe('Text mask', () => {
       onChange,
     });
 
+    const notStrippedMask = createTextMask({
+      pattern: complexPattern,
+      stripMask: false,
+      onChange,
+    });
+
+    mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl1');
     mask.normalize('---A__.___---__-_--', 'A');
     mask.normalize('---___.___---__-_--', undefined);
+
+    notStrippedMask.normalize('---ABC.xyz---Ul-1_--', '---ABC.xyz---Ul-1--');
+    notStrippedMask.normalize('---A___.___---__-_--', '---A__.___---__-_--');
+    notStrippedMask.normalize('---___.___---__-_--', '---___.___---__-_--');
 
     expect(onChange).not.toBeCalled();
   });
@@ -257,7 +268,15 @@ describe('Text mask', () => {
       onCompletePattern,
     });
 
+    const notStrippedMask = createTextMask({
+      pattern: complexPattern,
+      stripMask: false,
+      onCompletePattern,
+    });
+
     mask.normalize('---ABC.xyz---Ul-1_--', 'ABCxyzUl1');
+
+    notStrippedMask.normalize('---ABC.xyz---Ul-1_--', '---ABC.xyz---Ul-1--');
 
     jest.runAllTimers();
 
