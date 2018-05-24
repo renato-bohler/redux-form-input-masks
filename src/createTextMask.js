@@ -102,8 +102,8 @@ export default options => {
     const formattedValue = format(transformedValue, true);
     const newValue = stripMask ? transformedValue : formattedValue;
     const hasValueChanged =
-      transformedValue !== previousValue &&
-      (transformedValue !== '' || previousValue !== undefined);
+      newValue !== previousValue &&
+      (newValue !== '' || previousValue !== undefined);
 
     // We call `onChange` if it was set and if the value actually changed
     if (onChange && hasValueChanged) {
