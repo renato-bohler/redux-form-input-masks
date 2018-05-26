@@ -5,18 +5,15 @@ import { createNumberMask } from '../../../src/index';
 import { Code, Markdown, Values } from 'redux-form-website-template';
 import { App, Demo, ResultCode } from '../App';
 import documentation from './CreateNumberMask.md';
-/** material-ui@next */
+/** material-ui@1 */
 import { TextField } from 'redux-form-material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createMuiTheme from 'material-ui/styles/createMuiTheme';
-import { orange } from 'material-ui/colors';
-import createPalette from 'material-ui/styles/createPalette';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { orange } from '@material-ui/core/colors';
 
 const muiTheme = createMuiTheme({
-  palette: createPalette({
+  palette: {
     primary: orange,
-    type: 'light',
-  }),
+  },
 });
 
 const selector = formValueSelector('numberMask');
