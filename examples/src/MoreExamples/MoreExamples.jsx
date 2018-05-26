@@ -5,20 +5,17 @@ import { createNumberMask, createTextMask } from '../../../src/index';
 import { Markdown, Values } from 'redux-form-website-template';
 import { App, Demo } from '../App';
 import documentation from './MoreExamples.md';
-/** material-ui@next */
+/** material-ui@1 */
 import { TextField } from 'redux-form-material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createMuiTheme from 'material-ui/styles/createMuiTheme';
-import { orange } from 'material-ui/colors';
-import createPalette from 'material-ui/styles/createPalette';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { orange } from '@material-ui/core/colors';
 /** semantic-ui-react */
 import { Input } from 'semantic-ui-react';
 
 const muiTheme = createMuiTheme({
-  palette: createPalette({
+  palette: {
     primary: orange,
-    type: 'light',
-  }),
+  },
 });
 
 const basic = createNumberMask({
@@ -97,10 +94,10 @@ let MoreExamples = props => {
       <form>
         <h2>Integration with component libraries</h2>
         <div>
-          <h3>material-ui@1-beta</h3>
+          <h3>material-ui@1</h3>
           <MuiThemeProvider theme={muiTheme}>
             <Field
-              name="material-ui@1-beta"
+              name="material-ui@1"
               component={TextField}
               type="tel"
               {...basic}
