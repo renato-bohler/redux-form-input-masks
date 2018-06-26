@@ -192,26 +192,6 @@ describe('Number mask', () => {
     );
   });
 
-  it('should not update the stored value if the input is invalid', () => {
-    const prefix = 'prefix 1@,.';
-    const changedPrefix = prefix.substring(0, prefix.length - 1);
-    const suffix = '1@,. suffix';
-    const changedSuffix = prefix.substring(1, suffix.length);
-
-    const updatedValue = '1,2345';
-    const previousValue = 1234;
-
-    const mask = createNumberMask({ prefix, suffix });
-
-    expect(mask.normalize(updatedValue, previousValue)).toBe(previousValue);
-    expect(
-      mask.normalize(`${changedPrefix}${updatedValue}${suffix}`, previousValue),
-    ).toBe(previousValue);
-    expect(
-      mask.normalize(`${prefix}${updatedValue}${changedSuffix}`, previousValue),
-    ).toBe(previousValue);
-  });
-
   it('should ignore any non-alphanumeric characters inputted', () => {
     const prefix = 'p';
     const suffix = 's';
