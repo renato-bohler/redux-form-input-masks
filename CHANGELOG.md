@@ -1,3 +1,11 @@
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.4...v1.1.5) (2018-06-26)
+
+
+### Bug Fixes
+
+* **CreateNumberMask.js:** allow full select delete ([8aa92c9](https://github.com/renato-bohler/redux-form-input-masks/commit/8aa92c9)), closes [#43](https://github.com/renato-bohler/redux-form-input-masks/issues/43)
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.3...v1.1.4) (2018-05-24)
 
