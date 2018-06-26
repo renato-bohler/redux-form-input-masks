@@ -57,14 +57,6 @@ export default options => {
     const prefixRegex = new RegExp(`^[-|+]? ?${escapedPrefix}`);
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
-    // If the prefix or the suffix have been modified, do nothing
-    if (
-      previousValue &&
-      (!prefixRegex.test(updatedValue) || !suffixRegex.test(updatedValue))
-    ) {
-      return previousValue;
-    }
-
     // Checks if we need to negate the value
     let multiplier = 1;
     if (allowNegative) {
@@ -123,14 +115,18 @@ export default options => {
   };
 
   const manageCaretPosition = event => {
-    if (event.target) {
+    const { target, type } = event;
+
+    if (type === 'click' || type === 'mousedown') return;
+
+    if (target) {
       if (event.persist) {
         event.persist();
       }
 
       // This timeout is needed to get updated values
       setTimeout(() => {
-        const caretPos = event.target.value.length - suffix.length;
+        const caretPos = target.value.length - suffix.length;
         event.target.setSelectionRange(caretPos, caretPos);
       });
     }
