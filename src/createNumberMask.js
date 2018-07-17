@@ -115,9 +115,7 @@ export default options => {
   };
 
   const manageCaretPosition = event => {
-    const { target, type } = event;
-
-    if (type === 'click' || type === 'mousedown') return;
+    const { target } = event;
 
     if (target) {
       if (event.persist) {
@@ -137,9 +135,7 @@ export default options => {
     normalize: (updatedValue, previousValue) =>
       normalize(updatedValue, previousValue),
     onChange: event => manageCaretPosition(event),
-    onMouseDown: event => manageCaretPosition(event),
     onFocus: event => manageCaretPosition(event),
-    onClick: event => manageCaretPosition(event),
     autoComplete: 'off',
   };
 };
