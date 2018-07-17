@@ -246,9 +246,7 @@ describe('Number mask', () => {
 
     // Simulate events
     mask.onChange(event);
-    mask.onMouseDown(event);
     mask.onFocus(event);
-    mask.onClick(event);
 
     jest.runAllTimers();
 
@@ -257,8 +255,8 @@ describe('Number mask', () => {
       correctCaretPosition,
     );
 
-    expect(event.target.setSelectionRange).toHaveBeenCalledTimes(4);
-    expect(event.persist).toHaveBeenCalledTimes(4);
+    expect(event.target.setSelectionRange).toHaveBeenCalledTimes(2);
+    expect(event.persist).toHaveBeenCalledTimes(2);
 
     // These are used just to cover the else statements
     mask.onChange({});
