@@ -5,6 +5,7 @@ export default options => {
     prefix = '',
     suffix = '',
     decimalPlaces = 0,
+    multiplier = 1,
     stringValue = false,
     allowEmpty = false,
     allowNegative = false,
@@ -23,6 +24,7 @@ export default options => {
 
   const format = storeValue => {
     let number = storeValue;
+
     if (number === undefined || number === '') {
       if (allowEmpty) {
         return '';
@@ -44,6 +46,9 @@ export default options => {
       sign = `${sign} `;
     }
 
+    // Apply the multiplier
+    number *= 1 / multiplier;
+
     // Reformat the number
     number = numberToLocaleString(number, locale, decimalPlaces);
 
@@ -58,14 +63,14 @@ export default options => {
     const suffixRegex = new RegExp(`${escapedSuffix}$`);
 
     // Checks if we need to negate the value
-    let multiplier = 1;
+    let negateMultiplier = 1;
     if (allowNegative) {
       const minusRegexp = /-/g;
       const power =
         countOcurrences(updatedValue, minusRegexp) -
         countOcurrences(prefix, minusRegexp) -
         countOcurrences(suffix, minusRegexp);
-      multiplier = (-1) ** power % 2;
+      negateMultiplier = (-1) ** power % 2;
     }
 
     // Extracting the digits out of updatedValue
@@ -100,7 +105,11 @@ export default options => {
     }
 
     // Get the number out of digits
-    let number = Number(digits) / 10 ** decimalPlaces * multiplier;
+    let number = Number(digits) / 10 ** decimalPlaces * negateMultiplier;
+
+    // Apply the multiplier
+    number = Number((number * multiplier).toPrecision(10));
+
     if (stringValue) {
       number = number.toString();
     }
