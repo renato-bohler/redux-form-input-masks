@@ -22,6 +22,18 @@ export default options => {
     );
   }
 
+  if (typeof multiplier !== 'number') {
+    throw new Error(
+      "The createNumberMask's option `multilpier` should be of type number.",
+    );
+  }
+
+  if (multiplier === 0) {
+    throw new Error(
+      "The createNumberMask's option `multilpier` cannot be zero.",
+    );
+  }
+
   const format = storeValue => {
     let number = storeValue;
 
