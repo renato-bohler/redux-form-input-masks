@@ -1,3 +1,16 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.5...v1.2.0) (2018-07-23)
+
+
+### Bug Fixes
+
+* **createNumberMask:** adds validation for the multiplier option ([dcca4a1](https://github.com/renato-bohler/redux-form-input-masks/commit/dcca4a1))
+
+
+### Features
+
+* **createNumberMask:** adds multiplier option ([8e4ea2b](https://github.com/renato-bohler/redux-form-input-masks/commit/8e4ea2b)), closes [#46](https://github.com/renato-bohler/redux-form-input-masks/issues/46)
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.4...v1.1.5) (2018-06-26)
 
