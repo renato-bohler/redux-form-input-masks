@@ -32,6 +32,31 @@ describe('Number mask', () => {
     );
   });
 
+  it('should consider the multiplier when storing the value', () => {
+    // In this case the displayed value will be displayedNumber * multiplier
+    const decimalPlaces = 2;
+    const displayedNumber = '33.33';
+    const multiplier = 1 / 100;
+
+    const mask = createNumberMask({ decimalPlaces, multiplier });
+    expect(mask.normalize(displayedNumber)).toBe(displayedNumber * multiplier);
+  });
+
+  it('should consider the multiplier when formatting the value', () => {
+    // In this case the displayed value will be storedNumber / multiplier
+    const decimalPlaces = 2;
+    const storedNumber = 0.3333;
+    const multiplier = 1 / 100;
+
+    const mask = createNumberMask({ decimalPlaces, multiplier });
+    expect(mask.format(storedNumber)).toBe(
+      `${(storedNumber / multiplier).toLocaleString(undefined, {
+        minimumFractionDigits: decimalPlaces,
+        maximumFractionDigits: decimalPlaces,
+      })}`,
+    );
+  });
+
   it('should be able to format the number with a plus sign', () => {
     const prefix = 'p';
     const showPlusSign = true;
@@ -347,6 +372,18 @@ describe('Number mask', () => {
   it('should throw an error if decimalPlaces is greater than 10', () => {
     expect(() => createNumberMask({ decimalPlaces: 11 })).toThrowError(
       "The maximum value for createNumberMask's option `decimalPlaces` is 10.",
+    );
+  });
+
+  it('should throw an error if multiplier is not type number', () => {
+    expect(() => createNumberMask({ multiplier: '1' })).toThrowError(
+      "The createNumberMask's option `multilpier` should be of type number.",
+    );
+  });
+
+  it('should throw an error if multiplier is equal to zero', () => {
+    expect(() => createNumberMask({ multiplier: 0 })).toThrowError(
+      "The createNumberMask's option `multilpier` cannot be zero.",
     );
   });
 });

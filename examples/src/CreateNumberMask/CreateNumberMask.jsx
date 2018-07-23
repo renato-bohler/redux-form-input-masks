@@ -26,8 +26,8 @@ const basic = createNumberMask({
 });
 
 const converted = createNumberMask({
-  suffix: '%',
-  decimalPlaces: 4,
+  prefix: 'US$ ',
+  decimalPlaces: 2,
   stringValue: true,
 });
 
@@ -35,6 +35,12 @@ const frLocale = createNumberMask({
   prefix: '€ ',
   decimalPlaces: 2,
   locale: 'fr',
+});
+
+const percentage = createNumberMask({
+  suffix: '%',
+  decimalPlaces: 2,
+  multiplier: 1 / 100,
 });
 
 const negative = createNumberMask({
@@ -54,6 +60,7 @@ let CreateNumberMask = props => {
       prefix: props.prefix,
       suffix: props.suffix,
       decimalPlaces: props.decimalPlaces,
+      multiplier: props.multiplier,
       stringValue: props.stringValue,
       allowEmpty: props.allowEmpty,
       allowNegative: props.allowNegative,
@@ -70,6 +77,7 @@ let CreateNumberMask = props => {
       (props.decimalPlaces !== '0'
         ? `    decimalPlaces: ${props.decimalPlaces},\n`
         : '') +
+      (props.multiplier !== 1 ? `    multiplier: ${props.multiplier},\n` : '') +
       (props.stringValue !== false
         ? `    stringValue: ${props.stringValue},\n`
         : '') +
@@ -120,6 +128,15 @@ let CreateNumberMask = props => {
         <div>
           <h3>French number formatting</h3>
           <Field name="frLocale" component="input" type="tel" {...frLocale} />
+        </div>
+        <div>
+          <h3>Percentage (1/100 multiplier)</h3>
+          <Field
+            name="percentage"
+            component="input"
+            type="tel"
+            {...percentage}
+          />
         </div>
         <div>
           <h3>Allow negative</h3>
@@ -188,6 +205,16 @@ let CreateNumberMask = props => {
         </div>
         <div>
           <div />
+          <Field
+            name="multiplier"
+            component="input"
+            type="text"
+            placeholder="Choose the multiplier value"
+            {...createNumberMask({ decimalPlaces: 2 })}
+          />
+        </div>
+        <div>
+          <div />
           <Field name="locale" component="select">
             <option value="">browser</option>
             <option>en-US</option>
@@ -244,6 +271,7 @@ const mapStateToProps = state =>
     'prefix',
     'suffix',
     'decimalPlaces',
+    'multiplier',
     'stringValue',
     'allowEmpty',
     'allowNegative',
@@ -259,6 +287,7 @@ export default reduxForm({
   initialValues: {
     negative: -1.234,
     decimalPlaces: 2,
+    multiplier: 1,
     prefix: '',
     suffix: '',
     stringValue: false,

@@ -15,6 +15,7 @@ createNumberMask({
   prefix: '',
   suffix: '',
   decimalPlaces: 0,
+  multiplier: 1,
   allowEmpty: false,
   allowNegative: false,
   showPlusSign: false,
@@ -30,6 +31,7 @@ createNumberMask({
 | prefix         | `string`   | no       | `''`        | The input's prefix.                                                                                                                     |
 | suffix         | `string`   | no       | `''`        | The input's suffix.                                                                                                                     |
 | decimalPlaces  | `number`   | no       | `0`         | The amount of numbers following the decimal point. **Maximum value is 10.**                                                             |
+| multiplier     | `number`   | no       | `1`         | The multiplier to be used before storing the value. Useful for percentage formatting using `multiplier: 1/100`.                         |
 | allowEmpty     | `boolean`  | no       | `false`     | If true, the empty value will be stored as undefined and formated as empty string.                                                      |
 | allowNegative  | `boolean`  | no       | `false`     | If true, the value will be negated when the user types `-`.                                                                             |
 | showPlusSign   | `boolean`  | no       | `false`     | If true, a plus sign (`+`) will be put before the prefix when the value is positive.                                                    |
@@ -69,6 +71,7 @@ You could also call the function direcly inside the `Field`, if you need dynamic
     prefix: props.prefix,
     suffix: props.suffix,
     decimalPlaces: props.decimalPlaces,
+    multiplier: props.multiplier,
     allowEmpty: props.allowEmpty,
     allowNegative: props.allowNegative,
     showPlusSign: props.showPlusSign,
