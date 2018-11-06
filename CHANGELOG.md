@@ -1,3 +1,11 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.2.0...v1.3.0) (2018-11-06)
+
+
+### Features
+
+* **createTextMask:** adds allowEmpty option ([07e713a](https://github.com/renato-bohler/redux-form-input-masks/commit/07e713a)), closes [#53](https://github.com/renato-bohler/redux-form-input-masks/issues/53)
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.1.5...v1.2.0) (2018-07-23)
 
