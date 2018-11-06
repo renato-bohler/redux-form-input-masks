@@ -17,6 +17,7 @@ export default options => {
     maskDefinitions = defaultMaskDefinitions,
     guide = true,
     stripMask = true,
+    allowEmpty = false,
     onChange,
     onCompletePattern,
   } = options;
@@ -61,7 +62,14 @@ export default options => {
 
   const format = (storeValue, calledFromNormalize = false) => {
     if (!storeValue) {
-      return applyMask('', pattern, placeholder, guide, maskDefinitions);
+      return applyMask(
+        '',
+        pattern,
+        placeholder,
+        guide,
+        allowEmpty,
+        maskDefinitions,
+      );
     }
 
     if (!stripMask && !calledFromNormalize) {
@@ -70,7 +78,14 @@ export default options => {
     }
 
     // Format the mask according to pattern and maskDefinitions
-    return applyMask(storeValue, pattern, placeholder, guide, maskDefinitions);
+    return applyMask(
+      storeValue,
+      pattern,
+      placeholder,
+      guide,
+      allowEmpty,
+      maskDefinitions,
+    );
   };
 
   const normalize = (updatedValue, previousValue) => {
@@ -79,6 +94,7 @@ export default options => {
       pattern,
       placeholder,
       guide,
+      allowEmpty,
       maskDefinitions,
     );
 
