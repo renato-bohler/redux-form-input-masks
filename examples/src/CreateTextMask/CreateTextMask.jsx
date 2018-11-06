@@ -10,11 +10,18 @@ const selector = formValueSelector('textMask');
 
 const guidedStripped = createTextMask({
   pattern: '(999) 999-9999',
+  allowEmpty: true,
 });
 
 const notGuided = createTextMask({
   pattern: '(999) 999-9999',
   guide: false,
+});
+
+const notGuidedAllowEmpty = createTextMask({
+  pattern: '(999) 999-9999',
+  guide: false,
+  allowEmpty: true,
 });
 
 const notStripped = createTextMask({
@@ -39,6 +46,7 @@ let CreateTextMask = props => {
       placeholder: props.placeholder,
       guide: props.guide,
       stripMask: props.stripMask,
+      allowEmpty: props.allowEmpty,
     });
 
     customizedCode =
@@ -50,6 +58,9 @@ let CreateTextMask = props => {
         : '') +
       (props.guide !== true ? `    guide: ${props.guide},\n` : '') +
       (props.stripMask !== true ? `    stripMask: ${props.stripMask},\n` : '') +
+      (props.allowEmpty !== false
+        ? `    allowEmpty: ${props.allowEmpty},\n`
+        : '') +
       '    // maskDefinitions: myCustomMaskDefinitions,\n' +
       '    // onChange: value => console.log(value),\n' +
       '    // onCompletePattern: value => console.log(value),\n' +
@@ -92,6 +103,17 @@ let CreateTextMask = props => {
             Phone number <small>(not guided)</small>
           </h3>
           <Field name="notGuided" component="input" type="tel" {...notGuided} />
+        </div>
+        <div>
+          <h3>
+            Phone number <small>(not guided, allow empty)</small>
+          </h3>
+          <Field
+            name="notGuidedAllowEmpty"
+            component="input"
+            type="tel"
+            {...notGuidedAllowEmpty}
+          />
         </div>
         <div>
           <h3>
@@ -211,6 +233,18 @@ let CreateTextMask = props => {
             />
           </label>
         </div>
+        <div>
+          <div />
+          <label>
+            Allow empty
+            <Field
+              name="allowEmpty"
+              component="input"
+              type="checkbox"
+              onChange={() => props.clearCustomValue()}
+            />
+          </label>
+        </div>
       </form>
       <ResultCode />
       <Code source={customizedCode} />
@@ -219,7 +253,7 @@ let CreateTextMask = props => {
 };
 
 const mapStateToProps = state =>
-  selector(state, 'pattern', 'placeholder', 'guide', 'stripMask');
+  selector(state, 'pattern', 'placeholder', 'guide', 'stripMask', 'allowEmpty');
 
 const mapDispatchToProps = dispatch => ({
   clearCustomValue: () => dispatch(change('textMask', 'customized', '')),
@@ -234,5 +268,6 @@ export default reduxForm({
     placeholder: '_',
     guide: true,
     stripMask: true,
+    allowEmpty: false,
   },
 })(CreateTextMask);

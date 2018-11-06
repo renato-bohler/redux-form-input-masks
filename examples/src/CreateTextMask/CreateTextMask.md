@@ -17,6 +17,7 @@ createTextMask({
   maskDefinitions: defaultMaskDefinitions, // see below
   guide: true,
   stripMask: true,
+  allowEmpty: false,
   onChange: value => {},
   onCompletePattern: value => {},
 });
@@ -29,6 +30,7 @@ createTextMask({
 | maskDefinitions   | see below  | no       | see below   | An object with the inputtable characters for the `pattern`. Check the section below for more info                                             |
 | guide             | `boolean`  | no       | `true`      | If true, the non inputted part of the mask will be shown and the inputtable characters of the `pattern` will be replaced by the `placeholder` |
 | stripMask         | `boolean`  | no       | `true`      | If true, the value on the store will not contain any characters that the user didn't input                                                    |
+| allowEmpty        | `boolean`  | no       | `false`     | If true, when the stored value is empty, the mask will not be shown. If guide is set to true, the guide will be shown                         |
 | onChange          | `function` | no       | `undefined` | You can pass a function which receives the updated value upon change. Example: `updatedValue => console.log(updatedValue)`                    |
 | onCompletePattern | `function` | no       | `undefined` | You can pass a function which receives the updated value upon completing the `pattern`. Example: `updatedValue => validate(updatedValue)`     |
 

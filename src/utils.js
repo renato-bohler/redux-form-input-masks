@@ -65,11 +65,18 @@ const applyMask = (
   pattern,
   placeholder,
   guide,
+  allowEmpty,
   maskDefinitions,
 ) => {
   let applied = '';
 
   let value = !strippedValue ? '' : strippedValue;
+
+  /* If the value is empty, allowEmpty is set and guide is not, the formatted
+  value should be an empty string */
+  if (value.length === 0 && allowEmpty && !guide) {
+    return '';
+  }
 
   // There are two indexes we need to control: value and pattern
   let valueIndex = 0;
@@ -128,6 +135,7 @@ const inputReformat = (
   pattern,
   placeholder,
   guide,
+  allowEmpty,
   maskDefinitions,
 ) => {
   let string = !inputString ? '' : inputString;
@@ -147,7 +155,14 @@ const inputReformat = (
   const placeholderRegExp = escapeRegExp(placeholder);
   string = string.replace(placeholderRegExp, '');
 
-  return applyMask(string, pattern, placeholder, guide, maskDefinitions);
+  return applyMask(
+    string,
+    pattern,
+    placeholder,
+    guide,
+    allowEmpty,
+    maskDefinitions,
+  );
 };
 
 /**

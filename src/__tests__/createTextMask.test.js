@@ -52,6 +52,44 @@ describe('Text mask', () => {
     expect(mask.format('ABCxyzUl1')).toBe('---ABC.xyz---Ul-1--');
   });
 
+  it('should be able to format non guided, stripped and allow empty masks', () => {
+    const mask = createTextMask({
+      pattern: complexPattern,
+      guide: false,
+      // stripMask: true is default
+      allowEmpty: true,
+    });
+
+    expect(mask.format('')).toBe('');
+    expect(mask.format('A')).toBe('---A');
+    expect(mask.format('ABCxyzUl1')).toBe('---ABC.xyz---Ul-1--');
+  });
+
+  it('should be able to format non guided, non stripped and allow empty masks', () => {
+    const mask = createTextMask({
+      pattern: complexPattern,
+      guide: false,
+      stripMask: false,
+      allowEmpty: true,
+    });
+
+    expect(mask.format('')).toBe('');
+    expect(mask.format('---A')).toBe('---A');
+    expect(mask.format('---ABC.xyz---Ul-1--')).toBe('---ABC.xyz---Ul-1--');
+  });
+
+  it('guided should precede allow empty', () => {
+    const mask = createTextMask({
+      pattern: complexPattern,
+      guide: true,
+      allowEmpty: true,
+    });
+
+    expect(mask.format('')).toBe('---___.___---__-_--');
+    expect(mask.format('A')).toBe('---A__.___---__-_--');
+    expect(mask.format('ABCxyzUl1')).toBe('---ABC.xyz---Ul-1--');
+  });
+
   it('should be able to handle input for non guided and non stripped masks', () => {
     const mask = createTextMask({
       pattern: complexPattern,
@@ -176,6 +214,34 @@ describe('Text mask', () => {
     expect(mask.normalize('---ABC.xz---Ul-1--', '---ABC.xyz---Ul-1--')).toBe(
       'ABCxzu',
     );
+  });
+
+  it('should be able to handle input for non guided, non stripped and allow empty masks', () => {
+    const mask = createTextMask({
+      pattern: complexPattern,
+      guide: false,
+      stripMask: false,
+      allowEmpty: true,
+    });
+
+    // Insertions
+    expect(mask.normalize('', '')).toBe('');
+    expect(mask.normalize('---A', '---')).toBe('---A');
+    expect(mask.normalize('---ABC', '---AB')).toBe('---ABC.');
+    expect(mask.normalize('---ABCx.', '---ABC.')).toBe('---ABC.x');
+    expect(mask.normalize('---ABC.xyz', '---ABC.xy')).toBe('---ABC.xyz---');
+    expect(mask.normalize('---ABC.xyz---Ul-1', '---ABC.xyz---Ul-')).toBe(
+      '---ABC.xyz---Ul-1--',
+    );
+
+    // Remotions
+    expect(mask.normalize('---ABC.xyz---Ul---', '---ABC.xyz---Ul-1--')).toBe(
+      '---ABC.xyz---Ul-',
+    );
+    expect(mask.normalize('---ABC.xz---Ul-1--', '---ABC.xyz---Ul-1--')).toBe(
+      '---ABC.xzu---',
+    );
+    expect(mask.normalize('---', '---A')).toBe('');
   });
 
   it('should not update the stored value if the input is invalid', () => {
