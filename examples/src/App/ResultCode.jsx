@@ -1,15 +1,11 @@
 import React from 'react';
+import Package from '../../images/package.png';
+import Rocket from '../../images/rocket.png';
 
 export default props => (
   <h2 className="resultCode">
     Result code
-    <img
-      src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e6.png"
-      alt="package"
-    />
-    <img
-      src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png"
-      alt="rocket"
-    />
+    <img src={Package} alt="package" />
+    <img src={Rocket} alt="rocket" />
   </h2>
 );
