@@ -1,3 +1,16 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.3.0...v2.0.0) (2019-02-25)
+
+
+### Bug Fixes
+
+* **createNumberMask:** changes the default empty value to null ([d2f83f7](https://github.com/renato-bohler/redux-form-input-masks/commit/d2f83f7)), closes [#37](https://github.com/renato-bohler/redux-form-input-masks/issues/37) [#37](https://github.com/renato-bohler/redux-form-input-masks/issues/37)
+
+
+### BREAKING CHANGES
+
+* **createNumberMask:** default empty value is now null instead of empty string
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.2.0...v1.3.0) (2018-11-06)
 
