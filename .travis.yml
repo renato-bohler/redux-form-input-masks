@@ -15,7 +15,7 @@ deploy:
   committer-from-gh: true
   github_token: $GH_TOKEN
   verbose: true
-  local_dir: /docs
+  local_dir: docs
 script:
   - npm test
   - npm run danger-ci
