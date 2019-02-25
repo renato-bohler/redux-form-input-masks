@@ -26,6 +26,8 @@
 
 ## [Documentation and examples](https://renato-bohler.github.io/redux-form-input-masks)
 
+## [Migration guide](https://renato-bohler.github.io/redux-form-input-masks/#/migration-guide)
+
 ## Getting started
 
 `redux-form-input-masks` is a library that works with [`redux-form`](https://github.com/erikras/redux-form) to easily add masking to `Field`s.
