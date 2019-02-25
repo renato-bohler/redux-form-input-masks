@@ -37,7 +37,7 @@ export default options => {
   const format = storeValue => {
     let number = storeValue;
 
-    if (number === undefined || number === '') {
+    if (number === null || number === undefined || number === '') {
       if (allowEmpty) {
         return '';
       }
@@ -105,14 +105,17 @@ export default options => {
       const zeroInput = digits.replace(/0+/g, '') === '';
       // One character was removed for sure
       const characterIsRemoved = digits.length <= decimalPlaces;
-      // The value entered before is undefined
+      // The value entered before is empty
       const previousValueIsEmpty = previousValue === undefined;
 
       if (
         emptyInput ||
         (!previousValueIsEmpty && characterIsRemoved && zeroInput)
       ) {
-        return '';
+        if (digits === '0') {
+          return stringValue ? '0' : 0;
+        }
+        return null;
       }
     }
 

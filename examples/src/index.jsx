@@ -20,6 +20,9 @@ let render = () => {
     .default;
   const CreateTextMask = require('./CreateTextMask/CreateTextMask.jsx').default;
   const MoreExamples = require('./MoreExamples/MoreExamples.jsx').default;
+  const Migrating = require('./Migrating/Migrating.jsx').default;
+  const Changelog = require('./Changelog/Changelog.jsx').default;
+
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
@@ -28,6 +31,8 @@ let render = () => {
           <Route exact path="/number-mask" component={CreateNumberMask} />
           <Route exact path="/text-mask" component={CreateTextMask} />
           <Route exact path="/more" component={MoreExamples} />
+          <Route exact path="/migration-guide" component={Migrating} />
+          <Route exact path="/changelog" component={Changelog} />
           <Route path="*" component={PageNotFound} />
         </Switch>
       </HashRouter>
@@ -57,6 +62,8 @@ if (module.hot) {
   module.hot.accept('./CreateTextMask/CreateTextMask.md', rerender);
   module.hot.accept('./MoreExamples/MoreExamples.jsx', rerender);
   module.hot.accept('./MoreExamples/MoreExamples.md', rerender);
+  module.hot.accept('./Migrating/Migrating.jsx', rerender);
+  module.hot.accept('./Changelog/Changelog.jsx', rerender);
 }
 
 render();
