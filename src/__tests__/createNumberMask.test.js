@@ -228,12 +228,30 @@ describe('Number mask', () => {
     expect(mask.normalize(`${prefix}a1,!2?3.4/${suffix}`)).toBe(123.4);
   });
 
-  it('should return empty string for empty input when allowEmpty is true', () => {
+  it('should return null for empty input when allowEmpty is true', () => {
     const mask = createNumberMask({ allowEmpty: true, decimalPlaces: 2 });
 
-    expect(mask.normalize('')).toBe('');
-    expect(mask.normalize('0.0', 0)).toBe('');
+    expect(mask.normalize('')).toBe(null);
+    expect(mask.normalize('0.0', 0)).toBe(null);
     expect(mask.normalize('0.00', 0)).toBe(0);
+  });
+
+  it('should return the inputted value when allowEmpty is true', () => {
+    const mask = createNumberMask({ allowEmpty: true, decimalPlaces: 2 });
+
+    expect(mask.normalize('0', null)).toBe(0);
+    expect(mask.normalize('1', null)).toBe(0.01);
+  });
+
+  it('should return the inputted value as string when both allowEmpty and stringValue is true', () => {
+    const mask = createNumberMask({
+      allowEmpty: true,
+      stringValue: true,
+      decimalPlaces: 2,
+    });
+
+    expect(mask.normalize('0', null)).toBe('0');
+    expect(mask.normalize('1', null)).toBe('0.01');
   });
 
   it('should call onChange if it is passed as an option', () => {
