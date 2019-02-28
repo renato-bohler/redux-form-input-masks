@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -13,6 +14,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
   plugins: [
+    new CopyPlugin([{ from: './src/typings.d.ts', to: '.' }]),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
