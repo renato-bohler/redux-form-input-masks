@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Input masking with redux-form made easy",
   "main": "./dist/bundle.js",
+  "typings": "./dist/typings.d.ts",
   "scripts": {
     "build:clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
