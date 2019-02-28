@@ -1,3 +1,11 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/renato-bohler/redux-form-input-masks/compare/v2.0.0...v2.0.1) (2019-02-28)
+
+
+### Bug Fixes
+
+* only to bump minor version ([ba0db1b](https://github.com/renato-bohler/redux-form-input-masks/commit/ba0db1b))
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/renato-bohler/redux-form-input-masks/compare/v1.3.0...v2.0.0) (2019-02-25)
 
