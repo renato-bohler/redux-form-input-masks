@@ -1,3 +1,6 @@
+import { ChangeEvent, FocusEvent } from "react";
+import { EventHandler, EventWithDataHandler } from "redux-form";
+
 declare namespace reduxFormInputMasks {
   interface numberMaskOptions {
     prefix?: string;
@@ -37,8 +40,8 @@ declare namespace reduxFormInputMasks {
   interface numberMaskReturn {
     format: (storeValue: number | string) => string;
     normalize: (updatedValue: string, previousValue: number | string) => number | string;
-    onChange: (event: Event) => void,
-    onFocus: (event: Event) => void,
+    onChange: EventWithDataHandler<ChangeEvent<any>>;
+    onFocus: EventHandler<FocusEvent<any>>;
     autoComplete: string,
   }
 
@@ -46,8 +49,8 @@ declare namespace reduxFormInputMasks {
     format: (storeValue: string) => string;
     normalize: (updatedValue: string, previousValue: string) => string;
     onKeyDown: (event: Event) => void,
-    onChange: (event: Event) => void,
-    onFocus: (event: Event) => void,
+    onChange: EventWithDataHandler<ChangeEvent<any>>;
+    onFocus: EventHandler<FocusEvent<any>>;
     onClick: (event: Event) => void,
     autoComplete: string,
   }
