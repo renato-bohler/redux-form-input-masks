@@ -5,6 +5,9 @@
         <img alt="travis ci build status" src="https://img.shields.io/travis/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
     </span>
     <span>
+        <img alt="percentage of code coverage by tests" src="https://img.shields.io/codecov/c/github/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
+    </span>
+    <span>
         <img alt="latest release" src="https://img.shields.io/github/release/renato-bohler/redux-form-input-masks/all.svg?style=flat-square">
     </span>
     <span>
