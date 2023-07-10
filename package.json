@@ -13,8 +13,7 @@
     "lint:eslint": "eslint --ext .js,.jsx src examples",
     "lint:prettier": "lint-staged",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "precommit": "npm-run-all lint:*",
-    "danger-ci": "danger ci --verbose"
+    "precommit": "npm-run-all lint:*"
   },
   "repository": {
     "type": "git",
@@ -53,7 +52,6 @@
     "cpy-cli": "^1.0.1",
     "cross-env": "^5.1.3",
     "cz-conventional-changelog": "^2.1.0",
-    "danger": "11.2.1",
     "eslint": "^4.18.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",

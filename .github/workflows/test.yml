@@ -18,18 +18,6 @@ jobs:
       - name: Test
         run: npm run test
       - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-  danger_ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup
-      - name: Danger CI
-        run: npm run danger-ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
 
   build_package:
     runs-on: ubuntu-latest

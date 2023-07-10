@@ -13,12 +13,6 @@ permissions:
   pull-requests: write
   id-token: write
 
-env:
-  GIT_EMAIL: ${{ vars.GIT_EMAIL }}
-  GIT_USERNAME: ${{ vars.GIT_USERNAME }}
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -41,5 +35,10 @@ jobs:
         run: |
           npm run build
           npx semantic-release
+        env:
+          GIT_EMAIL: ${{ vars.GIT_EMAIL }}
+          GIT_USERNAME: ${{ vars.GIT_USERNAME }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
