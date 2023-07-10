@@ -24,6 +24,9 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Test
         run: npm run test
+      - uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   danger_ci:
     runs-on: ubuntu-latest
