@@ -1,0 +1,20 @@
+name: Setup
+description: Sets up Node.js, npm and caches `node_modules`
+
+inputs:
+  install-dependencies:
+    description: When 'true', dependencies will be installed
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - name: Install dependencies
+      if: ${{ inputs.install-dependencies == 'true' }}
+      run: npm install
+      shell: sh

@@ -29,7 +29,7 @@ coverage/
 
 # Build generated
 dist/
-build/
+docs/
 
 # Serverless generated files
 .serverless/
