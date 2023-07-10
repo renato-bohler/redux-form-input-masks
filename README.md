@@ -2,26 +2,25 @@
 
 <p align="center">
     <span>
-        <img alt="github actions build status" src="https://img.shields.io/github/actions/workflow/status/renato-bohler/redux-form-input-masks/release.yml
-">
+        <img alt="github actions build status" src="https://img.shields.io/github/actions/workflow/status/renato-bohler/redux-form-input-masks/release.yml">
     </span>
     <span>
-        <img alt="percentage of code coverage by tests" src="https://img.shields.io/codecov/c/github/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
+        <img alt="percentage of code coverage by tests" src="https://img.shields.io/codecov/c/github/renato-bohler/redux-form-input-masks/master.svg">
     </span>
     <span>
-        <img alt="latest release" src="https://img.shields.io/github/release/renato-bohler/redux-form-input-masks/all.svg?style=flat-square">
+        <img alt="latest release" src="https://img.shields.io/github/release/renato-bohler/redux-form-input-masks/all.svg">
     </span>
     <span>
-        <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+        <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
     </span>
     <span>
-        <img alt="commitizen friendly" src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
+        <img alt="commitizen friendly" src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg">
     </span>
     <span>
-        <img alt="semantic release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square">
+        <img alt="semantic release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
     </span>
     <span>
-        <img alt="license MIT" src="https://img.shields.io/github/license/renato-bohler/redux-form-input-masks.svg?style=flat-square">
+        <img alt="license MIT" src="https://img.shields.io/github/license/renato-bohler/redux-form-input-masks.svg">
     </span>
 </p>
 

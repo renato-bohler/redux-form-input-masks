@@ -10,7 +10,7 @@ const commitLint = commit => {
   // where <header> = <type>(<scope>): <subject> or <type>: <subject>
   // https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md
   const headerRegex = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.{1,}\))?: (.{1,})/;
-  const mergeRegex = /^Merge branch '.{1,}' into .{1,}/;
+  const mergeRegex = /^Merge branch '.{1,}' (of .+)?into .{1,}/;
   /* eslint-enable */
 
   const { msg, sha } = commit;
