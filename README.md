@@ -2,7 +2,8 @@
 
 <p align="center">
     <span>
-        <img alt="travis ci build status" src="https://img.shields.io/travis/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
+        <img alt="github actions build status" src="https://img.shields.io/github/actions/workflow/status/renato-bohler/redux-form-input-masks/release.yml
+">
     </span>
     <span>
         <img alt="percentage of code coverage by tests" src="https://img.shields.io/codecov/c/github/renato-bohler/redux-form-input-masks/master.svg?style=flat-square">
